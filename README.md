@@ -6,13 +6,15 @@ Versions: 7.15.0
 
 ## About Application
 
-This is Simple Blog application with Administrator and Subscriber role users and dashboard, Developed using Laravel v6.2. 
+This is Simple Blog application with Administrator and Subscriber role users and dashboard, Developed using Laravel v7.15.0. 
 
 - Login/Registration Module
 - Contacts Management Module
 - User Management Module
 - Role Management Module
 - Role Permision Management Module
+
+Two differenet roles "Admin" and "User" will automatically added in system and both have differnet dashboard according to assiged permissions in roles. On new user registration a confirmation email will be sent to the registered email address, Account will activate only when user will click on activation link sent in email address.
 
 ## Installation Procedure
 
