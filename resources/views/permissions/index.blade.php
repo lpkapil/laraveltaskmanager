@@ -4,27 +4,32 @@
 
 @section('main')
 
-<div class="card-header">Permissions</div>
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+   <h1 class="h3 mb-0 text-gray-800">Permissions</h1>
+</div>
+<div>
+   @if(session()->get('success'))
+   <div class="alert alert-success">
+      {{ session()->get('success') }}
+   </div>
+   @endif
+   @if(session()->get('errors'))
+   <div class="alert alert-danger">
+      {{ session()->get('errors') }}
+   </div>
+   @endif
+</div>
 
-<div class="card-body">
     <div>
-        @if(session()->get('success'))
-        <div class="alert alert-success">
-            {{ session()->get('success') }}
-        </div>
-        @endif
-
-        @if(session()->get('errors'))
-        <div class="alert alert-danger">
-            {{ session()->get('errors') }}
-        </div>
-        @endif
+        <a href="{{ route('permissions.create')}}" class="btn btn-primary mb-3"><i class="fa fa-plus" aria-hidden="true"></i> Add New Permission</a>
     </div>
-
-    <div>
-        <a href="{{ route('permissions.create')}}" class="btn btn-primary mb-3"><i class="fa fa-plus" aria-hidden="true"></i> New Permission</a>
-    </div>
-    <table class="table table-striped">
+    <!-- DataTales Example -->
+<div class="card shadow mb-4">
+   <div class="card-body">
+      <div class="table-responsive">
+         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            
         <thead>
             <tr>
                 <td>Name</td>
@@ -50,4 +55,7 @@
         </tbody>
     </table>
     {{ $permissions->links() }}
+</div>
+</div>
+</div>
     @endsection
