@@ -51,7 +51,15 @@ Pull Latest code:
 
 ## Login Details
 
-Register new user and confirm email address, user will get registered using admin role now. Put email configuration details in .env file to get emails from local using google SMTP or something like that.
+#### Admin #### 
+
+Username: admin@example.com
+Password: admin
+
+#### User ####
+
+Username: user@example.com
+Password: user
 
 ## Learning Laravel
 
