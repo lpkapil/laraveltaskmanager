@@ -14,14 +14,23 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $user = new User();
-        $user->name = 'Admin User';
-        $user->email_verified_at = Carbon::now()->format('Y-m-d H:i:s');
-        $user->email = 'admin@example.com';
-        $user->password = bcrypt('admin');
-        $user->save();
+        $adminUser = new User();
+        $adminUser->name = 'Admin User';
+        $adminUser->email_verified_at = Carbon::now()->format('Y-m-d H:i:s');
+        $adminUser->email = 'admin@example.com';
+        $adminUser->password = bcrypt('admin');
+        $adminUser->save();
 
         $roles = Role::orderBy('id', 'desc')->pluck('id')->toArray();
-        $user->roles()->sync(Role::whereIn('id', ($roles) ?? [])->get());
+        $adminUser->roles()->sync(Role::whereIn('id', ($roles) ?? [])->get());
+
+        $user = new User();
+        $user->name = 'User';
+        $user->email_verified_at = Carbon::now()->format('Y-m-d H:i:s');
+        $user->email = 'user@example.com';
+        $user->password = bcrypt('user');
+        $user->save();
+        $user->roles()->sync(Role::whereIn('id', ([2]) ?? [])->get());
+
     }
 }

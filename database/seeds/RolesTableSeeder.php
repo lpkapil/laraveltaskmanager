@@ -20,5 +20,11 @@ class RolesTableSeeder extends Seeder
 
         $permissions = Permission::orderBy('id', 'asc')->pluck('id')->toArray();
         $role->permissions()->sync(Permission::whereIn('id', ($permissions) ?? [])->get());
+    
+        $role = new Role();
+        $role->name = 'User';
+        $role->slug = 'user';
+        $role->save();
+        $role->permissions()->sync(Permission::whereIn('id', ([10,11,12]) ?? [])->get());
     }
 }

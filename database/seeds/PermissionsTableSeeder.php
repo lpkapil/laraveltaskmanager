@@ -56,5 +56,20 @@ class PermissionsTableSeeder extends Seeder
         $permission->name = 'Delete User';
         $permission->slug = 'delete-user';
         $permission->save();
+
+        $permission = new Permission();
+        $permission->name = 'Create Contact';
+        $permission->slug = 'create-contact';
+        $permission->save();
+
+        $permission = new Permission();
+        $permission->name = 'Edit Contact';
+        $permission->slug = 'edit-contact';
+        $permission->save();
+
+        $permission = new Permission();
+        $permission->name = 'Delete Contact';
+        $permission->slug = 'delete-contact';
+        $permission->save();
     }
 }
