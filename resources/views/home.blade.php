@@ -17,6 +17,10 @@
                         {{ session('status') }}
                     </div>
                     @endif
+                    <p>Logged in User Name: <strong>{{ Auth::user()->name }}</strong></p>
+                    <p>Logged in User Email: <strong>{{ Auth::user()->email }}</strong></p>
+                    <p>Logged in User Roles: <strong>{{ Auth::user()->roles->pluck('name') }}</strong></p>
+                    <?php if(in_array('admin', Auth::user()->roles->pluck('slug')->toArray())): ?>
                     <div class="row mb-3">
                         <div class="col-sm-4">
                             <div class="card text-white bg-primary">
@@ -46,6 +50,7 @@
                             </div>
                         </div>
                     </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

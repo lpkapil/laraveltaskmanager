@@ -26,12 +26,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('roles', 'RoleController');
     Route::resource('permissions', 'PermissionController');
     Route::resource('contacts', 'ContactController');
-    
-//    Route::group(['middleware' => 'role:developer'], function() {
-//        Route::get('/admin', function() {
-//            return 'Welcome Admin';
-//        });
-//    });
 });
 
 

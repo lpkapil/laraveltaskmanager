@@ -19,6 +19,7 @@ class RoleController extends Controller
     public function __construct()
     {
         $this->middleware(['auth', 'verified']);
+        $this->middleware('role:admin');
     }
     
     /**
@@ -42,7 +43,7 @@ class RoleController extends Controller
         $permissions = Permission::orderBy('id', 'asc')->pluck('name', 'id');
         $role = new \stdClass();
         $role->allpermissions = $permissions;
-        return view('roles.create', compact(role));
+        return view('roles.create', compact('role'));
     }
 
     /**
