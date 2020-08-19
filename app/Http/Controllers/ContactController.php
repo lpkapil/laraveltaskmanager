@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Contact;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class ContactController extends Controller
 {
@@ -26,7 +27,11 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $contacts = Contact::orderBy('id', 'desc')->paginate(4);
+        if(in_array('admin', Auth::user()->roles->pluck('slug')->toArray())):
+            $contacts = Contact::orderByDesc('id')->paginate(4);
+        else:
+            $contacts = Contact::where('user_id', Auth::user()->id)->orderByDesc('id')->paginate(4);
+        endif;
         return view('contacts.index', compact('contacts'));
     }
 
@@ -61,6 +66,7 @@ class ContactController extends Controller
         }
 
         $contact = new Contact([
+            'user_id' => Auth::user()->id,
             'first_name' => $request->get('first_name'),
             'last_name' => $request->get('last_name'),
             'about' => $request->get('about'),
