@@ -35,7 +35,8 @@ class HomeController extends Controller {
             $permissions = Permission::get();
             return view('adminhome', ['timenow' => Carbon::now()->toFormattedDateString(), 'users' => count($users), 'roles' => count($roles), 'contacts' => count($contacts), 'permissions' => count($permissions)]);  
         else:
-            return view('userhome');  
+            $contacts = Contact::where('user_id', Auth::user()->id)->orderByDesc('id')->get();;
+            return view('userhome', ['contacts' => count($contacts)]);  
         endif;
     }
 
