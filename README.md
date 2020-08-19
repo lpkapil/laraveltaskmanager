@@ -8,7 +8,7 @@ Versions: 7.15.0
 
 This is Web application with Admin and User role users and dashboard, Developed using Laravel v7.15.0. 
 
-# Completed
+###### Completed
 
 - User Login/Registration Module 
 - Contacts Management Module
@@ -16,7 +16,7 @@ This is Web application with Admin and User role users and dashboard, Developed 
 - Role Management Module
 - Role Permision Management Module
 
-# To-do
+###### To-do
 
 - Product Management Module
 - Order Management Module
@@ -26,7 +26,7 @@ This is Web application with Admin and User role users and dashboard, Developed 
 - Booking Mangement Module
 - Message Mangement Module
 
-# Summary of completed modules 
+###### Summary of completed modules 
 
 Two differenet roles "Admin" and "User" will automatically added in system and both have differnet dashboard according to assiged permissions in roles. On new user registration a confirmation email will be sent to the registered email address, Account will activate only when user will click on activation link sent in email address.
 
