@@ -6,13 +6,27 @@ Versions: 7.15.0
 
 ## About Application
 
-This is Simple Blog application with Administrator and Subscriber role users and dashboard, Developed using Laravel v7.15.0. 
+This is Web application with Admin and User role users and dashboard, Developed using Laravel v7.15.0. 
 
-- Login/Registration Module
+# Completed
+
+- User Login/Registration Module 
 - Contacts Management Module
 - User Management Module
 - Role Management Module
 - Role Permision Management Module
+
+# To-do
+
+- Product Management Module
+- Order Management Module
+- Subscription Service Management Module
+- Alerts Mangement Module
+- Payment Gateway Integration
+- Booking Mangement Module
+- Message Mangement Module
+
+# Summary of completed modules 
 
 Two differenet roles "Admin" and "User" will automatically added in system and both have differnet dashboard according to assiged permissions in roles. On new user registration a confirmation email will be sent to the registered email address, Account will activate only when user will click on activation link sent in email address.
 
