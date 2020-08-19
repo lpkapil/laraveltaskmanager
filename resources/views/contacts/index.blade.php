@@ -33,6 +33,7 @@
                   <th>About</th>
                   <th>Email</th>
                   <th>Phone</th>
+                  <th>Created By</th>
                   <th colspan = 2>Actions</th>
                </tr>
             </thead>
@@ -44,6 +45,7 @@
                   <td>{{$contact->about}}</td>
                   <td>{{$contact->email}}</td>
                   <td>{{$contact->phone}}</td>
+                  <td>{{$contact->user_id}}</td>
                   <td>
                      <a href="{{ route('contacts.edit',$contact->id)}}" class="btn btn-primary">Edit</a>
                   </td>
