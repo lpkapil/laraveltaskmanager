@@ -99,7 +99,15 @@ class ContactController extends Controller
         $contact = Contact::find($id);
         
         if ($contact) {
-            return view('contacts.edit', compact('contact'));   
+            if (in_array('admin', Auth::user()->roles->pluck('slug')->toArray())):
+                return view('contacts.edit', compact('contact'));   
+            else:
+                if ($contact->user_id == Auth::user()->id):
+                    return view('contacts.edit', compact('contact'));
+                else:
+                    return redirect('/contacts')->with('errors', 'Invalid contact to edit!');
+                endif;    
+            endif;
         } else {
             return redirect('/contacts')->with('errors', 'Invalid contact to edit!');
         }

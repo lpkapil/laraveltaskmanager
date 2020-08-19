@@ -5,6 +5,7 @@ use Carbon\Carbon;
 use App\User;
 use App\Role;
 use App\Contact;
+use App\Permission;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller {
@@ -31,7 +32,8 @@ class HomeController extends Controller {
             $roles = Role::get();
             $users = User::get();
             $contacts = Contact::get();
-            return view('adminhome', ['timenow' => Carbon::now()->toFormattedDateString(), 'users' => count($users), 'roles' => count($roles), 'contacts' => count($contacts)]);  
+            $permissions = Permission::get();
+            return view('adminhome', ['timenow' => Carbon::now()->toFormattedDateString(), 'users' => count($users), 'roles' => count($roles), 'contacts' => count($contacts), 'permissions' => count($permissions)]);  
         else:
             return view('userhome');  
         endif;
