@@ -1,11 +1,14 @@
 @extends('base')
 
-@section('title', 'Admin - Add New Role')
+@section('title', 'Admin - Add New User Role')
 
 @section('main')
 
-
-<div class="card-header">Add New Role</div>
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+   <h1 class="h3 mb-0 text-gray-800">Add New Role</h1>
+   
+</div>
+<div class="card shadow mb-4">
 <div class="card-body">
     <div>
         @if(session()->get('success'))
@@ -36,5 +39,6 @@
         </div>
         <button type="submit" class="btn btn-primary float-right">Add Role</button>
     </form>
+</div>
 </div>
 @endsection
