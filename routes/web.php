@@ -29,4 +29,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('stores', 'StoreController');
 });
 
+//Front Store Controller
+Route::get('{controller_name}', ['uses' =>'FrontStoreController@index']);
 
