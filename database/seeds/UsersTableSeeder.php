@@ -32,5 +32,13 @@ class UsersTableSeeder extends Seeder
         $user->save();
         $user->roles()->sync(Role::whereIn('id', ([2]) ?? [])->get());
 
+        $user = new User();
+        $user->name = 'User1';
+        $user->email_verified_at = Carbon::now()->format('Y-m-d H:i:s');
+        $user->email = 'user1@example.com';
+        $user->password = bcrypt('user1');
+        $user->save();
+        $user->roles()->sync(Role::whereIn('id', ([2]) ?? [])->get());
+
     }
 }

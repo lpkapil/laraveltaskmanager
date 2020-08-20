@@ -36,11 +36,17 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
             <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item {{ (request()->is('stores*')) ? 'active' : '' }}">
+               <a class="nav-link" href="{{ url('/stores') }}">
+               <i class="fas fa-fw fa-address-card"></i>
+               <span>Store</span></a>
+            </li>
             <li class="nav-item {{ (request()->is('contacts*')) ? 'active' : '' }}">
                <a class="nav-link" href="{{ url('/contacts') }}">
                <i class="fas fa-fw fa-address-card"></i>
                <span>Contacts</span></a>
             </li>
+            
             <?php if(in_array('admin', Auth::user()->roles->pluck('slug')->toArray())): ?>
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item {{ (request()->is('users*')) ? 'active' : '' }}">

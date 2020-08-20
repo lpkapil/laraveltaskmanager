@@ -10,9 +10,38 @@
    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
 </div>
 <div class="row">
-   <!-- Earnings (Monthly) Card Example -->
-   <div class="col-xl-3 col-md-6 mb-4">
-      <div class="card border-left-primary shadow h-100 py-2">
+   <div class="col-lg-6">
+      <div class="card mb-4 py-3 border-left-primary">
+         <div class="card-body">
+            <div class="row no-gutters align-items-center">
+               <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Store</div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="{{ config('app.url').$store->store_name }}" target="_blank"><i class="fas fa-fw fa-link fa-xs" aria-hidden="true"></i> {{ config('app.url').$store->store_name }}</a></div>
+               </div>
+               <div class="col-auto">
+                  <i class="fas fa-shopping-bag fa-2x text-gray-300"></i>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="col-lg-3">
+      <div class="card mb-4 py-3 border-left-primary">
+         <div class="card-body">
+            <div class="row no-gutters align-items-center">
+               <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Contacts</div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $contacts }}</div>
+               </div>
+               <div class="col-auto">
+                  <i class="fas fa-address-card fa-2x text-gray-300"></i>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="col-lg-3">
+      <div class="card mb-4 py-3 border-left-primary">
          <div class="card-body">
             <div class="row no-gutters align-items-center">
                <div class="col mr-2">

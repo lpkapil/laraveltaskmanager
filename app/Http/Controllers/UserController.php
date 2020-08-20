@@ -162,7 +162,12 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
+    {   
+        //Allow admin role to delete only
+        if (!in_array('admin', Auth::user()->roles->pluck('slug')->toArray())):
+            return redirect('/stores')->with('errors', 'Access denied!');
+        endif;  
+
         $user = User::find($id);
         if ($user) {
             $user->delete();

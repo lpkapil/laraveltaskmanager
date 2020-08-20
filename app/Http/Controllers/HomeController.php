@@ -6,6 +6,7 @@ use App\User;
 use App\Role;
 use App\Contact;
 use App\Permission;
+use App\Store;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller {
@@ -33,10 +34,28 @@ class HomeController extends Controller {
             $users = User::get();
             $contacts = Contact::get();
             $permissions = Permission::get();
-            return view('adminhome', ['timenow' => Carbon::now()->toFormattedDateString(), 'users' => count($users), 'roles' => count($roles), 'contacts' => count($contacts), 'permissions' => count($permissions)]);  
+            $stores = Store::get();
+            return view(
+                'adminhome', 
+                [
+                    'timenow' => Carbon::now()->toFormattedDateString(),
+                    'users' => count($users), 
+                    'roles' => count($roles), 
+                    'contacts' => count($contacts), 
+                    'permissions' => count($permissions),
+                    'stores' => count($stores),
+                ]
+            );  
         else:
             $contacts = Contact::where('user_id', Auth::user()->id)->orderByDesc('id')->get();;
-            return view('userhome', ['contacts' => count($contacts)]);  
+            $store = Store::where('user_id', Auth::user()->id)->orderByDesc('id')->get()->first();
+            return view(
+                'userhome',
+                [
+                    'contacts' => count($contacts),
+                    'store' => $store,
+                ]
+            );
         endif;
     }
 
