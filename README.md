@@ -15,7 +15,7 @@ This is Web application with Admin and User role users and dashboard, Developed 
 - User Management Module
 - Role Management Module
 - Role Permision Management Module
-- Srore Module
+- Store Module
 
 ###### To-do
 
