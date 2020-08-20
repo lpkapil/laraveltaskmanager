@@ -125,6 +125,11 @@ class PermissionController extends Controller
      */
     public function destroy($id)
     {
+        //Allow admin role to delete only
+        if (!in_array('admin', Auth::user()->roles->pluck('slug')->toArray())):
+            return redirect('/stores')->with('errors', 'Access denied!');
+        endif;  
+        
         $permission = Permission::find($id);
         if ($permission) {
             $permission->delete();

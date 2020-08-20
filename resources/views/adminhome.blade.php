@@ -17,8 +17,8 @@
          <div class="card-body">
             <div class="row no-gutters align-items-center">
                <div class="col mr-2">
-                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Contacts</div>
-                  <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $contacts }}</div>
+                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Stores</div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $stores }}</div>
                </div>
                <div class="col-auto">
                   <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -33,11 +33,11 @@
          <div class="card-body">
             <div class="row no-gutters align-items-center">
                <div class="col mr-2">
-                  <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Users</div>
-                  <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $users }}</div>
+                  <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Contacts</div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $contacts }}</div>
                </div>
                <div class="col-auto">
-                  <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                  <i class="fas fa-address-card fa-2x text-gray-300"></i>
                </div>
             </div>
          </div>
@@ -49,10 +49,10 @@
          <div class="card-body">
             <div class="row no-gutters align-items-center">
                <div class="col mr-2">
-                  <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Roles</div>
+                  <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Users</div>
                   <div class="row no-gutters align-items-center">
                      <div class="col-auto">
-                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $roles }}</div>
+                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $users }}</div>
                      </div>
                      <div class="col">
                         <div class="progress progress-sm mr-2">
@@ -74,8 +74,8 @@
          <div class="card-body">
             <div class="row no-gutters align-items-center">
                <div class="col mr-2">
-                  <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Permissions</div>
-                  <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $permissions }}</div>
+                  <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Roles</div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $roles }}</div>
                </div>
                <div class="col-auto">
                   <i class="fas fa-comments fa-2x text-gray-300"></i>

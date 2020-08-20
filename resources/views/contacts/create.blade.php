@@ -50,7 +50,7 @@
             <label for="phone">Phone:</label>
             <input type="text" class="form-control {{ $errors->has('phone') ? 'is-invalid' : '' }}" name="phone" value="{{ old('phone') }}" />
         </div>
-        <button type="submit" class="btn btn-primary float-right">Add contact</button>
+        <button type="submit" class="btn btn-primary float-right">Add Contact</button>
     </form>
 </div>
 </div>
