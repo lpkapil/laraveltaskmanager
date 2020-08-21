@@ -6,6 +6,8 @@ use App\Store;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Storage;
+
 
 class StoreController extends Controller
 {
@@ -91,17 +93,22 @@ class StoreController extends Controller
      */
     public function store(Request $request)
     {
+        $file = $request->file('store_logo');
         $validator = Validator::make($request->all(), [
-            'store_name'=> 'required|alpha|max:255|unique:stores,store_name',
+            'store_name' => 'required|alpha|max:255|unique:stores,store_name',
+            'store_logo' => 'required|image|max:2000',
         ]);
 
         if ($validator->fails()) {
             return redirect('stores/create')->withErrors($validator)->withInput();
         }
 
+        $request->file('store_logo')->store('public');
+        $fileName = $request->file('store_logo')->hashName();
+
         $store = new Store([
             'user_id' => Auth::user()->id,
-            'store_logo' => $request->get('store_logo') ?? '',
+            'store_logo' => $fileName ?? '',
             'store_name' => $request->get('store_name'),
             'store_description' => $request->get('store_description') ?? '',
             'store_address' => $request->get('store_address') ?? '',
@@ -121,16 +128,24 @@ class StoreController extends Controller
     public function update(Request $request, $id)
     {
         $store = Store::find($id);
+        $file = $request->file('store_logo');
         $validator = Validator::make($request->all(), [
             'store_name'=> 'required|alpha|max:255|unique:stores,store_name,'.$store->id,
+            'store_logo' => 'required|image|max:2000',
         ]);
 
         if ($validator->fails()) {
             return redirect('stores/'.$id.'/edit')->withErrors($validator)->withInput();
         }
+
+        //Delete old file
+        Storage::delete('/public/' . $store->store_logo);
         
+        $request->file('store_logo')->store('public');
+        $fileName = $request->file('store_logo')->hashName();
+
         $store->store_name =  $request->get('store_name');
-        $store->store_logo = $request->get('store_logo') ?? '';
+        $store->store_logo = $fileName ?? '';
         $store->store_description = $request->get('store_description') ?? '';
         $store->store_address = $request->get('store_address') ?? '';
         $store->save();

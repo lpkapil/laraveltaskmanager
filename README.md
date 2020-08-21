@@ -63,6 +63,10 @@ Pull Latest code:
 
 `php artisan migrate:refresh --seed`
 
+`php artisan storage:link`
+
+- Storage:link command needs to be run first time, and it's used when application using media upload feature, it created symlink of internal image folder to public folder, so images can access via url from internal app stoage folder.
+
 - Open application using URL
 
 `http://laraveltaskmanager.com`

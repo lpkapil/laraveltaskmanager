@@ -42,7 +42,7 @@
                @foreach($stores as $store)
                <tr>
                   <td>{{$store->id}}</td>
-                  <td>{{$store->store_logo}}</td>
+                  <td><img src="{{ '/storage/'.$store->store_logo }}" width="48" height="48"></td>
                   <td>{{$store->store_name}}</td>
                   <td>{{$store->store_description}}</td>
                   <td>{{$store->store_address}}</td>

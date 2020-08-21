@@ -30,7 +30,7 @@
             <div class="col">
                 <div class="form-group">
                     <label for="product_status">Product Status: </label></br>
-                    <select class="form-control" id="product_status" name="product_status">
+                    <select class="form-control {{ $errors->has('product_status') ? 'is-invalid' : '' }}" id="product_status" name="product_status">
                         <option value="1">Enable</option>
                         <option value="0">Disable</option>
                     </select>
@@ -47,7 +47,11 @@
             <div class="col">
                 <div class="form-group">
                     <label for="product_category_id">Choose Category:</label>
-                    <input type="text" class="form-control {{ $errors->has('product_category_id') ? 'is-invalid' : '' }}" name="product_category_id" value="{{ $product->product_category_id }}" />
+                    <select class="form-control {{ $errors->has('product_category_id') ? 'is-invalid' : '' }}" id="product_category_id" name="product_category_id" value="{{ $product->product_category_id }}">
+                        <option value="">No Category</option>
+                        <option value="1">Category 1</option>
+                        <option value="1">Category 2</option>
+                    </select>
                 </div>
             </div>
             <div class="col">
@@ -81,7 +85,19 @@
             <div class="col">
                 <div class="form-group">
                     <label for="product_quantity_type">Qunatity Type:</label>
-                    <input type="text" class="form-control {{ $errors->has('product_quantity_type') ? 'is-invalid' : '' }}" name="product_quantity_type" value="{{ $product->product_quantity_type }}" />
+                    <select class="form-control {{ $errors->has('product_quantity_type') ? 'is-invalid' : '' }}" id="product_quantity_type" name="product_quantity_type" value="{{ $product->product_quantity_type }}">
+                        <option value="piece">piece</option>
+                        <option value="kg">kg</option>
+                        <option value="gm">gm</option>
+                        <option value="litre">litre</option>
+                        <option value="ml">ml</option>
+                        <option value="dozen">dozen</option>
+                        <option value="ft">ft</option>
+                        <option value="kg">meter</option>
+                        <option value="sq.ft.">sq.ft.</option>
+                        <option value="sq.meter">sq.meter</option>
+                        <option value="set">set</option>
+                    </select>
                 </div>
             </div>
         </div>
