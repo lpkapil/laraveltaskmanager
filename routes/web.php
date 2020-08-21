@@ -27,6 +27,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('permissions', 'PermissionController');
     Route::resource('contacts', 'ContactController');
     Route::resource('stores', 'StoreController');
+    Route::resource('categories', 'CategoryController');
+    Route::resource('products', 'ProductController');
 });
 
 //Front Store Controller

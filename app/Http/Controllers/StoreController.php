@@ -42,8 +42,13 @@ class StoreController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('stores.create');
+    {   
+       if (in_array('admin', Auth::user()->roles->pluck('slug')->toArray())):
+            $stores = Store::orderByDesc('id')->paginate(4);
+            return view('stores.index', compact('stores'));
+        else:
+            return view('stores.create');
+        endif;    
     }
 
     /**
@@ -68,6 +73,17 @@ class StoreController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -76,7 +92,7 @@ class StoreController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'store_name'=> 'required|string|max:255|unique:stores,store_name',
+            'store_name'=> 'required|alpha|max:255|unique:stores,store_name',
         ]);
 
         if ($validator->fails()) {
@@ -106,11 +122,11 @@ class StoreController extends Controller
     {
         $store = Store::find($id);
         $validator = Validator::make($request->all(), [
-            'store_name'=> 'required|string|max:255|unique:stores,store_name,'.$store->id,
+            'store_name'=> 'required|alpha|max:255|unique:stores,store_name,'.$store->id,
         ]);
 
         if ($validator->fails()) {
-            return redirect('stores/create')->withErrors($validator)->withInput();
+            return redirect('stores/'.$id.'/edit')->withErrors($validator)->withInput();
         }
         
         $store->store_name =  $request->get('store_name');

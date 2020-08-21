@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Permission;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use App\Category;
+use Illuminate\Support\Facades\Auth;
 
-class PermissionController extends Controller
+class CategoryController extends Controller
 {
     
     /**
@@ -18,7 +19,6 @@ class PermissionController extends Controller
     public function __construct()
     {
         $this->middleware(['auth', 'verified']);
-        $this->middleware('role:admin');
     }
     
     /**
@@ -27,9 +27,13 @@ class PermissionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $permissions = Permission::orderBy('id', 'desc')->paginate(4);
-        return view('permissions.index', compact('permissions'));
+    {   
+        if(in_array('admin', Auth::user()->roles->pluck('slug')->toArray())):
+            $categories = Category::orderBy('id', 'desc')->paginate(4);
+        else:
+            $categories = Category::where('user_id', Auth::user()->id)->orderByDesc('id')->paginate(4);
+        endif;
+        return view('categories.index', compact('categories'));
     }
 
     /**
@@ -38,8 +42,8 @@ class PermissionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('permissions.create');
+    {   
+        return view('categories.create');
     }
 
     /**
@@ -51,19 +55,21 @@ class PermissionController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name'=> ['required', 'string', 'max:255', 'unique:permissions']
+            'name'=> ['required', 'string', 'max:255']
         ]);
 
         if ($validator->fails()) {
-            return redirect('permissions/create')->withErrors($validator)->withInput();
+            return redirect('categories/create')->withErrors($validator)->withInput();
         }
 
-        $permission = new Permission([
+        $category = new Category([
+            'user_id' => Auth::user()->id,
             'name' => $request->get('name'),
             'slug' => Str::slug($request->get('name'), '-')
         ]);
-        $permission->save();
-        return redirect('/permissions')->with('success', 'Permission saved!');
+        $category->save();
+        
+        return redirect('/categories')->with('success', 'Category saved!');
     }
 
     /**
@@ -85,11 +91,11 @@ class PermissionController extends Controller
      */
     public function edit($id)
     {
-        $permission = Permission::find($id);
-        if ($permission) {
-            return view('permissions.edit', compact('permission'));   
+        $category = Category::find($id);
+        if ($category) {
+            return view('categories.edit', compact('category'));   
         } else {
-            return redirect('/permissions')->with('errors', 'Invalid permission to edit!');
+            return redirect('/categories')->with('errors', 'Invalid category to edit!');
         }
     }
 
@@ -102,19 +108,20 @@ class PermissionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $permission = Permission::find($id);
+        $category = Category::find($id);
         $validator = Validator::make($request->all(), [
-            'name'=>'required|string|max:255|unique:permissions,slug,'.$permission->id
+            'name'=>'required|string|max:255',
         ]);
 
         if ($validator->fails()) {
-            return redirect('permissions/'.$id.'/edit')->withErrors($validator)->withInput();
+            return redirect('categories/'.$id.'/edit')->withErrors($validator)->withInput();
         }
         
-        $permission->name =  $request->get('name');
-        $permission->slug = strtolower($request->get('name'));
-        $permission->save();
-        return redirect('/permissions')->with('success', 'Permission updated!');
+        $category->name =  $request->get('name');
+        $category->slug = strtolower($request->get('name'));
+        $category->save();
+        
+        return redirect('/categories')->with('success', 'Category updated!');
     }
 
     /**
@@ -125,17 +132,12 @@ class PermissionController extends Controller
      */
     public function destroy($id)
     {
-        //Allow admin role to delete only
-        if (!in_array('admin', Auth::user()->roles->pluck('slug')->toArray())):
-            return redirect('/stores')->with('errors', 'Access denied!');
-        endif;  
-        
-        $permission = Permission::find($id);
-        if ($permission) {
-            $permission->delete();
-            return redirect('/permissions')->with('success', 'Permission deleted!');  
+        $category = Category::find($id);
+        if ($category) {
+            $category->delete();
+            return redirect('/categories')->with('success', 'Category deleted!');  
         } else {
-            return redirect('/permissions')->with('errors', 'Invalid permission to delete!');
+            return redirect('/categories')->with('errors', 'Invalid category to delete!');
         }
     }
 }

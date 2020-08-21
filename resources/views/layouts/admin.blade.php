@@ -38,15 +38,24 @@
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item {{ (request()->is('stores*')) ? 'active' : '' }}">
                <a class="nav-link" href="{{ url('/stores') }}">
-               <i class="fas fa-fw fa-address-card"></i>
+               <i class="fas fa-fw fa-cog"></i>
                <span>Store</span></a>
             </li>
-            <li class="nav-item {{ (request()->is('contacts*')) ? 'active' : '' }}">
-               <a class="nav-link" href="{{ url('/contacts') }}">
-               <i class="fas fa-fw fa-address-card"></i>
-               <span>Contacts</span></a>
+            <li class="nav-item {{ (request()->is('orders*')) ? 'active' : '' }}">
+               <a class="nav-link" href="{{ url('/orders') }}">
+               <i class="fas fa-fw fa-list-ul"></i>
+               <span>Orders</span></a>
             </li>
-            
+            <li class="nav-item {{ (request()->is('products*')) ? 'active' : '' }}">
+               <a class="nav-link" href="{{ url('/products') }}">
+               <i class="fas fa-fw fa-cubes"></i>
+               <span>Products</span></a>
+            </li>
+            <li class="nav-item {{ (request()->is('categories*')) ? 'active' : '' }}">
+               <a class="nav-link" href="{{ url('/categories') }}">
+               <i class="fas fa-fw fa-th-large"></i>
+               <span>Categories</span></a>
+            </li>
             <?php if(in_array('admin', Auth::user()->roles->pluck('slug')->toArray())): ?>
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item {{ (request()->is('users*')) ? 'active' : '' }}">
@@ -67,6 +76,11 @@
                <span>Permissions</span></a>
             </li>
             <?php endif; ?>
+            <li class="nav-item {{ (request()->is('contacts*')) ? 'active' : '' }}">
+               <a class="nav-link" href="{{ url('/contacts') }}">
+               <i class="fas fa-fw fa-address-card"></i>
+               <span>Contacts</span></a>
+            </li>
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
             <!-- Sidebar Toggler (Sidebar) -->
@@ -219,8 +233,8 @@
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                            <a class="dropdown-item" href="#">
-                           <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                           Profile
+                              <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                              Profile
                            </a>
                            <a class="dropdown-item" href="#">
                            <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -295,9 +309,12 @@
    <script src="{{ asset('js/jquery-easing/jquery.easing.min.js') }}"></script>
    <!-- Custom scripts for all pages-->
    <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+
+   <?php if(in_array('admin', Auth::user()->roles->pluck('slug')->toArray())): ?>
    <!-- Page level plugins -->
    <script src="{{ asset('js/chart.js/Chart.min.js') }}"></script>
    <!-- Page level custom scripts -->
    <script src="{{ asset('js/demo/chart-area-demo.js') }}"></script>
    <script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script>
+   <?php endif; ?>
 </html>

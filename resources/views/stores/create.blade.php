@@ -29,7 +29,7 @@
         @csrf
         <div class="form-group">
             <label for="store_logo">Store Logo:</label>
-            <input type="text" class="form-control {{ $errors->has('store_logo') ? 'is-invalid' : '' }}" name="store_logo" value="{{ old('store_logo') }}" />
+            <input type="file" class="form-control-file border {{ $errors->has('store_logo') ? 'is-invalid' : '' }}" name="store_logo" value="{{ old('store_logo') }}" />
         </div>
         <div class="form-group">
             <label for="store_name">Store Name:</label>

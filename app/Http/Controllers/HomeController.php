@@ -7,6 +7,7 @@ use App\Role;
 use App\Contact;
 use App\Permission;
 use App\Store;
+use App\Category;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller {
@@ -35,6 +36,7 @@ class HomeController extends Controller {
             $contacts = Contact::get();
             $permissions = Permission::get();
             $stores = Store::get();
+            $categories = Category::get();
             return view(
                 'adminhome', 
                 [
@@ -44,16 +46,19 @@ class HomeController extends Controller {
                     'contacts' => count($contacts), 
                     'permissions' => count($permissions),
                     'stores' => count($stores),
+                    'categories' => count($categories),
                 ]
             );  
         else:
             $contacts = Contact::where('user_id', Auth::user()->id)->orderByDesc('id')->get();;
             $store = Store::where('user_id', Auth::user()->id)->orderByDesc('id')->get()->first();
+            $categories = Category::where('user_id', Auth::user()->id)->orderByDesc('id')->get();
             return view(
                 'userhome',
                 [
                     'contacts' => count($contacts),
-                    'store' => $store,
+                    'store' => (!empty($store) ? $store->store_name : ''),
+                    'categories' => count($categories),
                 ]
             );
         endif;
