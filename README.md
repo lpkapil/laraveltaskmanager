@@ -1,5 +1,6 @@
-
-![Demo Screens](https://github.com/lpkapil/laraveltaskmanager/blob/dev/public/demo_images/logo.svg?raw=true|width=100)
+<p align="center">
+        <img src="https://raw.githubusercontent.com/lpkapil/laraveltaskmanager/dev/public/demo_images/logo.svg" width="100">
+</p>
 
 <h1 align="center">
 Store Manager
