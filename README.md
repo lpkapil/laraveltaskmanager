@@ -90,23 +90,23 @@ Password: user
 
 ![Admin Dashboard](https://github.com/lpkapil/laraveltaskmanager/blob/dev/public/demo_images/admin_home.png?raw=true)
 
-##### User Dashboard
+###### User Dashboard
 
 ![User Dashboard](https://github.com/lpkapil/laraveltaskmanager/blob/dev/public/demo_images/user_home.png?raw=true)
 
-##### User Manage Products
+###### User Manage Products
 
 ![User Manage Products](https://github.com/lpkapil/laraveltaskmanager/blob/dev/public/demo_images/manage_products.png?raw=true)
 
-##### User Edit Product
+###### User Edit Product
 
 ![User Edit Product](https://github.com/lpkapil/laraveltaskmanager/blob/dev/public/demo_images/edit_product.png?raw=true)
 
-##### User Manage Categories
+###### User Manage Categories
 
 ![User Manage Categories](https://github.com/lpkapil/laraveltaskmanager/blob/dev/public/demo_images/manage_categories.png?raw=true)
 
-##### User Edit Category
+###### User Edit Category
 
 ![User Edit Category](https://github.com/lpkapil/laraveltaskmanager/blob/dev/public/demo_images/edit_category.png?raw=true)
 
