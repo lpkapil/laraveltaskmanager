@@ -38,7 +38,7 @@
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item {{ (request()->is('stores*')) ? 'active' : '' }}">
                <a class="nav-link" href="{{ url('/stores') }}">
-               <i class="fas fa-fw fa-cog"></i>
+               <i class="fas fa-fw fa-store"></i>
                <span>Store</span></a>
             </li>
             <li class="nav-item {{ (request()->is('orders*')) ? 'active' : '' }}">

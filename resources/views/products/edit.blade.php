@@ -30,9 +30,9 @@
             <div class="col">
                 <div class="form-group">
                     <label for="product_status">Product Status: </label></br>
-                    <select class="form-control {{ $errors->has('product_status') ? 'is-invalid' : '' }}" id="product_status" name="product_status">
-                        <option value="1">Enable</option>
-                        <option value="0">Disable</option>
+                    <select class="form-control {{ $errors->has('product_status') ? 'is-invalid' : '' }}" id="product_status" name="product_status" value="{{ $product->product_status }}">
+                        <option value="1" {{ $product->product_status == '1' ? 'selected' : '' }}>Enable</option>
+                        <option value="0" {{ $product->product_status == '0' ? 'selected' : '' }}>Disable</option>
                     </select>
                 </div>
             </div>
@@ -96,17 +96,17 @@
                 <div class="form-group">
                     <label for="product_quantity_type">Qunatity Type:</label>
                     <select class="form-control {{ $errors->has('product_quantity_type') ? 'is-invalid' : '' }}" id="product_quantity_type" name="product_quantity_type" value="{{ $product->product_quantity_type }}">
-                        <option value="piece">piece</option>
-                        <option value="kg">kg</option>
-                        <option value="gm">gm</option>
-                        <option value="litre">litre</option>
-                        <option value="ml">ml</option>
-                        <option value="dozen">dozen</option>
-                        <option value="ft">ft</option>
-                        <option value="kg">meter</option>
-                        <option value="sq.ft.">sq.ft.</option>
-                        <option value="sq.meter">sq.meter</option>
-                        <option value="set">set</option>
+                        <option value="piece" {{ $product->product_quantity_type == 'piece' ? 'selected' : '' }}>piece</option>
+                        <option value="kg" {{ $product->product_quantity_type == 'kg' ? 'selected' : '' }}>kg</option>
+                        <option value="gm" {{ $product->product_quantity_type == 'gm' ? 'selected' : '' }}>gm</option>
+                        <option value="litre" {{ $product->product_quantity_type == 'litre' ? 'selected' : '' }}>litre</option>
+                        <option value="ml" {{ $product->product_quantity_type == 'ml' ? 'selected' : '' }}>ml</option>
+                        <option value="dozen" {{ $product->product_quantity_type == 'dozen' ? 'selected' : '' }}>dozen</option>
+                        <option value="ft" {{ $product->product_quantity_type == 'ft' ? 'selected' : '' }}>ft</option>
+                        <option value="meter" {{ $product->product_quantity_type == 'meter' ? 'selected' : '' }}>meter</option>
+                        <option value="sq.ft." {{ $product->product_quantity_type == 'sq.ft.' ? 'selected' : '' }}>sq.ft.</option>
+                        <option value="sq.meter" {{ $product->product_quantity_type == 'sq.ft.' ? 'selected' : '' }}>sq.meter</option>
+                        <option value="set" {{ $product->product_quantity_type == 'set' ? 'selected' : '' }}>set</option>
                     </select>
                 </div>
             </div>

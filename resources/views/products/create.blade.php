@@ -95,7 +95,7 @@
                         <option value="ml">ml</option>
                         <option value="dozen">dozen</option>
                         <option value="ft">ft</option>
-                        <option value="kg">meter</option>
+                        <option value="meter">meter</option>
                         <option value="sq.ft.">sq.ft.</option>
                         <option value="sq.meter">sq.meter</option>
                         <option value="set">set</option>

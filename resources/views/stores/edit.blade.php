@@ -34,7 +34,11 @@
             </div>
             <div class="col ">
                 <div class="form-group text-center">
-                    <img src="{{ '/storage/'.$store->store_logo }}" width="100" height="100">
+                    @empty($store->store_logo)
+                        <img src="{{ '/demo_images/shop_black.png' }}" width="100" height="100">
+                    @else
+                        <img src="{{ '/storage/'.$store->store_logo }}" width="100" height="100">
+                    @endempty
                 </div>
             </div>
         </div>    
