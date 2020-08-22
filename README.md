@@ -1,5 +1,5 @@
 <p align="center">
-        <img src="https://raw.githubusercontent.com/lpkapil/laraveltaskmanager/dev/public/demo_images/banner.png">
+        <img src="https://raw.githubusercontent.com/lpkapil/storemanager/dev/public/demo_images/banner.png">
 </p>
 
 ## About Application
@@ -74,7 +74,7 @@ Pull Latest code:
 
 - Open application using URL
 
-`http://laraveltaskmanager.com`
+`http://storemanager.com`
 
 ## Login Details
 
@@ -90,7 +90,7 @@ Password: user
 
 ## Demo Screens
 
-![Demo Screens](https://github.com/lpkapil/laraveltaskmanager/blob/dev/public/demo_images/demo.gif?raw=true)
+![Demo Screens](https://github.com/lpkapil/storemanager/blob/dev/public/demo_images/demo.gif?raw=true)
 
 ## Learning Laravel
 
