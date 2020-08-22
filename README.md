@@ -6,7 +6,7 @@ Versions: 7.15.0
 
 ## About Application
 
-This is Web application with Admin and User role users and dashboard, Developed using Laravel v7.15.0. 
+It's Store manager web application based on Software as service model. Multiple online stores can be created for sellers as a service, REST API exposed for creating store mobile application to sell goods & a dedicated admin panel available for sellers to manage store, It's Developed using Laravel v7.15.0. 
 
 ###### Completed
 
@@ -25,6 +25,8 @@ This is Web application with Admin and User role users and dashboard, Developed 
 
 ###### To-do
 
+- Integration token management module for REST API Access
+- REST API(s) for all modules for mobile apps
 - Frontend ReactJs Store Building
 - Alerts Mangement Module
 - Payment Gateway Integration
