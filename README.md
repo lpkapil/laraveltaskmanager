@@ -2,10 +2,6 @@
         <img src="https://raw.githubusercontent.com/lpkapil/laraveltaskmanager/dev/public/demo_images/banner.png">
 </p>
 
-<h1 align="center">
-Store Manager
-</h1>
-
 ## About Application
 
 It's Store manager web application based on Software as service model. Multiple online stores can be created for sellers as a service, REST API exposed for creating store mobile application to sell goods & a dedicated admin panel available for sellers to manage store, It's Developed using Laravel v7.15.0. 
