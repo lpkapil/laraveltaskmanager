@@ -17,7 +17,12 @@ class FrontStoreController extends Controller
      */
     public function index($storeName)
     {   
-        dd($storeName);
+        $store = Store::where('store_name', $storeName)->get()->first();
+        if (!empty($store)) {
+            return view('customers.index', ['store' => $store]);
+        } else {
+            return redirect('/');
+        }
         
     }
 }

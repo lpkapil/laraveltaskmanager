@@ -42,10 +42,16 @@
                @foreach($stores as $store)
                <tr>
                   <td>{{$store->id}}</td>
-                  <td><img src="{{ '/storage/'.$store->store_logo }}" width="48" height="48"></td>
+                  <td>
+                     @empty($store->store_logo)
+                        <img src="{{ '/demo_images/shop_black.png' }}" width="32" height="32">
+                     @else
+                        <img src="{{ '/storage/'.$store->store_logo }}" width="32" height="32">
+                     @endempty
+                  </td>
                   <td>{{$store->store_name}}</td>
-                  <td>{{$store->store_description}}</td>
-                  <td>{{$store->store_address}}</td>
+                  <td>{{ str_limit($store->store_description, $limit = 60, $end = '...') }}</td>
+                  <td>{{ str_limit($store->store_address, $limit = 60, $end = '...') }}</td>
                   <td>{{$store->user_id}}</td>
                   <?php if(in_array('admin', Auth::user()->roles->pluck('slug')->toArray())): ?>
                   <td>
