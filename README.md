@@ -3,7 +3,7 @@
 </p>
 
 <h1 align="center">
-Store Manager (Software as Service) <sub>v1.0</sub>
+Store Manager
 </h1>
 
 ## About Application
