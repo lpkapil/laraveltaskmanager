@@ -17,14 +17,15 @@ This is Web application with Admin and User role users and dashboard, Developed 
 - Role Permision Management Module
 - Store Mangement Module
 - Category Mangement Module
+- Product Management Module
 
 ###### In-Progress
 
-- Product Management Module
+- Order Management Module
 
 ###### To-do
 
-- Order Management Module
+- Frontend ReactJs Store Building
 - Alerts Mangement Module
 - Payment Gateway Integration
 
