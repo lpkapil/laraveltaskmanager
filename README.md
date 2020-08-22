@@ -37,24 +37,24 @@ Two differenet roles "Admin" and "User" will automatically added in system and b
 
 Pull Latest code: 
 
-`https://github.com/lpkapil/laraveltaskmanager.git`
+`https://github.com/lpkapil/storemanager.git`
 
 - Create Virtual Host & Host Entry in apache configuration and host file and restart apache server
 
 ```
 <VirtualHost *:80>
         ServerAdmin webmaster@example.com
-        ServerName laraveltaskmanager.com
-        ServerAlias laraveltaskmanager.com
-        DocumentRoot /var/www/html/laraveltaskmanager/public/
-        <Directory /var/www/html/laraveltaskmanager>
+        ServerName storemanager.com
+        ServerAlias storemanager.com
+        DocumentRoot /var/www/html/storemanager/public/
+        <Directory /var/www/html/storemanager>
                 AllowOverride all
                 Require all granted
         </Directory>
 </VirtualHost>
 ```
 
-`127.0.0.1 laraveltaskmanager.com`
+`127.0.0.1 storemanager.com`
 
 `service apache2 restart`
 
