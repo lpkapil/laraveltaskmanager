@@ -117,7 +117,7 @@ class RoleController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect('roles/create')->withErrors($validator)->withInput();
+            return redirect('roles/'.$id.'/edit')->withErrors($validator)->withInput();
         }
         
         $role->name =  $request->get('name');

@@ -16,7 +16,17 @@
             <div class="row no-gutters align-items-center">
                <div class="col mr-2">
                   <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Store</div>
-                  <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="{{ config('app.url').$store->store_name }}" target="_blank"><i class="fas fa-fw fa-link fa-xs" aria-hidden="true"></i> {{ config('app.url').$store->store_name }}</a></div>
+                  @empty($store)
+                     <a href="{{ url('/stores/create') }}" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                        <i class="fas fa-plus fa-sm text-white-50"></i> Create New Store
+                     </a>
+                  @else
+                     <div class="h5 mb-0 font-weight-bold text-gray-800">
+                        <a href="{{ config('app.url').$store }}" target="_blank">
+                           <i class="fas fa-fw fa-link fa-xs" aria-hidden="true"></i> {{ config('app.url').$store }}
+                        </a>
+                     </div>
+                  @endempty
                </div>
                <div class="col-auto">
                   <i class="fas fa-shopping-bag fa-2x text-gray-300"></i>
@@ -30,11 +40,11 @@
          <div class="card-body">
             <div class="row no-gutters align-items-center">
                <div class="col mr-2">
-                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Contacts</div>
-                  <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $contacts }}</div>
+                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Products</div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $products }}</div>
                </div>
                <div class="col-auto">
-                  <i class="fas fa-address-card fa-2x text-gray-300"></i>
+                  <i class="fas fa-cubes fa-2x text-gray-300"></i>
                </div>
             </div>
          </div>
@@ -45,11 +55,11 @@
          <div class="card-body">
             <div class="row no-gutters align-items-center">
                <div class="col mr-2">
-                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Contacts</div>
-                  <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $contacts }}</div>
+                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Categories</div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $categories }}</div>
                </div>
                <div class="col-auto">
-                  <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                  <i class="fas fa-th-large fa-2x text-gray-300"></i>
                </div>
             </div>
          </div>

@@ -6,6 +6,8 @@ use App\Store;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Storage;
+
 
 class StoreController extends Controller
 {
@@ -42,8 +44,13 @@ class StoreController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('stores.create');
+    {   
+       if (in_array('admin', Auth::user()->roles->pluck('slug')->toArray())):
+            $stores = Store::orderByDesc('id')->paginate(4);
+            return view('stores.index', compact('stores'));
+        else:
+            return view('stores.create');
+        endif;    
     }
 
     /**
@@ -68,6 +75,17 @@ class StoreController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -75,17 +93,32 @@ class StoreController extends Controller
      */
     public function store(Request $request)
     {
+        $file = $request->file('store_logo');
         $validator = Validator::make($request->all(), [
-            'store_name'=> 'required|string|max:255|unique:stores,store_name',
+            'store_name' => 'required|alpha|max:255|unique:stores,store_name',
         ]);
+
+        if (!empty($file)) {
+            $validator = Validator::make($request->all(), [
+                'store_logo' => 'required|image|max:2000',
+            ]);
+        }
 
         if ($validator->fails()) {
             return redirect('stores/create')->withErrors($validator)->withInput();
         }
+        
+        if (!empty($file)) {
+            $request->file('store_logo')->store('public');
+            $fileName = $request->file('store_logo')->hashName();    
+        } else {
+            $fileName = '';
+        }
+        
 
         $store = new Store([
             'user_id' => Auth::user()->id,
-            'store_logo' => $request->get('store_logo') ?? '',
+            'store_logo' => $fileName ?? '',
             'store_name' => $request->get('store_name'),
             'store_description' => $request->get('store_description') ?? '',
             'store_address' => $request->get('store_address') ?? '',
@@ -105,16 +138,32 @@ class StoreController extends Controller
     public function update(Request $request, $id)
     {
         $store = Store::find($id);
+        $file = $request->file('store_logo');
         $validator = Validator::make($request->all(), [
-            'store_name'=> 'required|string|max:255|unique:stores,store_name,'.$store->id,
+            'store_name'=> 'required|alpha|max:255|unique:stores,store_name,'.$store->id,
         ]);
 
-        if ($validator->fails()) {
-            return redirect('stores/create')->withErrors($validator)->withInput();
+        if (!empty($file)) {
+            $validator = Validator::make($request->all(), [
+                'store_logo' => 'required|image|max:2000',
+            ]);
         }
-        
+
+        if ($validator->fails()) {
+            return redirect('stores/'.$id.'/edit')->withErrors($validator)->withInput();
+        }
+
+        if (!empty($file)) {
+            //Delete old file
+            Storage::delete('/public/' . $store->store_logo);
+            $request->file('store_logo')->store('public');
+            $fileName = $request->file('store_logo')->hashName();    
+        } else {
+            $fileName = $store->store_logo;
+        }
+
         $store->store_name =  $request->get('store_name');
-        $store->store_logo = $request->get('store_logo') ?? '';
+        $store->store_logo = $fileName ?? '';
         $store->store_description = $request->get('store_description') ?? '';
         $store->store_address = $request->get('store_address') ?? '';
         $store->save();
@@ -136,6 +185,7 @@ class StoreController extends Controller
 
         $store = Store::find($id);
         if ($store) {
+            Storage::delete('/public/' . $store->store_logo);
             $store->delete();
             return redirect('/stores')->with('success', 'Store deleted!');  
         } else {

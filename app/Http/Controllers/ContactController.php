@@ -132,7 +132,7 @@ class ContactController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect('contacts/create')->withErrors($validator)->withInput();
+            return redirect('contacts/'.$id.'/edit')->withErrors($validator)->withInput();
         }
         
         $contact->first_name =  $request->get('first_name');

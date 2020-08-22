@@ -7,6 +7,8 @@ use App\Role;
 use App\Contact;
 use App\Permission;
 use App\Store;
+use App\Category;
+use App\Product;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller {
@@ -30,30 +32,38 @@ class HomeController extends Controller {
      */
     public function index() {
         if (in_array('admin', Auth::user()->roles->pluck('slug')->toArray())):
-            $roles = Role::get();
-            $users = User::get();
-            $contacts = Contact::get();
-            $permissions = Permission::get();
-            $stores = Store::get();
+            $roles = Role::count();
+            $users = User::count();
+            $contacts = Contact::count();
+            $permissions = Permission::count();
+            $stores = Store::count();
+            $categories = Category::count();
+            $products = Product::count();
             return view(
                 'adminhome', 
                 [
                     'timenow' => Carbon::now()->toFormattedDateString(),
-                    'users' => count($users), 
-                    'roles' => count($roles), 
-                    'contacts' => count($contacts), 
-                    'permissions' => count($permissions),
-                    'stores' => count($stores),
+                    'users' => $users, 
+                    'roles' => $roles, 
+                    'contacts' => $contacts, 
+                    'permissions' => $permissions,
+                    'stores' => $stores,
+                    'categories' => $categories,
+                    'products' => $products,
                 ]
             );  
         else:
-            $contacts = Contact::where('user_id', Auth::user()->id)->orderByDesc('id')->get();;
+            $contacts = Contact::where('user_id', Auth::user()->id)->orderByDesc('id')->count();
+            $products = Product::where('user_id', Auth::user()->id)->orderByDesc('id')->count();
             $store = Store::where('user_id', Auth::user()->id)->orderByDesc('id')->get()->first();
+            $categories = Category::where('user_id', Auth::user()->id)->orderByDesc('id')->count();
             return view(
                 'userhome',
                 [
-                    'contacts' => count($contacts),
-                    'store' => $store,
+                    'contacts' => $contacts,
+                    'products' => $products,
+                    'store' => (!empty($store) ? $store->store_name : ''),
+                    'categories' => $categories,
                 ]
             );
         endif;

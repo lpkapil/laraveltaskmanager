@@ -3,6 +3,8 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
+
+
 /* 
     Created on : 3 Jul, 2020, 6:46:07 PM
     Author     : kapil
@@ -11,4 +13,14 @@ and open the template in the editor.
 .w-100 {
     width: 100% !important;
     height: 65vh;
+}
+
+.dropzone {
+    border: 2px dashed #0087F7 !important;
+    border-radius: 5px;
+    background: white !important;
+}
+
+.dropzone .dz-message {
+    font-size: 15px;
 }

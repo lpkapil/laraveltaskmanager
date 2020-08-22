@@ -25,12 +25,13 @@
         </div>
         @endif
     </div>
-    <form method="post" action="{{ route('stores.store') }}">
+    <form method="post" action="{{ route('stores.store') }}" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label for="store_logo">Store Logo:</label>
-            <input type="text" class="form-control {{ $errors->has('store_logo') ? 'is-invalid' : '' }}" name="store_logo" value="{{ old('store_logo') }}" />
+            <input type="file" class="form-control-file border {{ $errors->has('store_logo') ? 'is-invalid' : '' }}" name="store_logo" value="{{ old('store_logo') }}" />
         </div>
+        
         <div class="form-group">
             <label for="store_name">Store Name:</label>
             <input type="text" class="form-control {{ $errors->has('store_name') ? 'is-invalid' : '' }}" name="store_name" value="{{ old('store_name') }}" />

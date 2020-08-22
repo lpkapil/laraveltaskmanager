@@ -17,7 +17,7 @@
    </div>
    @endif
 </div>
-<?php if(count($stores) == 0): ?>
+<?php if(count($stores) == 0 && (!in_array('admin', Auth::user()->roles->pluck('slug')->toArray()))): ?>
 <div>
    <a href="{{ route('stores.create')}}" class="btn btn-primary mb-3"><i class="fa fa-plus" aria-hidden="true"></i> Add New Store</a>
 </div>
@@ -42,7 +42,7 @@
                @foreach($stores as $store)
                <tr>
                   <td>{{$store->id}}</td>
-                  <td>{{$store->store_logo}}</td>
+                  <td><img src="{{ '/storage/'.$store->store_logo }}" width="48" height="48"></td>
                   <td>{{$store->store_name}}</td>
                   <td>{{$store->store_description}}</td>
                   <td>{{$store->store_address}}</td>
