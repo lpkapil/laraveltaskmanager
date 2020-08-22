@@ -29,6 +29,23 @@ This is Web application with Admin and User role users and dashboard, Developed 
 - Alerts Mangement Module
 - Payment Gateway Integration
 
+
+## Demo Screens
+
+###### Admin Dashboard
+
+![Admin Dashboard](https://github.com/[username]/[reponame]/blob/[branch]/public/demo_images/admin_home.png?raw=true)
+
+##### User Dashboard
+
+##### User Manage Products
+
+##### User Edit Product
+
+##### User Manage Categories
+
+##### User Edit Category
+
 ###### Summary of completed modules 
 
 Two differenet roles "Admin" and "User" will automatically added in system and both have differnet dashboard according to assiged permissions in roles. On new user registration a confirmation email will be sent to the registered email address, Account will activate only when user will click on activation link sent in email address.
