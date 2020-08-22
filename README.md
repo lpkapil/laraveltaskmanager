@@ -1,10 +1,6 @@
 <p align="center">
-        <img src="https://raw.githubusercontent.com/lpkapil/laraveltaskmanager/dev/public/demo_images/logo.svg" width="200">
+        <img src="https://raw.githubusercontent.com/lpkapil/laraveltaskmanager/dev/public/demo_images/banner.png">
 </p>
-
-<h1 align="center">
-Store Manager
-</h1>
 
 ## About Application
 
@@ -67,6 +63,10 @@ Pull Latest code:
 `php artisan key:generate`
 
 `php artisan migrate:refresh --seed`
+
+`cd public`
+
+`rm -rf storage`
 
 `php artisan storage:link`
 
