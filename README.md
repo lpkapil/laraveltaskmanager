@@ -92,6 +92,6 @@ Password: user
 
 ![Demo Screens](https://github.com/lpkapil/storemanager/blob/dev/public/demo_images/demo.gif?raw=true)
 
-## Donate
+## Donate and Support
 
-<div class='pm-button'><a href='https://www.payumoney.com/paybypayumoney/#/4A099B8C05AE9A38F902332D50826EA9'><img src='https://www.payumoney.com/media/images/payby_payumoney/new_buttons/21.png' /></a></div> 
+<div class='pm-button'><a href='https://www.payumoney.com/paybypayumoney/#/3FF0BB83F2A6D7DD27A53BC12E4AE109'><img src='https://www.payumoney.com/media/images/payby_payumoney/new_buttons/21.png' /></a></div> 
