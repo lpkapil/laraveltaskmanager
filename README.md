@@ -1,8 +1,10 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
-
 <p align="center">
-Versions: 7.15.0
+        <img src="https://raw.githubusercontent.com/lpkapil/laraveltaskmanager/dev/public/demo_images/logo.svg" width="200">
 </p>
+
+<h1 align="center">
+Store Manager
+</h1>
 
 ## About Application
 
