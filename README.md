@@ -1,9 +1,9 @@
 <p align="center">
-        <img src="https://raw.githubusercontent.com/lpkapil/laraveltaskmanager/dev/public/demo_images/logo.svg" width="100">
+        <img src="https://raw.githubusercontent.com/lpkapil/laraveltaskmanager/dev/public/demo_images/logo.svg" width="200">
 </p>
 
 <h1 align="center">
-Store Manager
+Store Manager (Software as Service) <sub>v1.0</sub>
 </h1>
 
 ## About Application
