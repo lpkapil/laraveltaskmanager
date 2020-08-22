@@ -25,7 +25,7 @@
         </div>
         @endif
     </div>
-    <form method="post" action="{{ route('products.store') }}">
+    <form method="post" action="{{ route('products.store') }}" enctype="multipart/form-data">
         @csrf
         <div class="row">
             <div class="col">
@@ -49,9 +49,10 @@
                 <div class="form-group">
                     <label for="product_category_id">Choose Category:</label>
                     <select class="form-control {{ $errors->has('product_category_id') ? 'is-invalid' : '' }}" id="product_category_id" name="product_category_id">
-                        <option value="">No Category</option>
-                        <option value="1">Category 1</option>
-                        <option value="1">Category 2</option>
+                        <option value="">Select Category</option>
+                        @foreach($categories as $category)
+                            <option value="{{$category->id}}">{{$category->name}}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>
@@ -65,14 +66,14 @@
         <div class="row">
             <div class="col">
                 <div class="form-group">
-                    <label for="product_mrp">MRP:</label>
-                    <input type="text" class="form-control {{ $errors->has('product_mrp') ? 'is-invalid' : '' }}" name="product_mrp" value="{{ old('product_mrp') }}" />
+                    <label for="product_mrp">MRP (&#8377;):</label>
+                    <input type="number" min="0" class="form-control {{ $errors->has('product_mrp') ? 'is-invalid' : '' }}" name="product_mrp" value="{{ old('product_mrp') }}" />
                 </div>
             </div>
             <div class="col">
                 <div class="form-group">
-                    <label for="product_price">Selling Price:</label>
-                    <input type="text" class="form-control {{ $errors->has('product_price') ? 'is-invalid' : '' }}" name="product_price" value="{{ old('product_price') }}" />
+                    <label for="product_price">Selling Price (&#8377;):</label>
+                    <input type="number" min="0" class="form-control {{ $errors->has('product_price') ? 'is-invalid' : '' }}" name="product_price" value="{{ old('product_price') }}" />
                 </div>
             </div>
         </div>
@@ -80,7 +81,7 @@
             <div class="col">
                 <div class="form-group">
                     <label for="product_quantity">Quantity:</label>
-                    <input type="text" class="form-control {{ $errors->has('product_quantity') ? 'is-invalid' : '' }}" name="product_quantity" value="{{ old('product_quantity') }}" />
+                    <input type="number" min="0" class="form-control {{ $errors->has('product_quantity') ? 'is-invalid' : '' }}" name="product_quantity" value="{{ old('product_quantity') }}" />
                 </div>
             </div>
             <div class="col">

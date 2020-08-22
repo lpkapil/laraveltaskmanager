@@ -22,7 +22,7 @@
         </div>
         @endif
     </div>
-    <form method="post" action="{{ route('products.update', $product->id) }}">
+    <form method="post" action="{{ route('products.update', $product->id) }}" enctype="multipart/form-data">
         @method('PATCH')
         @csrf
         
@@ -37,9 +37,18 @@
                 </div>
             </div>
             <div class="col">
-                <div class="form-group">
-                    <label for="product_image">Product Image:</label>
-                    <input type="file" class="form-control-file border {{ $errors->has('product_image') ? 'is-invalid' : '' }}" name="product_image" value="{{ $product->product_image }}" />
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="product_image">Product Image:</label>
+                            <input type="file" class="form-control-file border {{ $errors->has('product_image') ? 'is-invalid' : '' }}" name="product_image" value="{{ $product->product_image }}" />
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group text-center">
+                            <img src="{{ '/storage/product_images/'.$product->product_image }}" width="100" height="100">
+                        </div>
+                    </div> 
                 </div>
             </div>
         </div>
@@ -48,9 +57,10 @@
                 <div class="form-group">
                     <label for="product_category_id">Choose Category:</label>
                     <select class="form-control {{ $errors->has('product_category_id') ? 'is-invalid' : '' }}" id="product_category_id" name="product_category_id" value="{{ $product->product_category_id }}">
-                        <option value="">No Category</option>
-                        <option value="1">Category 1</option>
-                        <option value="1">Category 2</option>
+                        <option value="">Select Category</option>
+                        @foreach($categories as $category)
+                            <option value="{{$category->id}}" {{ $product->product_category_id == $category->id ? 'selected' : '' }}>{{$category->name}}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>
@@ -65,13 +75,13 @@
             <div class="col">
                 <div class="form-group">
                     <label for="product_mrp">MRP:</label>
-                    <input type="text" class="form-control {{ $errors->has('product_mrp') ? 'is-invalid' : '' }}" name="product_mrp" value="{{ $product->product_mrp }}" />
+                    <input type="number" class="form-control {{ $errors->has('product_mrp') ? 'is-invalid' : '' }}" name="product_mrp" value="{{ $product->product_mrp }}" />
                 </div>
             </div>
             <div class="col">
                 <div class="form-group">
                     <label for="product_price">Selling Price:</label>
-                    <input type="text" class="form-control {{ $errors->has('product_price') ? 'is-invalid' : '' }}" name="product_price" value="{{ $product->product_price }}" />
+                    <input type="number" class="form-control {{ $errors->has('product_price') ? 'is-invalid' : '' }}" name="product_price" value="{{ $product->product_price }}" />
                 </div>
             </div>
         </div>
@@ -79,7 +89,7 @@
             <div class="col">
                 <div class="form-group">
                     <label for="product_quantity">Quantity:</label>
-                    <input type="text" class="form-control {{ $errors->has('product_quantity') ? 'is-invalid' : '' }}" name="product_quantity" value="{{ $product->product_quantity }}" />
+                    <input type="number" class="form-control {{ $errors->has('product_quantity') ? 'is-invalid' : '' }}" name="product_quantity" value="{{ $product->product_quantity }}" />
                 </div>
             </div>
             <div class="col">
@@ -103,7 +113,7 @@
         </div>
         <div class="form-group">
             <label for="product_description">Product Description (optional):</label>
-            <textarea name="product_description" class="form-control {{ $errors->has('product_description') ? 'is-invalid' : '' }}">{{ $contact->product_description }}</textarea>
+            <textarea name="product_description" class="form-control {{ $errors->has('product_description') ? 'is-invalid' : '' }}">{{ $product->product_description }}</textarea>
         </div>
         <button type="submit" class="btn btn-primary float-right">Update</button>
     </form>

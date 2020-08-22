@@ -31,8 +31,8 @@
                   <th>ID</th>
                   <th>Image</th>
                   <th>Name</th>
-                  <th>MRP</th>
-                  <th>Price</th>
+                  <th>MRP (&#8377;)</th>
+                  <th>Selling Price (&#8377;)</th>
                   <th>Status</th>
                   <th>Created By</th>
                   <th colspan = 2>Actions</th>
@@ -42,16 +42,17 @@
                @foreach($products as $product)
                <tr>
                   <td>{{$product->id}}</td>
-                  <td>{{$product->product_image}}</td>
+                  <td><img src="{{ '/storage/product_images/'.$product->product_image }}" width="48" height="48"></td>
+                  <td>{{$product->product_name}}</td>
                   <td>{{$product->product_mrp}}</td>
                   <td>{{$product->product_price}}</td>
-                  <td>{{$product->product_status}}</td>
+                  <td><?php echo ($product->product_status == '1') ? '<i class="fas fa-toggle-on"></i> Enable' : '<i class="fas fa-toggle-off"></i> Disable'; ?></td>
                   <td>{{$product->user_id}}</td>
                   <td>
                      <a href="{{ route('products.edit',$product->id)}}" class="btn btn-primary">Edit</a>
                   </td>
                   <td>
-                     <form action="{{ route('products.destroy', $contact->id)}}" method="post">
+                     <form action="{{ route('products.destroy', $product->id)}}" method="post">
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-danger" type="submit">Delete</button>
