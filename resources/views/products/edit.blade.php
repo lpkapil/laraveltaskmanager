@@ -46,7 +46,7 @@
                     </div>
                     <div class="col">
                         <div class="form-group text-center">
-                            @empty($product_image->product_image)
+                            @empty($product->product_image)
                                 <img src="{{ '/demo_images/def.jpg' }}" width="100" height="100">
                             @else
                             <img src="{{ '/storage/product_images/'.$product->product_image }}" width="100" height="100">

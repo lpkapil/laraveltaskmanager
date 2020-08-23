@@ -21,7 +21,7 @@
         <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
         <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet" />
     </head>
-    <body style="overflow-x:hidden;">
+    <body>
         <div id="app">
             <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm fixed-top">
                 <div class="container">
