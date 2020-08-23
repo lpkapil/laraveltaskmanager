@@ -75,8 +75,8 @@ class ProductController extends Controller
         $validator = Validator::make($request->all(), [
             'product_category_id'=>'required|string|max:255'.Rule::in(Category::where('user_id', Auth::user()->id)->pluck('id')->toArray()),
             'product_name'=>'required|string|max:255',
-            'product_mrp'=>'required|numeric|max:255',
-            'product_price'=>'required|numeric|max:255|lt:product_mrp',
+            'product_mrp'=>'required|numeric|min:0',
+            'product_price'=>'required|numeric|min:0|lte:product_mrp',
             'product_quantity'=>'required|string|max:255',
             'product_quantity_type'=>'required|string|max:255|'.Rule::in($this->qunatityTypes),
             'product_status'=>'required|string|max:255|'.Rule::in($this->status)
@@ -167,8 +167,8 @@ class ProductController extends Controller
         $validator = Validator::make($request->all(), [
             'product_category_id'=>'required|string|max:255|'.Rule::in(Category::where('user_id', Auth::user()->id)->pluck('id')->toArray()),
             'product_name'=>'required|string|max:255',
-            'product_mrp'=>'required|numeric|max:255',
-            'product_price'=>'required|numeric|max:255|lt:product_mrp',
+            'product_mrp'=>'required|numeric|min:0',
+            'product_price'=>'required|numeric|min:0|lte:product_mrp',
             'product_quantity'=>'required|string|max:255',
             'product_quantity_type'=>'required|string|max:255|'.Rule::in($this->qunatityTypes),
             'product_status'=>'required|string|max:255|'.Rule::in($this->status)

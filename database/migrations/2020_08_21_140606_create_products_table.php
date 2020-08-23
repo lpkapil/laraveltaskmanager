@@ -26,6 +26,10 @@ class CreateProductsTable extends Migration
             $table->text('product_description');
             $table->tinyInteger('product_status');
             $table->timestamps();
+
+            //FOREIGN KEY CONSTRAINTS
+            $table->foreign('product_category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
