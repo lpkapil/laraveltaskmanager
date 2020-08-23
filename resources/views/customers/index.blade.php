@@ -8,23 +8,19 @@
       <div class="container mt-5">
          <div class="row justify-content-center">
             <div class="container-fluid">
-               <div class="jumbotron">
-                  <div class="container">
-                     <div class="input-group mb-3">
+               <div class="input-group mb-3">
                         <div class="input-group-prepend">
                            <span class="input-group-text" id="basic-addon1"><i class="fa far fa-search"></i></span>
                         </div>
                         <input class="form-control form-control-lg" type="text" placeholder="Search categories or products" aria-describedby="basic-addon1">
                      </div>
-                  </div>
-               </div>
                <div class="album py-1 bg-light">
                   <div class="d-flex justify-content-between">
                      <div>
                         <h5 class="py-3">Top Categories</h5>
                      </div>
                      <div>
-                        <p class="py-3 h6"><a href="#">Sell All</a></p>
+                        <p class="py-3 h6"><a href="{{ url('/'.$store->store_name.'/?page=categories') }}">Sell All</a></p>
                      </div>
                   </div>
                   <div class="row">
@@ -32,7 +28,7 @@
                         <div class="card mb-4 box-shadow">
                            <img class="card-img-top" src="{{ '/demo_images/def.jpg' }}" alt="Card image cap" >
                            <div class="card-body">
-                              <p class="card-text"><a href="#" class="stretched-link">Category 1</a></p>
+                              <p class="card-text"><a href="{{ url('/'.$store->store_name.'/?page=products&cat=1') }}" class="stretched-link">Category 1</a></p>
                            </div>
                         </div>
                      </div>
@@ -44,7 +40,7 @@
                         <h5 class="py-3">Category 1 <small class="text-muted">(5)</small></h5>
                      </div>
                      <div>
-                        <p class="py-3 h6"><a href="#">Sell All</a></p>
+                        <p class="py-3 h6"><a href="{{ url('/'.$store->store_name.'/?page=products&cat=1') }}">Sell All</a></p>
                      </div>
                   </div>
                   <div class="row">
@@ -111,7 +107,7 @@
                 </a>
             </div>
             <div class="col mt-2">
-                <a aria-current="page" class="text-muted" id="nav_home" href="{{ url('/'.$store->store_name.'/?categories=all') }}">
+                <a aria-current="page" class="text-muted" id="nav_home" href="{{ url('/'.$store->store_name.'/?page=categories') }}">
                     <i class="fa fas fa-th-large fa-2x"></i>
                     <p class="navbar-label mb-10 small">Categories</p>
                 </a>
