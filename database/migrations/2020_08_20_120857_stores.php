@@ -21,6 +21,9 @@ class Stores extends Migration
             $table->string('store_description');
             $table->string('store_address');
             $table->timestamps();
+
+            //FOREIGN KEY CONSTRAINTS
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

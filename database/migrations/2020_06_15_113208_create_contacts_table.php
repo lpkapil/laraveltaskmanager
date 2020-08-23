@@ -22,6 +22,9 @@ class CreateContactsTable extends Migration
             $table->string('email');
             $table->string('phone');
             $table->timestamps();
+
+            //FOREIGN KEY CONSTRAINTS
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

@@ -18,4 +18,10 @@ class Product extends Model
         'product_status',
         'product_description'
     ];
+
+    public function category()
+    {
+        return $this->hasOne('App\Category', 'product_category_id');
+    }
+    
 }

@@ -42,7 +42,13 @@
                @foreach($products as $product)
                <tr>
                   <td>{{$product->id}}</td>
-                  <td><img src="{{ '/storage/product_images/'.$product->product_image }}" width="48" height="48"></td>
+                  <td>
+                     @empty($product->product)
+                        <img src="{{ '/demo_images/def.jpg' }}" width="48" height="48">
+                     @else
+                     <img src="{{ '/storage/product_images/'.$product->product_image }}" width="48" height="48">
+                     @endempty
+               </td>
                   <td>{{$product->product_name}}</td>
                   <td>{{$product->product_mrp}} &#8377; <sub>per {{ $product->product_quantity }} {{ $product->product_quantity_type }}</sub></td>
                   <td>{{$product->product_price}} &#8377; <sub>per {{ $product->product_quantity }} {{ $product->product_quantity_type }}</sub></td>
