@@ -24,14 +24,16 @@
                      </div>
                   </div>
                   <div class="row">
+                    @foreach($categories as $category)
                      <div class="col-md-2">
                         <div class="card mb-4 box-shadow">
                            <img class="card-img-top" src="{{ '/demo_images/def.jpg' }}" alt="Card image cap" >
                            <div class="card-body">
-                              <p class="card-text"><a href="{{ url('/'.$store->store_name.'/?page=products&cat=1') }}" class="stretched-link">Category 1</a></p>
+                              <p class="card-text"><a href="{{ url('/'.$store->store_name.'/?page=products&cat='.$category->id) }}" class="stretched-link text-muted text-decoration-none">{{ $category->name }}</a></p>
                            </div>
                         </div>
                      </div>
+                     @endforeach
                   </div>
                </div>
                <div class="album py-1 bg-light">
