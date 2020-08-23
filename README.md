@@ -19,6 +19,7 @@ It's Store manager web application based on Software as service model. Multiple 
 
 ###### In-Progress
 
+- Basic frontend UI
 - Order Management Module
 
 ###### To-do
