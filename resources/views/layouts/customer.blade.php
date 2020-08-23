@@ -21,7 +21,7 @@
         <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
         <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet" />
     </head>
-    <body>
+    <body style="overflow-x:hidden;">
         <div id="app">
             <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm fixed-top">
                 <div class="container">
@@ -31,7 +31,7 @@
                         @else
                             <img src="{{ '/storage/'.$store->store_logo }}" width="32" height="32">
                         @endempty
-                        {{ ucfirst($store->store_name) }}
+                        &nbsp;{{ ucfirst($store->store_name) }}
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                         <span class="navbar-toggler-icon"></span>
@@ -83,10 +83,10 @@
                 @yield('content')
             </main>
         </div>
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm fixed-bottom">
+        <!-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm fixed-bottom">
             <div class="container">
                 <span class="text-muted">{{ ucfirst($store->store_name).' Store' }} &copy; <?php echo date("Y"); ?></span>
             </div>
-        </nav>
+        </nav> -->
     </body>
 </html>

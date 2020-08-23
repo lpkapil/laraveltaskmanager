@@ -14,13 +14,3 @@ and open the template in the editor.
     width: 100% !important;
     height: 65vh;
 }
-
-.dropzone {
-    border: 2px dashed #0087F7 !important;
-    border-radius: 5px;
-    background: white !important;
-}
-
-.dropzone .dz-message {
-    font-size: 15px;
-}
