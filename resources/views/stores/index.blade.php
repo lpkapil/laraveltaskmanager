@@ -32,9 +32,11 @@
                   <th>ID</th>
                   <th>Store Logo</th>
                   <th>Store Name</th>
-                  <th>Store Description</th>
+                  <th>Store URL</th>
                   <th>Store Address</th>
+                  <?php if(in_array('admin', Auth::user()->roles->pluck('slug')->toArray())): ?>
                   <th>Created By</th>
+                  <?php endif; ?>
                   <th>Actions</th>
                </tr>
             </thead>
@@ -50,10 +52,10 @@
                      @endempty
                   </td>
                   <td>{{$store->store_name}}</td>
-                  <td>{{ str_limit($store->store_description, $limit = 60, $end = '...') }}</td>
+                  <td><a href="{{ config('app.url').$store->store_name }}" target="_blank">{{ config('app.url').$store->store_name }}</a></td>
                   <td>{{ str_limit($store->store_address, $limit = 60, $end = '...') }}</td>
-                  <td>{{$store->user_id}}</td>
                   <?php if(in_array('admin', Auth::user()->roles->pluck('slug')->toArray())): ?>
+                  <td>{{$store->user_id}}</td>
                   <td>
                      <form action="{{ route('stores.destroy', $store->id)}}" method="post">
                         @csrf

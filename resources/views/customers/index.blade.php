@@ -1,18 +1,16 @@
-
-
 @extends('layouts.customer')
 @section('title',  ucfirst($store->store_name).' Store')
 @section('content')
-<div class="row">
-   <div class="col-md-12">
-      <div class="container mt-5">
+<div class="container">
+   <div class="row">
+      <div class="col-md-12 mt-5">
          <div class="row justify-content-center">
             <div class="container-fluid">
                <div class="input-group mb-3">
                   <div class="input-group-prepend">
                      <span class="input-group-text" id="basic-addon1"><i class="fa far fa-search"></i></span>
                   </div>
-                  <input class="form-control form-control-lg" type="text" placeholder="Search categories or products" aria-describedby="basic-addon1">
+                  <input class="form-control" type="text" placeholder="Search categories or products" aria-describedby="basic-addon1">
                </div>
                <?php $hasProducts = false; ?>
                @foreach($categories as $category)
@@ -92,56 +90,55 @@
             </div>
          </div>
       </div>
-      <div class="jumbotron">
-         <div class="container">
-            <h6 class="display-5 text-muted">STORE DETAILS</h6>
-            <br>
-            <h5>{{ ucfirst($store->store_name) }}</h5>
-            <!-- @empty($store->store_description)
-               <p>This is demo text about the store created using store manager, You can change store information like logo, 
-                  description and store address from the admin store edit page to replace this text.
-               </p>
-               @else
-               <p>{{ $store->store_description }}</p>
-               @endempty -->
-            <!-- <h5 class="display-5"> Address: </h5> -->
-            @empty($store->store_description)
-            <p>This is demo address about the store created using store manager, You can change store information from the admin store edit page to replace this text.</p>
-            @else
-            <p>{{ $store->store_address }}</p>
-            @endempty
-            <span class="text-muted">{{ ucfirst($store->store_name).' Store' }} &copy; <?php echo date("Y"); ?></span>
-         </div>
-      </div>
-      <nav class="fixed-bottom border-top bg-white">
-         <div class="row text-center mt-10">
-            <div class="col mt-2">
-               <a aria-current="page" class="text-muted" id="nav_home" href="{{ url('/'.$store->store_name) }}">
-                  <i class="fa fas fa-home fa-2x"></i>
-                  <p class="navbar-label mb-10 small">Home</p>
-               </a>
-            </div>
-            <div class="col mt-2">
-               <a aria-current="page" class="text-muted" id="nav_home" href="{{ url('/'.$store->store_name.'/?page=categories') }}">
-                  <i class="fa fas fa-th-large fa-2x"></i>
-                  <p class="navbar-label mb-10 small">Categories</p>
-               </a>
-            </div>
-            <div class="col mt-2">
-               <a aria-current="page" class="text-muted" id="nav_home" href="{{ url('/'.$store->store_name.'/?page=cart&action=view') }}">
-                  <i class="fa fas fa-shopping-bag fa-2x"></i>
-                  <p class="navbar-label mb-10 small">Bag</p>
-               </a>
-            </div>
-            <div class="col mt-2">
-               <a aria-current="page" class="text-muted" id="nav_home" href="{{ url('/'.$store->store_name.'/?page=orders') }}">
-                  <i class="fa fas fa-list-ul fa-2x"></i>
-                  <p class="navbar-label mb-10 small">Orders</p>
-               </a>
-            </div>
-         </div>
-      </nav>
    </div>
 </div>
+<div class="jumbotron">
+   <div class="container">
+      <h6 class="display-5 text-muted">STORE DETAILS</h6>
+      <br>
+      <h5>{{ ucfirst($store->store_name) }}</h5>
+      <!-- @empty($store->store_description)
+         <p>This is demo text about the store created using store manager, You can change store information like logo, 
+            description and store address from the admin store edit page to replace this text.
+         </p>
+         @else
+         <p>{{ $store->store_description }}</p>
+         @endempty -->
+      <!-- <h5 class="display-5"> Address: </h5> -->
+      @empty($store->store_description)
+      <p>This is demo address about the store created using store manager, You can change store information from the admin store edit page to replace this text.</p>
+      @else
+      <p>{{ $store->store_address }}</p>
+      @endempty
+      <span class="text-muted">{{ ucfirst($store->store_name).' Store' }} &copy; <?php echo date("Y"); ?></span>
+   </div>
+</div>
+<nav class="fixed-bottom border-top bg-white">
+   <div class="row text-center mt-10">
+      <div class="col mt-2">
+         <a aria-current="page" class="text-muted" id="nav_home" href="{{ url('/'.$store->store_name) }}">
+            <i class="fa fas fa-home fa-2x"></i>
+            <p class="navbar-label mb-10 small">Home</p>
+         </a>
+      </div>
+      <div class="col mt-2">
+         <a aria-current="page" class="text-muted" id="nav_home" href="{{ url('/'.$store->store_name.'/?page=categories') }}">
+            <i class="fa fas fa-th-large fa-2x"></i>
+            <p class="navbar-label mb-10 small">Categories</p>
+         </a>
+      </div>
+      <div class="col mt-2">
+         <a aria-current="page" class="text-muted" id="nav_home" href="{{ url('/'.$store->store_name.'/?page=cart&action=view') }}">
+            <i class="fa fas fa-shopping-bag fa-2x"></i>
+            <p class="navbar-label mb-10 small">Bag</p>
+         </a>
+      </div>
+      <div class="col mt-2">
+         <a aria-current="page" class="text-muted" id="nav_home" href="{{ url('/'.$store->store_name.'/?page=orders') }}">
+            <i class="fa fas fa-list-ul fa-2x"></i>
+            <p class="navbar-label mb-10 small">Orders</p>
+         </a>
+      </div>
+   </div>
+</nav>
 @endsection
-
