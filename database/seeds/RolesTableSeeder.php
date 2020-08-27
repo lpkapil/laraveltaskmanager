@@ -26,5 +26,10 @@ class RolesTableSeeder extends Seeder
         $role->slug = 'user';
         $role->save();
         $role->permissions()->sync(Permission::whereIn('id', ([10,11,12]) ?? [])->get());
+
+        $role = new Role();
+        $role->name = 'Customer';
+        $role->slug = 'customer';
+        $role->save();
     }
 }

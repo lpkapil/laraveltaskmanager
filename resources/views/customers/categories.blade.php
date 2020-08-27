@@ -20,7 +20,7 @@
                @endforeach
                @if(!$hasProducts)
                <div style="min-height: 430px;">
-                  <p class="text-center h5 py-5 text-muted">No products found</p>
+                  <p class="text-center h5 py-5 text-muted">No categories found</p>
                </div>
                @endif
                @if($hasProducts)
