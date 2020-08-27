@@ -8,7 +8,8 @@ It's Store manager web application based on Software as service model. Multiple 
 
 ###### Completed
 
-- User Login/Registration Module 
+- User/Seller Login/Registration Module 
+- Customer/Buyer Login/Registration
 - Contacts Management Module
 - User Management Module
 - Role Management Module
@@ -19,7 +20,7 @@ It's Store manager web application based on Software as service model. Multiple 
 
 ###### In-Progress
 
-- Basic frontend UI
+- Basic frontend UI data population
 - Order Management Module
 
 ###### To-do
