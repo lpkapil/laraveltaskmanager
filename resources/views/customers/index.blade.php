@@ -57,7 +57,7 @@
                         <h5 class="py-3">{{ ucfirst($category->name) }}<small class="text-muted"> ({{ $category->products->count() }})</small></h5>
                      </div>
                      <div>
-                        <p class="py-3 h6"><a href="{{ url('/'.$store->store_name.'/?page=products&cat=1') }}">Sell All</a></p>
+                        <p class="py-3 h6"><a href="{{ url('/'.$store->store_name.'/?page=products&cat='.$category->id) }}">Sell All</a></p>
                      </div>
                   </div>
                   <div class="row">
