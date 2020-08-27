@@ -12,44 +12,6 @@
                   </div>
                   <input class="form-control" type="text" placeholder="Search categories or products" aria-describedby="basic-addon1">
                </div>
-               @foreach($categories as $category)
-                  <?php $hasProducts = false; ?>
-                  @if($category->products()->where('product_status', '1')->count() > 0)
-                     <?php $hasProducts = true; ?>
-                  @endif
-               @endforeach
-               @if(!$hasProducts)
-               <div style="min-height: 430px;">
-                  <p class="text-center h5 py-5 text-muted">No products found</p>
-               </div>
-               @endif
-               @if($hasProducts)
-               <div class="album py-1 bg-light">
-                  <div class="d-flex justify-content-between">
-                     <div>
-                        <h5 class="py-3">Top Categories</h5>
-                     </div>
-                     <div>
-                        <p class="py-3 h6"><a href="{{ url('/'.$store->store_name.'/?page=categories') }}">Sell All</a></p>
-                     </div>
-                  </div>
-                  <div class="row">
-                     @foreach($categories as $category)
-                     @if($category->products()->where('product_status', '1')->count() > 0)
-                     <div class="col-md-2">
-                        <div class="card mb-4 box-shadow">
-                           <img class="card-img-top" src="{{ '/demo_images/def.jpg' }}" alt="Card image cap" >
-                           <div class="card-body">
-                              <p class="card-text"><a href="{{ url('/'.$store->store_name.'/?page=products&cat='.$category->id) }}" class="stretched-link text-muted text-decoration-none">{{ $category->name }}</a></p>
-                           </div>
-                        </div>
-                     </div>
-                     @endif
-                     @endforeach
-                  </div>
-               </div>
-               @endif
-               @foreach($categories as $category)
                @if($category->products()->where('product_status', '1')->count() > 0)
                <div class="album py-1 bg-light">
                   <div class="d-flex justify-content-between">
@@ -61,7 +23,7 @@
                      </div>
                   </div>
                   <div class="row">
-                     @foreach($category->products as $product)
+                     @foreach($products as $product)
                      @if($product->product_status == '1')
                      <div class="col-md-3">
                         <div class="card mb-4 box-shadow">
@@ -86,31 +48,9 @@
                   </div>
                </div>
                @endif
-               @endforeach
             </div>
          </div>
       </div>
-   </div>
-</div>
-<div class="jumbotron">
-   <div class="container">
-      <h6 class="display-5 text-muted">STORE DETAILS</h6>
-      <br>
-      <h5>{{ ucfirst($store->store_name) }}</h5>
-      <!-- @empty($store->store_description)
-         <p>This is demo text about the store created using store manager, You can change store information like logo, 
-            description and store address from the admin store edit page to replace this text.
-         </p>
-         @else
-         <p>{{ $store->store_description }}</p>
-         @endempty -->
-      <!-- <h5 class="display-5"> Address: </h5> -->
-      @empty($store->store_description)
-      <p>This is demo address about the store created using store manager, You can change store information from the admin store edit page to replace this text.</p>
-      @else
-      <p>{{ $store->store_address }}</p>
-      @endempty
-      <span class="text-muted">{{ ucfirst($store->store_name).' Store' }} &copy; <?php echo date("Y"); ?></span>
    </div>
 </div>
 <nav class="fixed-bottom border-top bg-white">

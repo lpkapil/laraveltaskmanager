@@ -27,16 +27,13 @@
                <div class="album py-1 bg-light">
                   <div class="d-flex justify-content-between">
                      <div>
-                        <h5 class="py-3">Top Categories</h5>
-                     </div>
-                     <div>
-                        <p class="py-3 h6"><a href="{{ url('/'.$store->store_name.'/?page=categories') }}">Sell All</a></p>
+                        <h5 class="py-3">Listed Categories</h5>
                      </div>
                   </div>
                   <div class="row">
                      @foreach($categories as $category)
                      @if($category->products()->where('product_status', '1')->count() > 0)
-                     <div class="col-md-2">
+                     <div class="col-md-3">
                         <div class="card mb-4 box-shadow">
                            <img class="card-img-top" src="{{ '/demo_images/def.jpg' }}" alt="Card image cap" >
                            <div class="card-body">
@@ -49,68 +46,9 @@
                   </div>
                </div>
                @endif
-               @foreach($categories as $category)
-               @if($category->products()->where('product_status', '1')->count() > 0)
-               <div class="album py-1 bg-light">
-                  <div class="d-flex justify-content-between">
-                     <div>
-                        <h5 class="py-3">{{ ucfirst($category->name) }}<small class="text-muted"> ({{ $category->products->count() }})</small></h5>
-                     </div>
-                     <div>
-                        <p class="py-3 h6"><a href="{{ url('/'.$store->store_name.'/?page=products&cat=1') }}">Sell All</a></p>
-                     </div>
-                  </div>
-                  <div class="row">
-                     @foreach($category->products as $product)
-                     @if($product->product_status == '1')
-                     <div class="col-md-3">
-                        <div class="card mb-4 box-shadow">
-                           @empty($product->product_image)
-                           <img class="card-img-top" src="{{ '/demo_images/def.jpg' }}" >
-                           @else
-                           <img class="card-img-top" src="{{ '/storage/product_images/'.$product->product_image }}" >
-                           @endempty
-                           <div class="card-body">
-                              <p class="card-text">{{ ucfirst($product->product_name) }}</p>
-                              <div class="d-flex justify-content-between align-items-center">
-                                 <p  class="text-muted font-weight-bold">&#8377; 10 <small class="text-muted">{{ $product->product_quantity }} {{ $product->product_quantity_type }}</small></p>
-                                 <div class="btn-group">
-                                    <a class="btn btn-md btn-primary" href="{{ url('/'.$store->store_name.'/?action=add&product='.$product->id) }}">Add</a>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     @endif
-                     @endforeach   
-                  </div>
-               </div>
-               @endif
-               @endforeach
             </div>
          </div>
       </div>
-   </div>
-</div>
-<div class="jumbotron">
-   <div class="container">
-      <h6 class="display-5 text-muted">STORE DETAILS</h6>
-      <br>
-      <h5>{{ ucfirst($store->store_name) }}</h5>
-      <!-- @empty($store->store_description)
-         <p>This is demo text about the store created using store manager, You can change store information like logo, 
-            description and store address from the admin store edit page to replace this text.
-         </p>
-         @else
-         <p>{{ $store->store_description }}</p>
-         @endempty -->
-      <!-- <h5 class="display-5"> Address: </h5> -->
-      @empty($store->store_description)
-      <p>This is demo address about the store created using store manager, You can change store information from the admin store edit page to replace this text.</p>
-      @else
-      <p>{{ $store->store_address }}</p>
-      @endempty
-      <span class="text-muted">{{ ucfirst($store->store_name).' Store' }} &copy; <?php echo date("Y"); ?></span>
    </div>
 </div>
 <nav class="fixed-bottom border-top bg-white">
