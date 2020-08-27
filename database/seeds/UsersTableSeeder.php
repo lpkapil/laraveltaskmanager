@@ -22,7 +22,7 @@ class UsersTableSeeder extends Seeder
         $adminUser->save();
 
         $roles = Role::orderBy('id', 'desc')->pluck('id')->toArray();
-        $adminUser->roles()->sync(Role::whereIn('id', ($roles) ?? [])->get());
+        $adminUser->roles()->sync(Role::whereIn('id', ([1]) ?? [])->get());
 
         $user = new User();
         $user->name = 'User';
@@ -33,12 +33,12 @@ class UsersTableSeeder extends Seeder
         $user->roles()->sync(Role::whereIn('id', ([2]) ?? [])->get());
 
         $user = new User();
-        $user->name = 'User1';
+        $user->name = 'Customer';
         $user->email_verified_at = Carbon::now()->format('Y-m-d H:i:s');
-        $user->email = 'user1@example.com';
-        $user->password = bcrypt('user1');
+        $user->email = 'customer@example.com';
+        $user->password = bcrypt('customer');
         $user->save();
-        $user->roles()->sync(Role::whereIn('id', ([2]) ?? [])->get());
+        $user->roles()->sync(Role::whereIn('id', ([3]) ?? [])->get());
 
     }
 }

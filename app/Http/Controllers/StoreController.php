@@ -20,6 +20,7 @@ class StoreController extends Controller
     public function __construct()
     {
         $this->middleware(['auth', 'verified']);
+        $this->middleware('role:admin,user');
     }
     
     /**
@@ -108,6 +109,24 @@ class StoreController extends Controller
             return redirect('stores/create')->withErrors($validator)->withInput();
         }
         
+        //Restrict application controller names from store Name
+        if (in_array(
+            $request->get('store_name'),
+            [
+                'home',
+                'users',
+                'roles',
+                'permissions',
+                'contacts',
+                'stores',
+                'categories',
+                'products',
+                'orders',
+            ])
+        ) {
+            return redirect('stores/create')->withErrors('Please choose another store name.');
+        }
+        
         if (!empty($file)) {
             $request->file('store_logo')->store('public');
             $fileName = $request->file('store_logo')->hashName();    
@@ -151,6 +170,24 @@ class StoreController extends Controller
 
         if ($validator->fails()) {
             return redirect('stores/'.$id.'/edit')->withErrors($validator)->withInput();
+        }
+
+        //Restrict application controller names from store Name
+        if (in_array(
+            $request->get('store_name'),
+            [
+                'home',
+                'users',
+                'roles',
+                'permissions',
+                'contacts',
+                'stores',
+                'categories',
+                'products',
+                'orders',
+            ])
+        ) {
+            return redirect('stores/'.$store->id.'/edit')->withErrors('Please choose another store name.');
         }
 
         if (!empty($file)) {

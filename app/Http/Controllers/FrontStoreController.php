@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Auth;
 
 class FrontStoreController extends Controller
 {
-    
     /**
      * Display a listing of the resource.
      *
@@ -53,6 +52,18 @@ class FrontStoreController extends Controller
                 $category = Category::where(['id' => $catId, 'user_id' => $store->user_id])->orderByDesc('id')->get()->first();
                 $products = Product::where(['product_category_id' => $category->id])->orderByDesc('id')->get();
                 return view('customers.products', ['store' => $store, 'category' => $category, 'products' => $products]);
+            break;
+
+            case 'cart':
+                return view('customers.cart', ['store' => $store]);
+            break;
+
+            case 'orders':
+                if (Auth::guest()):
+                    return view('customers.register', ['store' => $store]);
+                else:
+                    return view('customers.orders', ['store' => $store]);
+                endif;
             break;
 
             default: return redirect('/'.$store->store_name);

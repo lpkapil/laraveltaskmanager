@@ -21,6 +21,7 @@ class ProductController extends Controller
     public function __construct()
     {
         $this->middleware(['auth', 'verified']);
+        $this->middleware('role:admin,user');
         $this->status = ['0', '1'];
         $this->qunatityTypes = [
             'piece',

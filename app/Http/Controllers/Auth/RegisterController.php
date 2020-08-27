@@ -70,8 +70,12 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-
-        $user->roles()->sync(Role::whereIn('slug', (['user']) ?? [])->get());
+        
+        if (array_key_exists('type', $data) && ($data['type'] == 'customer')) {
+            $user->roles()->sync(Role::whereIn('slug', (['customer']) ?? [])->get());
+        } else {
+            $user->roles()->sync(Role::whereIn('slug', (['user']) ?? [])->get());
+        }
         return $user;
     }
 }
