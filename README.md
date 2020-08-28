@@ -17,19 +17,19 @@ It's Store manager web application based on Software as service model. Multiple 
 - Store Mangement Module
 - Category Mangement Module
 - Product Management Module
+- Frontend order placement flow
 
 ###### In-Progress
 
-- Basic frontend UI data population
-- Order Management Module
+- Customer Order page
+- Order Management Module Refinement
 
 ###### To-do
 
 - Integration token management module for REST API Access
 - REST API(s) for all modules for mobile apps
-- Frontend ReactJs Store Building
-- Alerts Mangement Module
-- Payment Gateway Integration
+- Payment Methods Mangement Module
+- Customer Notification Management Module
 
 ###### Summary of completed modules 
 

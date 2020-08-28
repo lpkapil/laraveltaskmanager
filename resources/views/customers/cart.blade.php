@@ -66,10 +66,10 @@
                   <div class="jumbotron">
                      <div class="d-flex justify-content-between">
                         <div>
-                           <h5 class="">Item total</h5>
+                           <h5 class="">Item Total</h5>
                            <h5 class="">Delivery</h5>
                            <p class="text-muted">Free Delivery above &#8377; {{ $nodevliverycharge }}</p>
-                           <h5 class="py-3">Grand total:</h5>
+                           <h5 class="py-3">Grand Total:</h5>
                         </div>
                         <div>
                            <p class="h6">&#8377; {{ $itemstotal }}</p>
@@ -81,7 +81,8 @@
                   </div>
                   <a class="btn btn-primary btn-block" href="{{ url('/'.$store->store_name.'/?page=checkout') }}">Select Address</a>
                </div>
-            </div>   
+            </div> 
+            <br><br><br>  
             @endempty
       </div>
    </div>
@@ -103,7 +104,7 @@
       <div class="col mt-2">
          <a aria-current="page" class="text-muted" id="nav_home" href="{{ url('/'.$store->store_name.'/?page=cart') }}">
             <i class="fa fas fa-shopping-bag fa-2x"></i>
-            <p class="navbar-label mb-10 small">Bag ({{ $cartitemcount }})</p>
+            <p class="navbar-label mb-10"><span class="small">Bag</span> <span class="badge badge-pill badge-primary">{{ $cartitemcount }}</span></p>
          </a>
       </div>
       <div class="col mt-2">

@@ -29,8 +29,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('stores', 'StoreController');
     Route::resource('categories', 'CategoryController');
     Route::resource('products', 'ProductController');
+    Route::resource('orders', 'OrderController');
+
+    //Place order
+    Route::post('/placeorder', ['uses' =>'FrontStoreController@placeOrder'])->name('placeorder');
+
 });
 
 //Front Store Controller
 Route::get('{controller_name}', ['uses' =>'FrontStoreController@index']);
-

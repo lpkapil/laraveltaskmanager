@@ -104,7 +104,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="product_description">Product Details (optional):</label>
+            <label for="product_description">Product Details:</label>
             <textarea name="product_description" class="form-control {{ $errors->has('product_description') ? 'is-invalid' : '' }}">{{ old('product_description') }}</textarea>
         </div>
         <button type="submit" class="btn btn-primary float-right">Add Product</button>

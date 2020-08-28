@@ -80,7 +80,8 @@ class ProductController extends Controller
             'product_price'=>'required|numeric|min:0|lte:product_mrp',
             'product_quantity'=>'required|string|max:255',
             'product_quantity_type'=>'required|string|max:255|'.Rule::in($this->qunatityTypes),
-            'product_status'=>'required|string|max:255|'.Rule::in($this->status)
+            'product_status'=>'required|string|max:255|'.Rule::in($this->status),
+            'product_description' => 'required|string|max:255',
         ]);
         
         if (!empty($file)) {
@@ -172,7 +173,8 @@ class ProductController extends Controller
             'product_price'=>'required|numeric|min:0|lte:product_mrp',
             'product_quantity'=>'required|string|max:255',
             'product_quantity_type'=>'required|string|max:255|'.Rule::in($this->qunatityTypes),
-            'product_status'=>'required|string|max:255|'.Rule::in($this->status)
+            'product_status'=>'required|string|max:255|'.Rule::in($this->status),
+            'product_description' => 'required|string|max:255',
         ]);
 
         if (!empty($file)) {

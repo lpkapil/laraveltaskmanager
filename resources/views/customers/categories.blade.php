@@ -12,6 +12,7 @@
                   </div>
                   <input class="form-control" type="text" placeholder="Search categories or products" aria-describedby="basic-addon1">
                </div>
+               <?php $hasProducts = false; ?>
                @foreach($categories as $category)
                   <?php $hasProducts = false; ?>
                   @if($category->products()->where('product_status', '1')->count() > 0)
@@ -45,6 +46,7 @@
                      @endforeach
                   </div>
                </div>
+               <br><br><br>
                @endif
             </div>
          </div>
@@ -68,7 +70,7 @@
       <div class="col mt-2">
          <a aria-current="page" class="text-muted" id="nav_home" href="{{ url('/'.$store->store_name.'/?page=cart') }}">
             <i class="fa fas fa-shopping-bag fa-2x"></i>
-            <p class="navbar-label mb-10 small">Bag ({{ $cartitemcount }})</p>
+            <p class="navbar-label mb-10"><span class="small">Bag</span> <span class="badge badge-pill badge-primary">{{ $cartitemcount }}</span></p>
          </a>
       </div>
       <div class="col mt-2">
