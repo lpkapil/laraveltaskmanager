@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Store;
 use App\Category;
 use App\Product;
+use App\Order;
+use App\OrderItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class FrontStoreController extends Controller
 {
@@ -18,6 +21,7 @@ class FrontStoreController extends Controller
      */
     public function index(Request $request, $storeName)
     {   
+
         $store = Store::where('store_name', $storeName)->get()->first();
         
         if (!empty($store)) {
@@ -215,13 +219,23 @@ class FrontStoreController extends Controller
 
 
     private function addToCart($productId, $store)
-    {
+    {   
         $product = Product::where(['user_id' => $store->user_id, 'id' => $productId])->get()->first();
-        if(!$product) {
+        if (!$product) {
             return redirect('/'.$store->store_name);
         }
         
         $cart = session()->get('cart');
+        $storeSession = session()->get('store');
+        if (!$storeSession) {
+            session()->put(
+                'store', 
+                [
+                    'store_id' => $store->id,
+                    'store_name' => $store->store_name
+                ]
+            );
+        }
         // if cart is empty then this the first product
         if(!$cart) {
             $cart = [
@@ -298,6 +312,89 @@ class FrontStoreController extends Controller
     private function emptyCart($store)
     {
         session()->put('cart', []);
+        session()->put('store', []);
         return;
+    }
+
+    /**
+     * Place Order
+     */
+    public function placeOrder(Request $request)
+    {
+        $cart = session()->get('cart');
+        $store = session()->get('store');
+        $validator = Validator::make($request->all(), [
+            'name'=>'required|string|max:255',
+            'phone'=>'required|string|max:255',
+            'address'=>'required|string|max:255',
+            'city'=>'required|string|max:255',
+            'pincode'=>'required|string|max:255',
+            'payment'=>'required|string|max:255|'.Rule::in(['cod']),
+        ]);
+        
+
+        if ($validator->fails()) {
+            return redirect('/'.$store['store_name'].'?page=checkout')->withErrors($validator)->withInput();
+        }
+
+        //redirect invalid request to clean cart
+        if(empty($cart) || empty($store)) {
+            $this->emptyCart([]);
+            return redirect('/'.$store['store_name'].'?page=cart');
+        }
+
+        $itemsTotal = 0;
+        $totalItems = 0;
+        $grandTotal = 0;
+        $deliveryCharges = 10;
+        $noDeliveryChargesAmt = 100;
+        if(!empty($cart)) {
+            foreach($cart as $product) {
+                $itemsTotal +=  $product['quantity'] * $product['price'];
+                $totalItems +=  $product['quantity'];
+            }
+        }
+
+        if ($itemsTotal >= $noDeliveryChargesAmt) {
+            $deliveryCharges = 0;
+        }
+
+        $grandTotal = $itemsTotal + $deliveryCharges;        
+
+        $order = new Order([
+            'store_id' => $store['store_id'],
+            'user_id' => Auth::user()->id,
+            'status' => 'pending',
+            'customer_name' => $request->get('name'),
+            'customer_phone' => $request->get('phone'),
+            'customer_address' => $request->get('address'),
+            'customer_city' => $request->get('city'),
+            'customer_pincode' => $request->get('pincode'),
+            'items_count' => $totalItems,
+            'payment_method' => $request->get('payment'),
+            'subtotal' => $itemsTotal,
+            'delivery_charge' => $deliveryCharges,
+            'grand_total' => $grandTotal
+        ]);
+
+        $order->save();
+        
+        //Add order items 
+        foreach($cart as $productId => $product) {
+            $orderItem = new OrderItem([
+                'order_id' => $order->id,
+                'product_id' => $productId,
+                'product_name' => 'pending',
+                'product_image' => $product['photo'],
+                'product_qty' => $product['quantity'],
+                'product_price' => $product['price']
+            ]);
+            $orderItem->save();
+        }
+
+        //Empty old cart
+        $this->emptyCart([]);
+
+        return redirect('/'.$store['store_name'].'?page=orders')->with('success', 'Order '.$order->id.' placed successfully!');
     }
 }

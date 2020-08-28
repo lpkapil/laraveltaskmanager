@@ -23,38 +23,67 @@
    </div>
    <div class="row">
       <div class="col-md-8 mt-2">
-         <from>
-            <div class="form-group">
-               <label for="name">Name</label>
-               <input type="name" class="form-control" id="name" aria-describedby="name" placeholder="Name">
-            </div>
-            <div class="form-group">
-               <label for="address">Address</label>
-               <textarea class="form-control" id="address" placeholder="Address"></textarea>
+
+      <div>
+        @if(session()->get('success'))
+        <div class="alert alert-success">
+            {{ session()->get('success') }}
+        </div>
+        @endif
+
+        @if(session()->get('errors'))
+        <div class="alert alert-danger">
+            @foreach ($errors->all() as $error)
+                {{ $error }}<br/>
+            @endforeach
+        </div>
+        @endif
+    </div>
+    
+         <form method="post" action="{{ route('placeorder') }}">
+            @csrf
+
+            <div class="row">
+               <div class="col">
+                  <div class="form-group">
+                     <label for="name">Name</label>
+                     <input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" id="name" name="name" aria-describedby="name" placeholder="Name">
+                  </div>
+               </div>
+               <div class="col">
+                  <div class="form-group">
+                     <label for="phone">Phone No</label>
+                     <input type="text" class="form-control {{ $errors->has('phone') ? 'is-invalid' : '' }}" id="phone" name="phone" aria-describedby="phone" placeholder="Phone Number">
+                  </div>
+               </div>
             </div>
             <div class="row">
                <div class="col">
                   <div class="form-group">
                      <label for="city">City</label>
-                     <input type="city" class="form-control" id="city" aria-describedby="city" placeholder="City">
+                     <input type="text" class="form-control {{ $errors->has('city') ? 'is-invalid' : '' }}" id="city" name="city" aria-describedby="city" placeholder="City">
                   </div>
                </div>
                <div class="col">
                   <div class="form-group">
                      <label for="pincode">Pincode</label>
-                     <input type="pincode" class="form-control" id="pincode" aria-describedby="pincode" placeholder="pincode">
+                     <input type="text" class="form-control {{ $errors->has('pincode') ? 'is-invalid' : '' }}" id="pincode" name="pincode" aria-describedby="pincode" placeholder="pincode">
                   </div>
                </div>
-            </div>       
+            </div>
+            <div class="form-group">
+                     <label for="address">Address</label>
+                     <textarea class="form-control {{ $errors->has('address') ? 'is-invalid' : '' }}" id="address" name="address" placeholder="Address"></textarea>
+                  </div>       
       </div>
       <div class="col-md-4">
          <h6 class="py-3 text-muted">PAYMENT METHOD</h6>
             <div class="form-group">
-               <label class="radio-inline form-control">
+               <label class="radio-inline form-control {{ $errors->has('payment') ? 'is-invalid' : '' }}">
                <input type="radio" name="payment" value="cod" checked> Cash/UPI on Delivery
                </label>
             </div>
-            <button type="submit" class="btn btn-primary btn-block" data-url="{{ url('/'.$store->store_name.'/?page=checkout&action=placeorder') }}">Place Order</button>
+            <button type="submit" class="btn btn-primary btn-block">Place Order</button>
          </form>
       </div>
    </div>

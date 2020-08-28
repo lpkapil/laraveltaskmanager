@@ -12,6 +12,7 @@
                   </div>
                   <input class="form-control" type="text" placeholder="Search categories or products" aria-describedby="basic-addon1">
                </div>
+               <?php $hasProducts = false; ?>
                @foreach($categories as $category)
                   <?php $hasProducts = false; ?>
                   @if($category->products()->where('product_status', '1')->count() > 0)
