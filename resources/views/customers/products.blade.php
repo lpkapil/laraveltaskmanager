@@ -32,7 +32,7 @@
                            <div class="card-body">
                               <p class="card-text">{{ ucfirst($product->product_name) }}</p>
                               <div class="d-flex justify-content-between align-items-center">
-                                 <p  class="text-muted font-weight-bold">&#8377; 10 <small class="text-muted">{{ $product->product_quantity }} {{ $product->product_quantity_type }}</small></p>
+                                 <p class="text-muted font-weight-bold">&#8377; <strike>{{ $product->product_mrp }}</strike> {{ $product->product_price }} <small class="text-muted">{{ $product->product_quantity }} {{ $product->product_quantity_type }}</small></p>
                                  <div class="btn-group">
                                     <a class="btn btn-md btn-primary" href="{{ url('/'.$store->store_name.'/?action=add&product='.$product->id) }}">Add</a>
                                  </div>

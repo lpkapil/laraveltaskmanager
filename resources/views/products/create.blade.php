@@ -86,7 +86,7 @@
             </div>
             <div class="col">
                 <div class="form-group">
-                    <label for="product_quantity_type">Qunatity Type:</label>
+                    <label for="product_quantity_type">Quantity Type:</label>
                     <select class="form-control {{ $errors->has('product_quantity_type') ? 'is-invalid' : '' }}" id="product_quantity_type" name="product_quantity_type">
                         <option value="piece">piece</option>
                         <option value="kg">kg</option>

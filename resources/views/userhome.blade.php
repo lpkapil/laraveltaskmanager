@@ -66,5 +66,37 @@
       </div>
    </div>
 </div>
+<div class="row">
+   <div class="col-lg-3">
+         <div class="card mb-4 py-3 border-left-primary">
+            <div class="card-body">
+               <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Orders</div>
+                     <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $orders }}</div>
+                  </div>
+                  <div class="col-auto">
+                     <i class="fas fa-fw fa-list-ul fa-2x text-gray-300"></i>
+                  </div>
+               </div>
+            </div>
+         </div>
+   </div>
+   <div class="col-lg-3">
+         <div class="card mb-4 py-3 border-left-primary">
+            <div class="card-body">
+               <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Revenue</div>
+                     <div class="h5 mb-0 font-weight-bold text-gray-800">&#8377; {{ $revenue }}</div>
+                  </div>
+                  <div class="col-auto">
+                     <i class="fas fas fa-rupee-sign fa-2x text-gray-300"></i>
+                  </div>
+               </div>
+            </div>
+         </div>
+   </div>
+</div>
           
 @endsection -->

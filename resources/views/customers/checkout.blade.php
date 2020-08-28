@@ -42,7 +42,6 @@
     
          <form method="post" action="{{ route('placeorder') }}">
             @csrf
-
             <div class="row">
                <div class="col">
                   <div class="form-group">
