@@ -7,24 +7,19 @@
          <div class="row justify-content-center">
             <div class="container-fluid">
                <div class="album py-1 bg-light">
-
-               <div class="d-flex justify-content-between">
+                  <div class="d-flex justify-content-between">
                      <div>
                         <h5 class="py-3">Orders</h5>
                      </div>
                      <div>
-                        <p class="py-3 h6">
-                        </p>
+                        <p class="py-3 h6"></p>
+                     </div>
                      </div>
                   </div>
-               </div>
-               <div style="min-height: 430px;">
-                  <p class="text-center h5 py-5 text-muted">Orders Page</p>
                </div>
             </div>
          </div>
       </div>
-   </div>
 </div>
 <nav class="fixed-bottom border-top bg-white">
    <div class="row text-center mt-10">
@@ -43,7 +38,7 @@
       <div class="col mt-2">
          <a aria-current="page" class="text-muted" id="nav_home" href="{{ url('/'.$store->store_name.'/?page=cart') }}">
             <i class="fa fas fa-shopping-bag fa-2x"></i>
-            <p class="navbar-label mb-10 small">Bag</p>
+            <p class="navbar-label mb-10 small">Bag ({{ $cartitemcount }})</p>
          </a>
       </div>
       <div class="col mt-2">
