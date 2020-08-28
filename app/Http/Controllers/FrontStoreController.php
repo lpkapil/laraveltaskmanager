@@ -79,6 +79,32 @@ class FrontStoreController extends Controller
                 $this->removeFromCart($request->product, $store);
                 return redirect('/'.$store->store_name.'?page=cart');
             }
+
+
+            //view order
+            if (
+                !empty($request->action) && ($request->action == 'vieworder') 
+                && !empty($request->page) && ($request->page == 'orders') 
+                && (!empty($request->id))
+            ) {
+
+                //Check if it's user order
+                $order = Order::where(['user_id' => Auth::user()->id, 'id' => $request->id])->orderByDesc('id')->get()->first();
+                if (!empty($order)) {
+                    $orderitems = OrderItem::where('order_id', $order->id)->orderByDesc('id')->get();
+                    return view(
+                        'customers.vieworder',
+                        [
+                            'store' => $store,
+                            'order' => $order,
+                            'orderitems' => $orderitems,
+                            'cartitemcount' => $cartItemsCount
+                        ]
+                    );
+                } else {
+                    return redirect('/'.$store->store_name.'?page=orders');
+                }
+            }
             
             return view('customers.index', ['store' => $store, 'categories' => $categories, 'cartitemcount' => $cartItemsCount]);
         
@@ -204,13 +230,15 @@ class FrontStoreController extends Controller
 
                     $grandTotal = $itemsTotal + $deliveryCharges;
 
-                    $orders = $orders = Order::where('user_id', Auth::user()->id)->orderByDesc('id')->paginate(4,['*'],'p');
+                    $orders = Order::where('user_id', Auth::user()->id)->orderByDesc('id')->paginate(4,['*'],'p');
+                    $totalorders = Order::where('user_id', Auth::user()->id)->orderByDesc('id')->count();
                     return view(
                         'customers.orders',
                         [
                             'store' => $store,
                             'cartitemcount' => $cartItemsCount,
                             'orders' => $orders,
+                            'totalorders' => $totalorders
                         ]
                     );
                 endif;
@@ -387,7 +415,7 @@ class FrontStoreController extends Controller
             $orderItem = new OrderItem([
                 'order_id' => $order->id,
                 'product_id' => $productId,
-                'product_name' => 'pending',
+                'product_name' => $product['name'],
                 'product_image' => $product['photo'],
                 'product_qty' => $product['quantity'],
                 'product_price' => $product['price']

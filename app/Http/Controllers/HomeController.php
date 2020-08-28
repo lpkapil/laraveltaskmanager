@@ -9,6 +9,7 @@ use App\Permission;
 use App\Store;
 use App\Category;
 use App\Product;
+use App\Order;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller {
@@ -57,6 +58,17 @@ class HomeController extends Controller {
             $contacts = Contact::where('user_id', Auth::user()->id)->orderByDesc('id')->count();
             $products = Product::where('user_id', Auth::user()->id)->orderByDesc('id')->count();
             $store = Store::where('user_id', Auth::user()->id)->orderByDesc('id')->get()->first();
+            if(!empty($store)) {
+                $orders = Order::where('store_id', $store->id)->orderByDesc('id')->get();
+                $revenue = 0;
+                foreach($orders as $order){
+                    $revenue += $order->grand_total;
+                }
+            } else {
+                $orders = 0;
+                $revenue = 0;
+            }
+            
             $categories = Category::where('user_id', Auth::user()->id)->orderByDesc('id')->count();
             return view(
                 'userhome',
@@ -65,6 +77,8 @@ class HomeController extends Controller {
                     'products' => $products,
                     'store' => (!empty($store) ? $store->store_name : ''),
                     'categories' => $categories,
+                    'orders' => count($orders),
+                    'revenue' => $revenue
                 ]
             );
         endif;

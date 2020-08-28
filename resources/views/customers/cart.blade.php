@@ -7,7 +7,7 @@
             @empty($cartitemcount)
             <div class="row">
                <div class="container-fluid">
-                  <div class="justify-content-center" style="min-height: 430px;">
+                  <div class="justify-content-center min_height">
                      <p class="text-center py-3 text-muted"> <i class="fa fas fa-shopping-bag fa-4x"></i></p>
                      <p class="text-center h5">Your bag is empty.</p>
                      <p class="text-center text-muted">You don't have any products in your bag.</p>
