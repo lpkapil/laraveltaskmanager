@@ -130,7 +130,7 @@
       <div class="col mt-2">
          <a aria-current="page" class="text-muted" id="nav_home" href="{{ url('/'.$store->store_name.'/?page=cart') }}">
             <i class="fa fas fa-shopping-bag fa-2x"></i>
-            <p class="navbar-label mb-10 small">Bag ({{ $cartitemcount }})</p>
+            <p class="navbar-label mb-10"><span class="small">Bag</span> <span class="badge badge-pill badge-primary">{{ $cartitemcount }}</span></p>
          </a>
       </div>
       <div class="col mt-2">

@@ -6,51 +6,59 @@
       <div class="col-md-12 mt-5">
          <div class="row justify-content-center">
             <div class="container-fluid">
-               <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                     <span class="input-group-text" id="basic-addon1"><i class="fa far fa-search"></i></span>
-                  </div>
-                  <input class="form-control" type="text" placeholder="Search categories or products" aria-describedby="basic-addon1">
-               </div>
-               @foreach($categories as $category)
-                  <?php $hasProducts = false; ?>
-                  @if($category->products()->where('product_status', '1')->count() > 0)
-                     <?php $hasProducts = true; ?>
-                  @endif
-               @endforeach
-               @if(!$hasProducts)
-               <div style="min-height: 430px;">
-                  <p class="text-center h5 py-5 text-muted">No categories found</p>
-               </div>
-               @endif
-               @if($hasProducts)
                <div class="album py-1 bg-light">
                   <div class="d-flex justify-content-between">
                      <div>
-                        <h5 class="py-3">Listed Categories</h5>
+                        <h5 class="">Checkout</h5>
+                        <p class="text-muted">Payment of &#8377; {{ $grandtotal }}</p>
                      </div>
-                  </div>
-                  <div class="row">
-                     @foreach($categories as $category)
-                     @if($category->products()->where('product_status', '1')->count() > 0)
-                     <div class="col-md-3">
-                        <div class="card mb-4 box-shadow">
-                           <img class="card-img-top" src="{{ '/demo_images/def.jpg' }}" alt="Card image cap" >
-                           <div class="card-body">
-                              <p class="card-text"><a href="{{ url('/'.$store->store_name.'/?page=products&cat='.$category->id) }}" class="stretched-link text-muted text-decoration-none">{{ $category->name }}</a></p>
-                           </div>
-                        </div>
+                     <div>
+                        <p class="py-3 h6"></p>
                      </div>
-                     @endif
-                     @endforeach
                   </div>
                </div>
-               <br><br><br>
-               @endif
             </div>
          </div>
       </div>
    </div>
+   <div class="row">
+      <div class="col-md-8 mt-2">
+         <from>
+            <div class="form-group">
+               <label for="name">Name</label>
+               <input type="name" class="form-control" id="name" aria-describedby="name" placeholder="Name">
+            </div>
+            <div class="form-group">
+               <label for="address">Address</label>
+               <textarea class="form-control" id="address" placeholder="Address"></textarea>
+            </div>
+            <div class="row">
+               <div class="col">
+                  <div class="form-group">
+                     <label for="city">City</label>
+                     <input type="city" class="form-control" id="city" aria-describedby="city" placeholder="City">
+                  </div>
+               </div>
+               <div class="col">
+                  <div class="form-group">
+                     <label for="pincode">Pincode</label>
+                     <input type="pincode" class="form-control" id="pincode" aria-describedby="pincode" placeholder="pincode">
+                  </div>
+               </div>
+            </div>       
+      </div>
+      <div class="col-md-4">
+         <h6 class="py-3 text-muted">PAYMENT METHOD</h6>
+            <div class="form-group">
+               <label class="radio-inline form-control">
+               <input type="radio" name="payment" value="cod" checked> Cash/UPI on Delivery
+               </label>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block" data-url="{{ url('/'.$store->store_name.'/?page=checkout&action=placeorder') }}">Place Order</button>
+         </form>
+      </div>
+   </div>
+   <br><br><br><br>  
 </div>
 <nav class="fixed-bottom border-top bg-white">
    <div class="row text-center mt-10">

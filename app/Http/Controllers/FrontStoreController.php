@@ -122,8 +122,10 @@ class FrontStoreController extends Controller
                 $grandTotal = 0;
                 $deliveryCharges = 10;
                 $noDeliveryChargesAmt = 100;
-                foreach($cart as $product) {
-                    $itemsTotal +=  $product['quantity'] * $product['price'];
+                if(!empty($cart)) {
+                    foreach($cart as $product) {
+                        $itemsTotal +=  $product['quantity'] * $product['price'];
+                    }
                 }
 
                 if ($itemsTotal >= $noDeliveryChargesAmt) {
@@ -146,15 +148,62 @@ class FrontStoreController extends Controller
                 );
             break;
 
+            case 'checkout':
+                if (Auth::guest()):
+                    return view('customers.register', ['store' => $store]);
+                else:
+                    $cart = session()->get('cart');
+                    $itemsTotal = 0;
+                    $grandTotal = 0;
+                    $deliveryCharges = 10;
+                    $noDeliveryChargesAmt = 100;
+                    if(!empty($cart)) {
+                        foreach($cart as $product) {
+                            $itemsTotal +=  $product['quantity'] * $product['price'];
+                        }
+                    }
+
+                    if ($itemsTotal >= $noDeliveryChargesAmt) {
+                        $deliveryCharges = 0;
+                    }
+
+                    $grandTotal = $itemsTotal + $deliveryCharges;
+                    return view(
+                        'customers.checkout',
+                        [
+                            'store' => $store,
+                            'cartitemcount' => $cartItemsCount,
+                            'grandtotal' => $grandTotal
+                        ]
+                    );
+                endif;
+            break;
+
             case 'orders':
                 if (Auth::guest()):
                     return view('customers.register', ['store' => $store]);
                 else:
+                    $cart = session()->get('cart');
+                    $itemsTotal = 0;
+                    $grandTotal = 0;
+                    $deliveryCharges = 10;
+                    $noDeliveryChargesAmt = 100;
+                    if(!empty($cart)) {
+                        foreach($cart as $product) {
+                            $itemsTotal +=  $product['quantity'] * $product['price'];
+                        }
+                    }
+
+                    if ($itemsTotal >= $noDeliveryChargesAmt) {
+                        $deliveryCharges = 0;
+                    }
+
+                    $grandTotal = $itemsTotal + $deliveryCharges;
                     return view(
                         'customers.orders',
                         [
                             'store' => $store,
-                            'cartitemcount' => $cartItemsCount
+                            'cartitemcount' => $cartItemsCount,
                         ]
                     );
                 endif;

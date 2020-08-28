@@ -9,7 +9,7 @@
                <div class="album py-1 bg-light">
                   <div class="d-flex justify-content-between">
                      <div>
-                        <h5 class="py-3">Orders</h5>
+                        <h5 class="">Orders</h5>
                      </div>
                      <div>
                         <p class="py-3 h6"></p>
@@ -38,7 +38,7 @@
       <div class="col mt-2">
          <a aria-current="page" class="text-muted" id="nav_home" href="{{ url('/'.$store->store_name.'/?page=cart') }}">
             <i class="fa fas fa-shopping-bag fa-2x"></i>
-            <p class="navbar-label mb-10 small">Bag ({{ $cartitemcount }})</p>
+            <p class="navbar-label mb-10"><span class="small">Bag</span> <span class="badge badge-pill badge-primary">{{ $cartitemcount }}</span></p>
          </a>
       </div>
       <div class="col mt-2">
