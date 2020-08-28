@@ -39,20 +39,6 @@
    </div>
 </div>
 @foreach($orders as $order)
-<!-- <div class="row">
-   <div class="col-md-3">
-      <div class="thumbnail-container thumbnail-padding">
-         <img src="{{ '/demo_images/def.jpg' }}" width="48" height="48">
-      </div>
-      <p class="mb-0">Order #{{ $order->id }}</p>
-      <p class="mb-0 text-muted">{{ $order->items_count }} Items</p>
-      <p class="mb-0 text-muted">{{ $order->status }}</p>
-   </div>
-   <div class="col-md-9">
-      <p class="mb-0">&#8377; {{ $order->grand_total }}</p>
-      <p class="mb-0">&#8377; {{ $order->created_at }}</p>
-   </div>
-</div> -->
 <div class="d-flex justify-content-between">
    <div>
       <!-- <div class="thumbnail-container thumbnail-padding">
@@ -72,9 +58,9 @@
 <hr>
 @endforeach
 
-{{ $orders->appends(request()->except('page'))->links() }}
+{{ $orders->appends(request()->except('p'))->links() }}
 
-<br><br><br><br><br>
+<br><br><br>
 <nav class="fixed-bottom border-top bg-white">
    <div class="row text-center mt-10">
       <div class="col mt-2">

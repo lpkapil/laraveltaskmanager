@@ -204,7 +204,7 @@ class FrontStoreController extends Controller
 
                     $grandTotal = $itemsTotal + $deliveryCharges;
 
-                    $orders = $orders = Order::where('user_id', Auth::user()->id)->orderByDesc('id')->paginate(4);
+                    $orders = $orders = Order::where('user_id', Auth::user()->id)->orderByDesc('id')->paginate(4,['*'],'p');
                     return view(
                         'customers.orders',
                         [
