@@ -21,7 +21,7 @@ It's Store manager web application based on Software as service model. Multiple 
 
 ###### In-Progress
 
-- Customer Order page
+- Customer Order details page Refinement
 - Order Management Module Refinement
 
 ###### To-do
