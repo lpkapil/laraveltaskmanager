@@ -24,12 +24,59 @@ class FrontStoreController extends Controller
             
             $categories = Category::where('user_id', $store->user_id)->orderByDesc('id')->get();
             
+
+            //Cart items count
+            $cart = session()->get('cart');
+            $cartItemsCount = 0;
+            if(!empty($cart)) {
+               foreach($cart as $item) {
+                $cartItemsCount += $item['quantity'];
+               } 
+            }
+
+            
+
+            //Cart action empty cart
+            if (!empty($request->action) && ($request->action == 'emptycart')) {
+                $this->emptyCart($store);
+                return view('customers.cart', ['store' => $store, 'cart' => [], 'cartitemcount' => 0]);
+            }
+
             //Show page
-            if (!empty($request->page)) {
-                return $this->getPage($request->page, $store, $categories, $catId = $request->cat);
+            if (!empty($request->page) && empty($request->action)) {
+                return $this->getPage($request->page, $store, $categories, $catId = $request->cat, $cartItemsCount);
+            }
+
+            //Cart action home page add
+            if (
+                !empty($request->action) && ($request->action == 'add') 
+                && (!empty($request->product) && empty($request->page))
+            ) {
+                $this->addToCart($request->product, $store);
+                return redirect('/'.$store->store_name);
+            }
+
+            // Cart action cart page only add/remove
+            if (
+                !empty($request->action) && ($request->action == 'add') 
+                && !empty($request->page) && ($request->page == 'cart') 
+                && (!empty($request->product))
+            ) {
+
+                $this->addToCart($request->product, $store);
+                return redirect('/'.$store->store_name.'?page=cart');
+            }
+
+            if (
+                !empty($request->action) && ($request->action == 'remove') 
+                && !empty($request->page) && ($request->page == 'cart') 
+                && (!empty($request->product))
+            ) {
+                $this->removeFromCart($request->product, $store);
+                return redirect('/'.$store->store_name.'?page=cart');
             }
             
-            return view('customers.index', ['store' => $store, 'categories' => $categories]);
+            return view('customers.index', ['store' => $store, 'categories' => $categories, 'cartitemcount' => $cartItemsCount]);
         
         } else {
             return redirect('/');
@@ -39,34 +86,169 @@ class FrontStoreController extends Controller
     /**
      * Route to Page
      */
-    private function getPage($slug, $store, $categories, $catId = null)
+    private function getPage($slug, $store, $categories, $catId = null, $cartItemsCount)
     {
 
         switch($slug)
         {
             case 'categories':
-                return view('customers.categories', ['store' => $store, 'categories' => $categories]);
+                return view(
+                    'customers.categories',
+                    [
+                        'store' => $store,
+                        'categories' => $categories,
+                        'cartitemcount' => $cartItemsCount
+                    ]
+                );
             break;
 
             case 'products':
                 $category = Category::where(['id' => $catId, 'user_id' => $store->user_id])->orderByDesc('id')->get()->first();
                 $products = Product::where(['product_category_id' => $category->id])->orderByDesc('id')->get();
-                return view('customers.products', ['store' => $store, 'category' => $category, 'products' => $products]);
+                return view(
+                    'customers.products', 
+                    [
+                        'store' => $store,
+                        'category' => $category,
+                        'products' => $products,
+                        'cartitemcount' => $cartItemsCount
+                    ]
+                );
             break;
 
             case 'cart':
-                return view('customers.cart', ['store' => $store]);
+                $cart = session()->get('cart');
+                $itemsTotal = 0;
+                $grandTotal = 0;
+                $deliveryCharges = 10;
+                $noDeliveryChargesAmt = 100;
+                foreach($cart as $product) {
+                    $itemsTotal +=  $product['quantity'] * $product['price'];
+                }
+
+                if ($itemsTotal >= $noDeliveryChargesAmt) {
+                    $deliveryCharges = 0;
+                }
+
+                $grandTotal = $itemsTotal + $deliveryCharges;
+
+                return view(
+                    'customers.cart',
+                    [
+                        'store' => $store,
+                        'cart' => $cart,
+                        'cartitemcount' => $cartItemsCount,
+                        'itemstotal' => $itemsTotal,
+                        'nodevliverycharge' => $noDeliveryChargesAmt,
+                        'deliverycharge' => $deliveryCharges,
+                        'grandtotal' => $grandTotal
+                    ]
+                );
             break;
 
             case 'orders':
                 if (Auth::guest()):
                     return view('customers.register', ['store' => $store]);
                 else:
-                    return view('customers.orders', ['store' => $store]);
+                    return view(
+                        'customers.orders',
+                        [
+                            'store' => $store,
+                            'cartitemcount' => $cartItemsCount
+                        ]
+                    );
                 endif;
             break;
 
             default: return redirect('/'.$store->store_name);
         }
+    }
+
+
+    private function addToCart($productId, $store)
+    {
+        $product = Product::where(['user_id' => $store->user_id, 'id' => $productId])->get()->first();
+        if(!$product) {
+            return redirect('/'.$store->store_name);
+        }
+        
+        $cart = session()->get('cart');
+        // if cart is empty then this the first product
+        if(!$cart) {
+            $cart = [
+                    $productId => [
+                        "name" => $product->product_name,
+                        "quantity" => 1,
+                        "price" => $product->product_price,
+                        "photo" => $product->product_image,
+                        'qty' => $product->product_quantity,
+                        'qty_type' => $product->product_quantity_type
+                    ]
+            ];
+            session()->put('cart', $cart);
+            return;
+        }
+ 
+        // if cart not empty then check if this product exist then increment quantity
+        if(isset($cart[$productId])) {
+            $cart[$productId]['quantity']++;
+            session()->put('cart', $cart);
+            return;
+        }
+ 
+        // if item not exist in cart then add to cart with quantity = 1
+        $cart[$productId] = [
+            "name" => $product->product_name,
+            "quantity" => 1,
+            "price" => $product->product_price,
+            "photo" => $product->product_image,
+            'qty' => $product->product_quantity,
+            'qty_type' => $product->product_quantity_type
+        ];
+        session()->put('cart', $cart);
+        return;
+    }
+
+    private function removeFromCart($productId, $store)
+    {
+        $product = Product::where(['user_id' => $store->user_id, 'id' => $productId])->get()->first();
+        if(!$product) {
+            return redirect('/'.$store->store_name);
+        }
+
+        $cart = session()->get('cart');
+        // if cart is empty then this the first product
+        if(!$cart) {
+            return;
+        }
+ 
+        // if cart not empty then check if this product exist then increment quantity
+        if(isset($cart[$productId])) {
+            if($cart[$productId]['quantity'] > 0) {
+                $cart[$productId]['quantity']--;
+
+                if($cart[$productId]['quantity'] == 0) {
+                    unset($cart[$productId]);
+                }
+
+                session()->put('cart', $cart);
+                return;
+            } else {
+                unset($cart[$productId]);
+                session()->put('cart', $cart);
+                return;
+            }
+        } else {
+            return;
+        }
+    }
+
+    /**
+     * Empty cart
+     */
+    private function emptyCart($store)
+    {
+        session()->put('cart', []);
+        return;
     }
 }
