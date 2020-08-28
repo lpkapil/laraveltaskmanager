@@ -72,7 +72,9 @@
 <hr>
 @endforeach
 
-{{ $orders->links() }}
+{{ $orders->appends(request()->except('page'))->links() }}
+
+<br><br><br><br><br>
 <nav class="fixed-bottom border-top bg-white">
    <div class="row text-center mt-10">
       <div class="col mt-2">
