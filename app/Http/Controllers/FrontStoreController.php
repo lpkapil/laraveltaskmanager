@@ -133,7 +133,12 @@ class FrontStoreController extends Controller
             break;
 
             case 'products':
-                $category = Category::where(['id' => $catId, 'user_id' => $store->user_id])->orderByDesc('id')->get()->first();
+                $category = Category::where(['id' => $catId, 'user_id' => $store->user_id])->orderByDesc('id')->get()->first(); 
+
+                if(empty($category)) {
+                    return redirect('/'.$store->store_name);
+                }
+
                 $products = Product::where(['product_category_id' => $category->id])->orderByDesc('id')->get();
                 return view(
                     'customers.products', 
@@ -426,6 +431,6 @@ class FrontStoreController extends Controller
         //Empty old cart
         $this->emptyCart([]);
 
-        return redirect('/'.$store['store_name'].'?page=orders')->with('success', 'Order '.$order->id.' placed successfully!');
+        return redirect('/'.$store['store_name'].'?page=orders')->with('success', 'Order #'.$order->id.' placed successfully!');
     }
 }

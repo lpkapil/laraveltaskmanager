@@ -59,13 +59,14 @@ class HomeController extends Controller {
             $products = Product::where('user_id', Auth::user()->id)->orderByDesc('id')->count();
             $store = Store::where('user_id', Auth::user()->id)->orderByDesc('id')->get()->first();
             if(!empty($store)) {
-                $orders = Order::where('store_id', $store->id)->orderByDesc('id')->get();
+                $revenueOrders = Order::where(['store_id' => $store->id, 'status' => 'delivered'])->orderByDesc('id')->get();
+                $orders = Order::where(['store_id' => $store->id])->orderByDesc('id')->get();
                 $revenue = 0;
-                foreach($orders as $order){
+                foreach($revenueOrders as $order){
                     $revenue += $order->grand_total;
                 }
             } else {
-                $orders = 0;
+                $orders = [];
                 $revenue = 0;
             }
             

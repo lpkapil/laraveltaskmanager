@@ -34,7 +34,11 @@ class OrderController extends Controller
             $orders = Order::orderByDesc('id')->paginate(4);
         else:
             $store = Store::where('user_id', Auth::user()->id)->orderByDesc('id')->get()->first();
-            $orders = Order::where('store_id', $store->id)->orderByDesc('id')->paginate(4);
+            if(!empty($store)) {
+                $orders = Order::where('store_id', $store->id)->orderByDesc('id')->paginate(4);
+            } else {
+                $orders = [];
+            }
         endif;
         return view('orders.index', compact('orders'));
     }
@@ -78,8 +82,23 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        return redirect('/orders')->with('success', 'Order updated');
+    {   
+        $requestData = explode("|", $id);
+        $id = $requestData[0];
+        $status = $requestData[1];
+        $store = Store::where('user_id', Auth::user()->id)->orderByDesc('id')->get()->first();
+        $order = Order::where(['id' => $id, 'store_id' => $store->id])->orderByDesc('id')->get()->first();
+        if (empty($order)) {
+            return redirect('/orders');
+        }
+
+        if(!in_array($status, ['accepted', 'shipped', 'delivered', 'declined', 'cancelled'])) {
+            return redirect('/orders');
+        }
+        
+        $order->status =  $status;
+        $order->save();
+        return redirect('/orders')->with('success', 'Order #'.$order->id.' status changed to '.$status);
     }
 
     /**
@@ -91,7 +110,8 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return redirect('/roles')->with('success', 'Order updated');
+       
+        return redirect('/orders')->with('success', 'Order updated');
     }
 
     /**
@@ -102,6 +122,6 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-        return redirect('/roles')->with('success', 'Order deleted');
+        return redirect('/orders')->with('success', 'Order deleted');
     }
 }

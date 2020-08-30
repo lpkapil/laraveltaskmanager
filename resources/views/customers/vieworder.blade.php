@@ -38,16 +38,24 @@
                <div class="d-flex justify-content-between">
                   <div>
                      <div class="text-muted">
+                        <?php if ($order->status == 'pending' || $order->status == 'accepted' || $order->status == 'shipped' || $order->status == 'delivered'): ?>
                         <p>1 &nbsp;&nbsp;&nbsp; Order Accepted <p>
                         <p>2 &nbsp;&nbsp;&nbsp; Shipped </p>
                         <p>3 &nbsp;&nbsp;&nbsp; Delivered </p>
+                        <?php elseif($order->status == 'declined'): ?>
+                        <p>1 &nbsp;&nbsp;&nbsp; Declined </p>
+                        <?php elseif($order->status == 'cancelled'): ?>
+                        <p>1 &nbsp;&nbsp;&nbsp; Cancelled </p>
+                        <?php endif; ?>
                      </div>
                   </div>
                   <div>
                      <div class="text-muted">
-                        <p><i class="fa fas fa-check pr-1 smallest-text"></i></p>
-                        <p><i class="fa fas fa-check pr-1 smallest-text"></i></p>
-                        <p><i class="fa fas fa-check pr-1 smallest-text"></i></p>
+                        <p><?php if ($order->status == 'accepted' || $order->status == 'shipped' || $order->status == 'delivered'): ?><i class="fa fas fa-check pr-1 smallest-text"></i><?php endif; ?></p>
+                        <p><?php if ($order->status == 'shipped' || $order->status == 'delivered'): ?><i class="fa fas fa-check pr-1 smallest-text"></i><?php endif; ?></p>
+                        <p><?php if ($order->status == 'delivered'): ?><i class="fa fas fa-check pr-1 smallest-text"></i><?php endif; ?></p>
+                        <p><?php if ($order->status == 'declined'): ?><i class="fa fas fa-check pr-1 smallest-text"></i><?php endif; ?></p>
+                        <p><?php if ($order->status == 'cancelled'): ?><i class="fa fas fa-check pr-1 smallest-text"></i><?php endif; ?></p>
                      </div>
                   </div>
                </div>
