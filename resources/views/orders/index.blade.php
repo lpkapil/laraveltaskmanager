@@ -4,7 +4,6 @@
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
    <h1 class="h3 mb-0 text-gray-800">Orders</h1>
-   <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Export Contacts</a>
 </div>
 <div>
    @if(session()->get('success'))
@@ -38,7 +37,6 @@
                   <?php else: ?>
                      <th colspan = 2>Actions</th>
                   <?php endif; ?>
-                  
                </tr>
             </thead>
             <tbody>
@@ -46,28 +44,52 @@
                <tr>
                   <td>{{$order->id}}</td>
                   <td>{{$order->items_count}}</td>
-                  <td>{{$order->grand_total}}</td>
+                  <td>&#8377; {{ $order->grand_total }}</td>
                   <td>{{$order->customer_name}}</td>
                   <td>{{$order->customer_phone}}</td>
                   <td>{{$order->customer_address}}</td>
-                  <td>{{$order->status}}</td>
+                  <td>{{ ucfirst($order->status) }}</td>
                   <td>{{$order->user_id}}</td>
                   <?php if((in_array('admin', Auth::user()->roles->pluck('slug')->toArray()))): ?>
                      <td>{{$order->store_id}}</td>
                   <?php else: ?>
                      <td>
-                        <form action="{{ route('orders.edit', $order->id)}}" method="post">
-                           @csrf
-                           @method('DELETE')
-                           <button class="btn btn-primary" type="submit">Accept</button>
-                        </form>
+                        <?php if( $order->status == 'pending'):?>
+                           <form action="{{ route('orders.edit', $order->id.'|accepted')}}">
+                              @csrf
+                              @method('GET')
+                              <button class="btn btn-primary" type="submit">Accept</button>
+                           </form>
+                        <?php endif; ?>
+                        <?php if( $order->status == 'accepted'):?>
+                           <form action="{{ route('orders.edit', $order->id.'|shipped')}}" method="post">
+                              @csrf
+                              @method('GET')
+                              <button class="btn btn-primary" type="submit">Ship</button>
+                           </form>
+                        <?php endif; ?>
+                        <?php if( $order->status == 'shipped'):?>
+                           <form action="{{ route('orders.edit', $order->id.'|delivered')}}" method="post">
+                              @csrf
+                              @method('GET')
+                              <button class="btn btn-primary" type="submit">Deliver</button>
+                           </form>
+                        <?php endif; ?>
                      </td>
                      <td>
-                        <form action="{{ route('orders.edit', $order->id)}}" method="post">
+                        <?php if( $order->status == 'pending'):?>
+                           <form action="{{ route('orders.edit', $order->id.'|declined')}}" method="post">
+                              @csrf
+                              @method('GET')
+                              <button class="btn btn-danger" type="submit">Decline</button>
+                           </form>
+                        <?php elseif(in_array($order->status, ['accepted', 'shipped'])): ?>
+                        <form action="{{ route('orders.edit', $order->id.'|cancelled')}}" method="post">
                            @csrf
-                           @method('DELETE')
-                           <button class="btn btn-danger" type="submit">Decline</button>
+                           @method('GET')
+                           <button class="btn btn-danger" type="submit">Cancel</button>
                         </form>
+                        <?php endif; ?>
                      </td>
                   <?php endif; ?>
                   
@@ -75,7 +97,9 @@
                @endforeach
             </tbody>
          </table>
+         <?php  if(!empty($orders)): ?>
          {{ $orders->links() }}
+         <?php endif; ?>
       </div>
    </div>
 </div>

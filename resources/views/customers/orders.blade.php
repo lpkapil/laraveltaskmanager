@@ -39,7 +39,7 @@
    </div>
 </div>
 @foreach($orders as $order)
-<div class="d-flex justify-content-between">
+<div class="d-flex justify-content-between py-2">
    <div>
       <!-- <div class="thumbnail-container thumbnail-padding">
          <img src="{{ '/demo_images/def.jpg' }}" width="48" height="48">
