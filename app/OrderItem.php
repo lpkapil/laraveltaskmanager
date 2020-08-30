@@ -14,4 +14,9 @@ class OrderItem extends Model
         'product_qty',
         'product_price'
     ];
+
+    public function order()
+    {
+        return $this->hasOne('App\Order', 'order_id');
+    }
 }
