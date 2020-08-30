@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use App\OrderItem;
 use App\Store;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;

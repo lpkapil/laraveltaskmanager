@@ -38,8 +38,6 @@ class FrontStoreController extends Controller
                } 
             }
 
-            
-
             //Cart action empty cart
             if (!empty($request->action) && ($request->action == 'emptycart')) {
                 $this->emptyCart($store);

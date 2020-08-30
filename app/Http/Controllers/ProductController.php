@@ -87,6 +87,14 @@ class ProductController extends Controller
         if (!empty($file)) {
             $validator = Validator::make($request->all(), [
                 'product_image' => 'required|image|max:2000',
+                'product_category_id'=>'required|string|max:255'.Rule::in(Category::where('user_id', Auth::user()->id)->pluck('id')->toArray()),
+                'product_name'=>'required|string|max:255',
+                'product_mrp'=>'required|numeric|min:0',
+                'product_price'=>'required|numeric|min:0|lte:product_mrp',
+                'product_quantity'=>'required|string|max:255',
+                'product_quantity_type'=>'required|string|max:255|'.Rule::in($this->qunatityTypes),
+                'product_status'=>'required|string|max:255|'.Rule::in($this->status),
+                'product_description' => 'required|string|max:255',
             ]);
         }
         
@@ -180,6 +188,14 @@ class ProductController extends Controller
         if (!empty($file)) {
             $validator = Validator::make($request->all(), [
                 'product_image' => 'required|image|max:2000',
+                'product_category_id'=>'required|string|max:255|'.Rule::in(Category::where('user_id', Auth::user()->id)->pluck('id')->toArray()),
+                'product_name'=>'required|string|max:255',
+                'product_mrp'=>'required|numeric|min:0',
+                'product_price'=>'required|numeric|min:0|lte:product_mrp',
+                'product_quantity'=>'required|string|max:255',
+                'product_quantity_type'=>'required|string|max:255|'.Rule::in($this->qunatityTypes),
+                'product_status'=>'required|string|max:255|'.Rule::in($this->status),
+                'product_description' => 'required|string|max:255',
             ]);
         }
 
