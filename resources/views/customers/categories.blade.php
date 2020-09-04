@@ -39,7 +39,11 @@
                      @if($category->products()->where('product_status', '1')->count() > 0)
                      <div class="col-md-3">
                         <div class="card mb-4 box-shadow">
-                           <img class="card-img-top" src="{{ '/demo_images/def.jpg' }}" alt="Card image cap" >
+                           @empty($category->image)
+                              <img class="card-img-top" src="{{ '/demo_images/def.jpg' }}" alt="Card image cap" >
+                           @else
+                              <img class="card-img-top" src="{{ '/storage/category_images/'.$category->image }}" width="200" height="200">
+                           @endempty
                            <div class="card-body">
                               <p class="card-text"><a href="{{ url('/'.$store->store_name.'/?page=products&cat='.$category->id) }}" class="stretched-link text-muted text-decoration-none">{{ $category->name }}</a></p>
                            </div>

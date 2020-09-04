@@ -81,6 +81,11 @@
                <i class="fas fa-fw fa-address-card"></i>
                <span>Contacts</span></a>
             </li>
+            <li class="nav-item {{ (request()->is('configurations*')) ? 'active' : '' }}">
+               <a class="nav-link" href="{{ url('/configurations') }}">
+               <i class="fas fa-fw fa-cog"></i>
+               <span>Configurations</span></a>
+            </li>
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
             <!-- Sidebar Toggler (Sidebar) -->

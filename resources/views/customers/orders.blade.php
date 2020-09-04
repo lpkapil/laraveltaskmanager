@@ -4,7 +4,25 @@
 <div class="container">
 <div class="row">
    <div class="col-md-12 mt-5">
-      <div class="row justify-content-center">
+
+      @empty($totalorders)
+            <div class="row">
+               <div class="container-fluid">
+                  <div class="justify-content-center min_height">
+                     <p class="text-center py-3 text-muted"> <i class="fa fas fa-list-ul fa-4x"></i></p>
+                     <p class="text-center text-muted">You don't have any orders.</p>
+                     <p class="text-center"><a class="btn btn-md btn-primary" href="{{ url('/'.$store->store_name) }}">Back to shopping</a></p>
+                  </div>
+               </div>
+            </div>   
+         @else
+            <div class="row">
+               <div class="col-md-12">
+                  <p class="h5">Orders ({{ $totalorders }})</p>
+               </div>
+            </div>
+            @endempty
+      <!-- <div class="row justify-content-center">
          <div class="container-fluid">
             <div class="album py-1 bg-light">
                <div class="d-flex justify-content-between">
@@ -17,7 +35,8 @@
                </div>
             </div>
          </div>
-      </div>
+      </div> -->
+
    </div>
 </div>
 <div class="row">

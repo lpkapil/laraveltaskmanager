@@ -32,6 +32,8 @@
             
         <thead>
             <tr>
+                <td>ID</td>
+                <td>Image</td>
                 <td>Name</td>
                 <?php if (in_array('admin', Auth::user()->roles->pluck('slug')->toArray())): ?>
                     <td>Created By</td>
@@ -42,6 +44,14 @@
         <tbody>
             @foreach($categories as $category)
             <tr>
+                <td>{{$category->id}}</td>
+                <td>
+                    @empty($category->image)
+                        <img src="{{ '/demo_images/def.jpg' }}" width="48" height="48">
+                    @else
+                        <img src="{{ '/storage/category_images/'.$category->image }}" width="48" height="48">
+                    @endempty
+                </td>
                 <td>{{$category->name}}</td>
                 <?php if (in_array('admin', Auth::user()->roles->pluck('slug')->toArray())): ?>
                     <td>{{$category->user_id}}</td>

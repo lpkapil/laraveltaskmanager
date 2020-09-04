@@ -28,9 +28,9 @@
                      <div class="col-md-3">
                         <div class="card mb-4 box-shadow">
                            @empty($product->product_image)
-                           <img class="card-img-top" src="{{ '/demo_images/def.jpg' }}" >
+                              <img class="card-img-top" src="{{ '/demo_images/def.jpg' }}" >
                            @else
-                           <img class="card-img-top" src="{{ '/storage/product_images/'.$product->product_image }}" >
+                              <img class="card-img-top" src="{{ '/storage/product_images/'.$product->product_image }}" width="250" height="250">
                            @endempty
                            <div class="card-body">
                               <p class="card-text">{{ ucfirst($product->product_name) }}</p>

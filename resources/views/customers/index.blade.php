@@ -41,9 +41,13 @@
                      @if($category->products()->where('product_status', '1')->count() > 0)
                      <div class="col-md-2">
                         <div class="card mb-4 box-shadow">
+                           @empty($category->image)
                            <img class="card-img-top" src="{{ '/demo_images/def.jpg' }}" alt="Card image cap" >
+                           @else
+                              <img class="card-img-top" src="{{ '/storage/category_images/'.$category->image }}" width="100" height="100">
+                           @endempty
                            <div class="card-body">
-                              <p class="card-text"><a href="{{ url('/'.$store->store_name.'/?page=products&cat='.$category->id) }}" class="stretched-link text-muted text-decoration-none">{{ $category->name }}</a></p>
+                              <p class="card-text"><a href="{{ url('/'.$store->store_name.'/?page=products&cat='.$category->id) }}" class="stretched-link text-muted text-decoration-none">{{ str_limit($category->name, $limit = 15, $end = '...') }}</a></p>
                            </div>
                         </div>
                      </div>
@@ -69,9 +73,9 @@
                      <div class="col-md-3">
                         <div class="card mb-4 box-shadow">
                            @empty($product->product_image)
-                           <img class="card-img-top" src="{{ '/demo_images/def.jpg' }}" >
+                              <img class="card-img-top" src="{{ '/demo_images/def.jpg' }}" >
                            @else
-                           <img class="card-img-top" src="{{ '/storage/product_images/'.$product->product_image }}" >
+                              <img class="card-img-top" src="{{ '/storage/product_images/'.$product->product_image }}" width="250" height="250">
                            @endempty
                            <div class="card-body">
                               <p class="card-text">{{ ucfirst($product->product_name) }}</p>

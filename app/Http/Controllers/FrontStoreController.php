@@ -7,6 +7,7 @@ use App\Category;
 use App\Product;
 use App\Order;
 use App\OrderItem;
+use App\Configuration;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
@@ -26,6 +27,19 @@ class FrontStoreController extends Controller
         
         if (!empty($store)) {
             
+            $deliveryCharges = Configuration::select('value')->where(
+                [
+                    'user_id' => $store->user_id,
+                    'path' => 'delivery_charge_amount'
+                ]
+            )->get()->first()->toArray()['value'];
+            $noDeliveryChargesAmt = Configuration::select('value')->where(
+                [
+                    'user_id' => $store->user_id,
+                    'path' => 'delivery_free_amount'
+                ]
+            )->get()->first()->toArray()['value'];
+
             $categories = Category::where('user_id', $store->user_id)->orderByDesc('id')->get();
             
 
@@ -46,7 +60,7 @@ class FrontStoreController extends Controller
 
             //Show page
             if (!empty($request->page) && empty($request->action)) {
-                return $this->getPage($request->page, $store, $categories, $catId = $request->cat, $cartItemsCount);
+                return $this->getPage($request->page, $store, $categories, $catId = $request->cat, $cartItemsCount, $deliveryCharges, $noDeliveryChargesAmt);
             }
 
             //Cart action home page add
@@ -114,7 +128,7 @@ class FrontStoreController extends Controller
     /**
      * Route to Page
      */
-    private function getPage($slug, $store, $categories, $catId = null, $cartItemsCount)
+    private function getPage($slug, $store, $categories, $catId = null, $cartItemsCount, $deliveryCharges, $noDeliveryChargesAmt)
     {
 
         switch($slug)
@@ -153,8 +167,6 @@ class FrontStoreController extends Controller
                 $cart = session()->get('cart');
                 $itemsTotal = 0;
                 $grandTotal = 0;
-                $deliveryCharges = 10;
-                $noDeliveryChargesAmt = 100;
                 if(!empty($cart)) {
                     foreach($cart as $product) {
                         $itemsTotal +=  $product['quantity'] * $product['price'];
@@ -188,8 +200,6 @@ class FrontStoreController extends Controller
                     $cart = session()->get('cart');
                     $itemsTotal = 0;
                     $grandTotal = 0;
-                    $deliveryCharges = 10;
-                    $noDeliveryChargesAmt = 100;
                     if(!empty($cart)) {
                         foreach($cart as $product) {
                             $itemsTotal +=  $product['quantity'] * $product['price'];
@@ -219,8 +229,6 @@ class FrontStoreController extends Controller
                     $cart = session()->get('cart');
                     $itemsTotal = 0;
                     $grandTotal = 0;
-                    $deliveryCharges = 10;
-                    $noDeliveryChargesAmt = 100;
                     if(!empty($cart)) {
                         foreach($cart as $product) {
                             $itemsTotal +=  $product['quantity'] * $product['price'];
@@ -266,7 +274,8 @@ class FrontStoreController extends Controller
                 'store', 
                 [
                     'store_id' => $store->id,
-                    'store_name' => $store->store_name
+                    'store_name' => $store->store_name,
+                    'user_id' => $store->user_id
                 ]
             );
         }
@@ -380,8 +389,18 @@ class FrontStoreController extends Controller
         $itemsTotal = 0;
         $totalItems = 0;
         $grandTotal = 0;
-        $deliveryCharges = 10;
-        $noDeliveryChargesAmt = 100;
+        $deliveryCharges = Configuration::select('value')->where(
+            [
+                'user_id' => $store['user_id'],
+                'path' => 'delivery_charge_amount'
+            ]
+        )->get()->first()->toArray()['value'];
+        $noDeliveryChargesAmt = Configuration::select('value')->where(
+            [
+                'user_id' => $store['user_id'],
+                'path' => 'delivery_free_amount'
+            ]
+        )->get()->first()->toArray()['value'];
         if(!empty($cart)) {
             foreach($cart as $product) {
                 $itemsTotal +=  $product['quantity'] * $product['price'];
