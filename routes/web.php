@@ -38,3 +38,5 @@ Route::group(['middleware' => 'auth'], function () {
 
 //Front Store Controller
 Route::get('{controller_name}', ['uses' =>'FrontStoreController@index']);
+Route::post('/search', ['uses' =>'FrontSearchController@search'])->name('search');
+
