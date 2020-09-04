@@ -74,10 +74,5 @@
                 @yield('content')
             </main>
         </div>
-        <!-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm fixed-bottom">
-            <div class="container">
-                <span class="text-muted">{{ ucfirst($store->store_name).' Store' }} &copy; <?php echo date("Y"); ?></span>
-            </div>
-        </nav> -->
     </body>
 </html>
