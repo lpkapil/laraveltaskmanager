@@ -19,6 +19,7 @@ class FrontSearchController extends Controller
      */
     public function search(Request $request)
     {   
+        // Valid store access, session init with store data
         $store = session()->get('store');
         if (empty($store)) {
             return redirect('/');
