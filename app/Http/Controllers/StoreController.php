@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Store;
+use App\Configuration;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
@@ -143,6 +144,26 @@ class StoreController extends Controller
             'store_address' => $request->get('store_address') ?? '',
         ]);
         $store->save();
+
+
+        //Add required system shipping configurations
+        Configuration::where('user_id', Auth::user()->id)->delete();
+        $configuration = new Configuration([
+            'user_id' => Auth::user()->id,
+            'name' => 'Delivery Charge Amount',
+            'path' => 'delivery_charge_amount',
+            'value' => 50
+        ]);
+        $configuration->save();
+        
+        $configuration = new Configuration([
+            'user_id' => Auth::user()->id,
+            'name' => 'Free Delivery Above Order Total',
+            'path' => 'delivery_free_amount',
+            'value' => 500
+        ]);
+        $configuration->save();
+        
         return redirect('/stores')->with('success', 'Store saved!');
     }
 

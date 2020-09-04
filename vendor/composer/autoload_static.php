@@ -499,6 +499,7 @@ class ComposerStaticInita803a7d74f39e1f297d3f09e0794fac1
         'App\\Http\\Controllers\\CategoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/CategoryController.php',
         'App\\Http\\Controllers\\ContactController' => __DIR__ . '/../..' . '/app/Http/Controllers/ContactController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\FrontSearchController' => __DIR__ . '/../..' . '/app/Http/Controllers/FrontSearchController.php',
         'App\\Http\\Controllers\\FrontStoreController' => __DIR__ . '/../..' . '/app/Http/Controllers/FrontStoreController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\OrderController' => __DIR__ . '/../..' . '/app/Http/Controllers/OrderController.php',
