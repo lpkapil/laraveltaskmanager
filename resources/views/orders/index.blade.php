@@ -45,7 +45,7 @@
                   <td>{{$order->id}}</td>
                   <td>
                      @foreach($order->items->toArray() as $key => $item)
-                        <p>{{ $item['product_qty'] }} x {{ $item['product_name'] }} </p>
+                        <p>{{ $item['product_qty'] }} x {{ $item['product_name'] }} = &#8377; {{ $item['product_qty'] * $item['product_price']}}</p>
                      @endforeach
                      <hr>
                      <strong>Total Qty:</strong> {{$order->items_count}}

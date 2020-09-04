@@ -26,6 +26,18 @@ class FrontStoreController extends Controller
         $store = Store::where('store_name', $storeName)->get()->first();
         
         if (!empty($store)) {
+
+            $storeSession = session()->get('store');
+            if (!$storeSession) {
+                session()->put(
+                    'store', 
+                    [
+                        'store_id' => $store->id,
+                        'store_name' => $store->store_name,
+                        'user_id' => $store->user_id
+                    ]
+                );
+            }
             
             $deliveryCharges = Configuration::select('value')->where(
                 [
@@ -268,17 +280,6 @@ class FrontStoreController extends Controller
         }
         
         $cart = session()->get('cart');
-        $storeSession = session()->get('store');
-        if (!$storeSession) {
-            session()->put(
-                'store', 
-                [
-                    'store_id' => $store->id,
-                    'store_name' => $store->store_name,
-                    'user_id' => $store->user_id
-                ]
-            );
-        }
         // if cart is empty then this the first product
         if(!$cart) {
             $cart = [

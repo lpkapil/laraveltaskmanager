@@ -19,13 +19,20 @@ class FrontSearchController extends Controller
      */
     public function search(Request $request)
     {   
-        $storeName = ltrim(parse_url(url()->previous())['path'], '/');
+        // Valid store access, session init with store data
+        $store = session()->get('store');
+        if (empty($store)) {
+            return redirect('/');
+        }
+        $storeName = $store['store_name'];
+        // $storeName = ltrim(parse_url(url()->previous())['path'], '/');
+
         $validator = Validator::make($request->all(), [
             'search'=>'required|string|max:255'
         ]);
 
         if ($validator->fails()) {
-            return redirect('/');
+            return redirect('/'.$storeName);
         }
 
         $store = Store::where('store_name', $storeName)->get()->first();
