@@ -29,6 +29,9 @@ It's Store manager web application based on Software as service model. Multiple 
 - Integration token management module for REST API Access
 - REST API(s) for all modules for mobile apps
 - Payment Methods Mangement Module
+- Announcement Page
+- Contact & Support Page
+- Store Closed Landing page with config in admin with subscribe to notify via email on store open
 
 ###### Summary of completed modules 
 
