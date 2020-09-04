@@ -58,4 +58,12 @@ class LoginController extends Controller
             return URL::previous();
         endif;
     }
+
+    /**
+     * Redirect to previous page on logout
+     * Speically done for frontend stores
+     */
+    protected function loggedOut(Request $request) {
+        return redirect(URL::previous());
+    }
 }
