@@ -26,7 +26,7 @@ class FrontStoreController extends Controller
         $store = Store::where('store_name', $storeName)->get()->first();
         
         if (!empty($store)) {
-
+            
             $storeSession = session()->get('store');
             if (!$storeSession) {
                 session()->put(
@@ -37,6 +37,10 @@ class FrontStoreController extends Controller
                         'user_id' => $store->user_id
                     ]
                 );
+            }
+
+            if($store->store_status == '0') {
+                return view('customers.offline', ['store' => $store]);
             }
             
             $deliveryCharges = Configuration::select('value')->where(

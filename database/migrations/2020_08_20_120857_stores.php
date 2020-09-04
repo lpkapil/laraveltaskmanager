@@ -20,6 +20,9 @@ class Stores extends Migration
             $table->string('store_logo');
             $table->string('store_description');
             $table->string('store_address');
+            $table->string('store_contact_no');
+            $table->string('store_status');
+            $table->string('store_closed_message');
             $table->timestamps();
 
             //FOREIGN KEY CONSTRAINTS

@@ -41,6 +41,10 @@
             <textarea name="store_description" class="form-control {{ $errors->has('store_description') ? 'is-invalid' : '' }}">{{ old('store_description') }}</textarea>
         </div>
         <div class="form-group">
+            <label for="store_contact_no">Store Contact No:</label>
+            <input type="text" class="form-control {{ $errors->has('store_contact_no') ? 'is-invalid' : '' }}" name="store_contact_no" value="{{ old('store_contact_no') }}" />
+        </div>
+        <div class="form-group">
             <label for="store_address">Store Address:</label>
             <textarea name="store_address" class="form-control {{ $errors->has('store_address') ? 'is-invalid' : '' }}">{{ old('store_address') }}</textarea>
         </div>

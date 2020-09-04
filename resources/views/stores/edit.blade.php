@@ -57,6 +57,21 @@
             <label for="store_address">Store Address:</label>
             <textarea name="store_address" class="form-control {{ $errors->has('store_address') ? 'is-invalid' : '' }}">{{ $store->store_address }}</textarea>
         </div>
+        <div class="form-group">
+            <label for="store_contact_no">Store Contact No:</label>
+            <input type="text" class="form-control {{ $errors->has('store_contact_no') ? 'is-invalid' : '' }}" name="store_contact_no" value="{{ $store->store_contact_no }}" />
+        </div>
+        <div class="form-group">
+            <label for="store_status">Store Status:</label>
+            <select class="form-control {{ $errors->has('store_status') ? 'is-invalid' : '' }}" id="store_status" name="store_status" value="{{ $store->store_status }}">
+                <option value="1" {{ $store->store_status == '1' ? 'selected' : '' }}>Enabled</option>
+                <option value="0" {{ $store->store_status == '0' ? 'selected' : '' }}>Disabled</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="store_closed_message">Store Disabled Message:</label>
+            <textarea name="store_closed_message" class="form-control {{ $errors->has('store_closed_message') ? 'is-invalid' : '' }}">{{ $store->store_closed_message }}</textarea>
+        </div>
         <button type="submit" class="btn btn-primary float-right">Update</button>
     </form>
 </div>
