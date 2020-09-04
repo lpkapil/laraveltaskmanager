@@ -9,88 +9,64 @@
                <form method="post" action="{{ route( 'search') }}">
                   @csrf
                   <div class="input-group mb-3">
-                     <input class="form-control" type="text" name="search" placeholder="Search categories or products" aria-describedby="basic-addon1" value="{{ old('search') }}" />
+                     <input class="form-control" type="text" name="search" placeholder="Search categories or products" aria-describedby="basic-addon1" value="{{ $searchtext }}">
                      <input type="hidden" name="store" value="{{ $store->store_name }}">
                      <div class="input-group-prepend">
                         <button class="btn btn-outline-secondary input-group-text" type="submit"><i class="fa far fa-search"></i></button>
                      </div>
                   </div>
                </form>
-               <?php $hasProducts = false; ?>
-               @foreach($categories as $category)
-                  @if($category->products()->where('product_status', '1')->count() > 0)
-                     <?php $hasProducts = true; ?>
-                  @endif
-               @endforeach
-               @if(!$hasProducts)
-               <div style="min-height: 430px;">
-                  <p class="text-center h5 py-5 text-muted">No products found</p>
-               </div>
-               @endif
-               @if($hasProducts)
                <div class="album py-1 bg-light">
                   <div class="d-flex justify-content-between">
                      <div>
-                        <h5 class="py-3">Top Categories</h5>
-                     </div>
-                     <div>
-                        <p class="py-3 h6"><a href="{{ url('/'.$store->store_name.'/?page=categories') }}">Sell All</a></p>
+                        <h5 class="py-3">Matching Categories <small class="text-muted">({{ count($categories) }})</small></h5>
                      </div>
                   </div>
                   <div class="row">
                      @foreach($categories as $category)
-                     @if($category->products()->where('product_status', '1')->count() > 0)
-                     <div class="col-md-2">
-                        <div class="card mb-4 box-shadow">
-                           <img class="card-img-top" src="{{ '/demo_images/def.jpg' }}" alt="Card image cap" >
-                           <div class="card-body">
-                              <p class="card-text"><a href="{{ url('/'.$store->store_name.'/?page=products&cat='.$category->id) }}" class="stretched-link text-muted text-decoration-none">{{ $category->name }}</a></p>
+                        @if($category->products()->where('product_status', '1')->count() > 0)
+                           <div class="col-md-2">
+                              <div class="card mb-4 box-shadow">
+                                 <img class="card-img-top" src="{{ '/demo_images/def.jpg' }}" alt="Card image cap" >
+                                 <div class="card-body">
+                                    <p class="card-text"><a href="{{ url('/'.$store->store_name.'/?page=products&cat='.$category->id) }}" class="stretched-link text-muted text-decoration-none">{{ $category->name }}</a></p>
+                                 </div>
+                              </div>
                            </div>
-                        </div>
-                     </div>
-                     @endif
+                        @endif
                      @endforeach
                   </div>
                </div>
-               @endif
-               @foreach($categories as $category)
-               @if($category->products()->where('product_status', '1')->count() > 0)
+
                <div class="album py-1 bg-light">
                   <div class="d-flex justify-content-between">
                      <div>
-                        <h5 class="py-3">{{ ucfirst($category->name) }}<small class="text-muted"> ({{ $category->products->count() }})</small></h5>
-                     </div>
-                     <div>
-                        <p class="py-3 h6"><a href="{{ url('/'.$store->store_name.'/?page=products&cat='.$category->id) }}">Sell All</a></p>
+                        <h5 class="py-3">Matching Products <small class="text-muted">({{ count($products) }})</small></h5>
                      </div>
                   </div>
                   <div class="row">
-                     @foreach($category->products as $product)
-                     @if($product->product_status == '1')
-                     <div class="col-md-3">
-                        <div class="card mb-4 box-shadow">
-                           @empty($product->product_image)
-                           <img class="card-img-top" src="{{ '/demo_images/def.jpg' }}" >
-                           @else
-                           <img class="card-img-top" src="{{ '/storage/product_images/'.$product->product_image }}" >
-                           @endempty
-                           <div class="card-body">
-                              <p class="card-text">{{ ucfirst($product->product_name) }}</p>
-                              <div class="d-flex justify-content-between align-items-center">
-                                 <p  class="text-muted font-weight-bold">&#8377; <strike>{{ $product->product_mrp }}</strike> {{ $product->product_price }} <small class="text-muted">{{ $product->product_quantity }} {{ $product->product_quantity_type }}</small></p>
-                                 <div class="btn-group">
-                                    <a class="btn btn-md btn-primary" href="{{ url('/'.$store->store_name.'/?action=add&product='.$product->id) }}">Add</a>
+                     @foreach($products as $product)
+                        <div class="col-md-3">
+                           <div class="card mb-4 box-shadow">
+                              @empty($product->product_image)
+                              <img class="card-img-top" src="{{ '/demo_images/def.jpg' }}" >
+                              @else
+                              <img class="card-img-top" src="{{ '/storage/product_images/'.$product->product_image }}" >
+                              @endempty
+                              <div class="card-body">
+                                 <p class="card-text">{{ ucfirst($product->product_name) }}</p>
+                                 <div class="d-flex justify-content-between align-items-center">
+                                    <p  class="text-muted font-weight-bold">&#8377; <strike>{{ $product->product_mrp }}</strike> {{ $product->product_price }} <small class="text-muted">{{ $product->product_quantity }} {{ $product->product_quantity_type }}</small></p>
+                                    <div class="btn-group">
+                                       <a class="btn btn-md btn-primary" href="{{ url('/'.$store->store_name.'/?action=add&product='.$product->id) }}">Add</a>
+                                    </div>
                                  </div>
                               </div>
                            </div>
                         </div>
-                     </div>
-                     @endif
                      @endforeach   
                   </div>
                </div>
-               @endif
-               @endforeach
             </div>
          </div>
       </div>

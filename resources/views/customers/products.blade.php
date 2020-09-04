@@ -6,12 +6,16 @@
       <div class="col-md-12 mt-5">
          <div class="row justify-content-center">
             <div class="container-fluid">
-               <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                     <span class="input-group-text" id="basic-addon1"><i class="fa far fa-search"></i></span>
+               <form method="post" action="{{ route('search') }}">
+                  @csrf
+                  <div class="input-group mb-3">
+                     <input class="form-control" type="text" name="search" placeholder="Search categories or products" aria-describedby="basic-addon1" value="{{ old('search') }}" />
+                     <input type="hidden" name="store" value="{{ $store->store_name }}">
+                     <div class="input-group-prepend">
+                        <button class="btn btn-outline-secondary input-group-text" type="submit"><i class="fa far fa-search"></i></button>
+                     </div>
                   </div>
-                  <input class="form-control" type="text" placeholder="Search categories or products" aria-describedby="basic-addon1">
-               </div>
+               </form>
                @if($category->products()->where('product_status', '1')->count() > 0)
                <div class="album py-1 bg-light">
                   <div class="d-flex justify-content-between">
