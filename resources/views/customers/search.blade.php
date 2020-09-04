@@ -10,7 +10,6 @@
                   @csrf
                   <div class="input-group mb-3">
                      <input class="form-control" type="text" name="search" placeholder="Search categories or products" aria-describedby="basic-addon1" value="{{ $searchtext }}">
-                     <input type="hidden" name="store" value="{{ $store->store_name }}">
                      <div class="input-group-prepend">
                         <button class="btn btn-outline-secondary input-group-text" type="submit"><i class="fa far fa-search"></i></button>
                      </div>

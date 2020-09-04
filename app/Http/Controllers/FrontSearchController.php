@@ -28,7 +28,7 @@ class FrontSearchController extends Controller
             return redirect('/');
         }
 
-        $store = Store::where('store_name', $request->get('store'))->get()->first();
+        $store = Store::where('store_name', $storeName)->get()->first();
         if (!empty($store)) {
 
             $categories = Category::where(['user_id' => $store->user_id])
