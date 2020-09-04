@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use App\Category;
 use Illuminate\Support\Facades\Auth;
+use Storage;
 
 class CategoryController extends Controller
 {
@@ -55,18 +56,34 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        $file = $request->file('image');
         $validator = Validator::make($request->all(), [
-            'name'=> ['required', 'string', 'max:255']
+            'name'=> 'required|string|max:255|unique:categories,name',
         ]);
+
+        if (!empty($file)) {
+            $validator = Validator::make($request->all(), [
+                'image' => 'required|image|max:2000',
+                'name'=> 'required|string|max:255|unique:categories,name',
+            ]);
+        }
 
         if ($validator->fails()) {
             return redirect('categories/create')->withErrors($validator)->withInput();
         }
 
+        if (!empty($file)) {
+            $request->file('image')->store('public/category_images');
+            $fileName = $request->file('image')->hashName();    
+        } else {
+            $fileName = '';
+        }
+
         $category = new Category([
             'user_id' => Auth::user()->id,
             'name' => $request->get('name'),
-            'slug' => Str::slug($request->get('name'), '-')
+            'slug' => Str::slug($request->get('name'), '-'),
+            'image' => $fileName,
         ]);
         $category->save();
         
@@ -110,16 +127,35 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $category = Category::find($id);
+        $file = $request->file('image');
         $validator = Validator::make($request->all(), [
-            'name'=>'required|string|max:255',
+            'name'=> 'required|string|max:255|unique:categories,name,'.$category->id,
+            
         ]);
+        
+        if (!empty($file)) {
+            $validator = Validator::make($request->all(), [
+                'name'=> 'required|string|max:255|unique:categories,name,'.$category->id,
+                'image' => 'required|image|max:2000'
+            ]);
+        }
 
         if ($validator->fails()) {
             return redirect('categories/'.$id.'/edit')->withErrors($validator)->withInput();
         }
+
+        if (!empty($file)) {
+            //Delete old file
+            Storage::delete('/public/category_images/' . $category->image);
+            $request->file('image')->store('public/category_images');
+            $fileName = $request->file('image')->hashName();    
+        } else {
+            $fileName = $category->image;
+        }
         
         $category->name =  $request->get('name');
         $category->slug = strtolower($request->get('name'));
+        $category->image =  $fileName;
         $category->save();
         
         return redirect('/categories')->with('success', 'Category updated!');
@@ -135,6 +171,7 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
         if ($category) {
+            Storage::delete('/public/category_images/' . $category->image);
             $category->delete();
             return redirect('/categories')->with('success', 'Category deleted!');  
         } else {

@@ -17,7 +17,8 @@ class CreateCategoriesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->string('name');
-            $table->string('slug'); 
+            $table->string('slug');
+            $table->string('image'); 
             $table->timestamps();
 
             //FOREIGN KEY CONSTRAINTS
