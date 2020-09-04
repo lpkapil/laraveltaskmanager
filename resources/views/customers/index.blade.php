@@ -99,7 +99,7 @@
       </div>
    </div>
 </div>
-<div class="jumbotron">
+<div class="jumbotron" id="aboutstore">
    <div class="container">
       <h6 class="display-5 text-muted">STORE DETAILS</h6>
       <br>

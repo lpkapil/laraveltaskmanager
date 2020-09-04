@@ -7,6 +7,7 @@ use App\Configuration;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 use Storage;
 
 
@@ -98,6 +99,7 @@ class StoreController extends Controller
         $file = $request->file('store_logo');
         $validator = Validator::make($request->all(), [
             'store_name' => 'required|alpha|max:255|unique:stores,store_name',
+            'store_contact_no' => 'required|string|max:255'
         ]);
 
         if (!empty($file)) {
@@ -143,6 +145,9 @@ class StoreController extends Controller
             'store_name' => $request->get('store_name'),
             'store_description' => $request->get('store_description') ?? '',
             'store_address' => $request->get('store_address') ?? '',
+            'store_contact_no' => $request->get('store_contact_no') ?? '',
+            'store_status' => '1',
+            'store_closed_message' => 'Our store is closed now.',
         ]);
         $store->save();
 
@@ -182,6 +187,9 @@ class StoreController extends Controller
         $file = $request->file('store_logo');
         $validator = Validator::make($request->all(), [
             'store_name'=> 'required|alpha|max:255|unique:stores,store_name,'.$store->id,
+            'store_status'=> 'required|string|max:255|'.Rule::in(['0', '1']),
+            'store_contact_no' => 'required|string|max:255',
+            'store_closed_message' => 'required|string|max:255'
         ]);
 
         if (!empty($file)) {
@@ -213,6 +221,7 @@ class StoreController extends Controller
             return redirect('stores/'.$store->id.'/edit')->withErrors('Please choose another store name.');
         }
 
+
         if (!empty($file)) {
             //Delete old file
             Storage::delete('/public/' . $store->store_logo);
@@ -226,6 +235,9 @@ class StoreController extends Controller
         $store->store_logo = $fileName ?? '';
         $store->store_description = $request->get('store_description') ?? '';
         $store->store_address = $request->get('store_address') ?? '';
+        $store->store_contact_no = $request->get('store_contact_no') ?? $store->store_contact_no;
+        $store->store_status = $request->get('store_status') ?? $store->store_status;
+        $store->store_closed_message = $request->get('store_closed_message') ?? $store->store_closed_message;
         $store->save();
         return redirect('/stores')->with('success', 'Store updated!');
     }

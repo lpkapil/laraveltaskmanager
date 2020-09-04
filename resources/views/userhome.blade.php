@@ -18,7 +18,7 @@
                   <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Store</div>
                   @empty($store)
                      <a href="{{ url('/stores/create') }}" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-                        <i class="fas fa-plus fa-sm text-white-50"></i> Create New Store
+                        <i class="fas fa-plus fa-sm text-white-50"></i> Create New Store and Sell Online
                      </a>
                   @else
                      <div class="h5 mb-0 font-weight-bold text-gray-800">
@@ -26,6 +26,7 @@
                            <i class="fas fa-fw fa-link fa-xs" aria-hidden="true"></i> {{ config('app.url').$store }}
                         </a>
                      </div>
+                     &nbsp;&nbsp;&nbsp;&nbsp;<div class="small">Share this url with your customers for purchasing online in your store.</div>
                   @endempty
                </div>
                <div class="col-auto">

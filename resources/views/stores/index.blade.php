@@ -33,6 +33,8 @@
                   <th>Store Logo</th>
                   <th>Store Name</th>
                   <th>Store URL</th>
+                  <th>Store Status</th>
+                  <th>Store Contact</th>
                   <th>Store Address</th>
                   <?php if(in_array('admin', Auth::user()->roles->pluck('slug')->toArray())): ?>
                   <th>Created By</th>
@@ -53,6 +55,8 @@
                   </td>
                   <td>{{$store->store_name}}</td>
                   <td><a href="{{ config('app.url').$store->store_name }}" target="_blank">{{ config('app.url').$store->store_name }}</a></td>
+                  <td><?php echo ($store->store_status == '1') ? '<i class="fas fa-toggle-on"></i> Enabled' : '<i class="fas fa-toggle-off"></i> Disabled'; ?></td>
+                  <td>{{$store->store_contact_no}}</td>
                   <td>{{ str_limit($store->store_address, $limit = 60, $end = '...') }}</td>
                   <?php if(in_array('admin', Auth::user()->roles->pluck('slug')->toArray())): ?>
                   <td>{{$store->user_id}}</td>

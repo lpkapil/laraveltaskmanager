@@ -22,20 +22,6 @@
                </div>
             </div>
             @endempty
-      <!-- <div class="row justify-content-center">
-         <div class="container-fluid">
-            <div class="album py-1 bg-light">
-               <div class="d-flex justify-content-between">
-                  <div>
-                     <h5 class="">Orders ({{ $totalorders }})</h5>
-                  </div>
-                  <div>
-                     <p class="py-3 h6"></p>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div> -->
 
    </div>
 </div>

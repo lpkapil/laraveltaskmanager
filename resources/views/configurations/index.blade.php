@@ -45,7 +45,7 @@
                      <a href="{{ route('configurations.edit',$configuration->id)}}" class="btn btn-primary">Edit</a>
                   </td>
                   <td>
-                     @if(!in_array($configuration->path, ['delivery_charge_amount', 'delivery_free_amount']))
+                     @if(!in_array($configuration->path, ['delivery_charge_amount', 'delivery_free_amount', 'store_closed_message', 'store_status']))
                         <form action="{{ route('configurations.destroy', $configuration->id)}}" method="post">
                            @csrf
                            @method('DELETE')

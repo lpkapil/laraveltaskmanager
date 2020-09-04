@@ -11,6 +11,9 @@ class Store extends Model
         'store_name',
         'store_logo',
         'store_description',
-        'store_address'    
+        'store_address',
+        'store_contact_no',
+        'store_status',
+        'store_closed_message'  
     ];
 }
