@@ -274,7 +274,8 @@ class FrontStoreController extends Controller
                 'store', 
                 [
                     'store_id' => $store->id,
-                    'store_name' => $store->store_name
+                    'store_name' => $store->store_name,
+                    'user_id' => $store->user_id
                 ]
             );
         }
@@ -390,13 +391,13 @@ class FrontStoreController extends Controller
         $grandTotal = 0;
         $deliveryCharges = Configuration::select('value')->where(
             [
-                'user_id' => $store->user_id,
+                'user_id' => $store['user_id'],
                 'path' => 'delivery_charge_amount'
             ]
         )->get()->first()->toArray()['value'];
         $noDeliveryChargesAmt = Configuration::select('value')->where(
             [
-                'user_id' => $store->user_id,
+                'user_id' => $store['user_id'],
                 'path' => 'delivery_free_amount'
             ]
         )->get()->first()->toArray()['value'];
