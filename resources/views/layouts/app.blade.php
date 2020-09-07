@@ -1,91 +1,198 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- CSRF Token -->
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-        <title>{{ config('app.name', 'Laravel') }} - @yield('title')</title>
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}" defer></script>
+    <title>{{ config('app.name', 'Laravel') }} - @yield('title')</title>
+    <meta content="" name="descriptison">
+    <meta content="" name="keywords">
 
-        <!-- Fonts -->
-        <link rel="dns-prefetch" href="//fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-        <!-- Styles -->
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet" />
-    </head>
-    <body>
-        <div id="app">
-            <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm fixed-top">
-                <div class="container">
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        <i class="fa fa-tasks" aria-hidden="true"></i> {{ config('app.name', 'Laravel') }}
-                    </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <!-- Left Side Of Navbar -->
-                        <ul class="navbar-nav mr-auto">
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="assets/vendor/line-awesome/css/line-awesome.min.css" rel="stylesheet">
+    <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
 
-                        </ul>
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet">
 
-                        <!-- Right Side Of Navbar -->
-                        <ul class="navbar-nav ml-auto">
-                            <!-- Authentication Links -->
+    <!-- =======================================================
+  * Template Name: SoftLand - v2.1.0
+  * Template URL: https://bootstrapmade.com/softland-bootstrap-app-landing-page-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+    <!-- ======= Mobile Menu ======= -->
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close mt-3">
+                <span class="icofont-close js-menu-toggle"></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div>
+
+    <!-- ======= Header ======= -->
+    <header class="site-navbar js-sticky-header site-navbar-target" role="banner">
+
+        <div class="container">
+            <div class="row align-items-center">
+
+                <div class="col-6 col-lg-2">
+                    <h1 class="mb-0 site-logo"><a href="{{ url('/') }}" class="mb-0">{{ config('app.name', 'Laravel') }}</a></h1>
+                </div>
+
+                <div class="col-12 col-md-10 d-none d-lg-block">
+                    <nav class="site-navigation position-relative text-right" role="navigation">
+
+                        <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                            <li class="active"><a href="{{ url('/') }}" class="nav-link">About</a></li>
+                            <!-- <li><a href="{{ url('/') }}" class="nav-link">Features</a></li> -->
                             @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}"><i class="fa fa-sign-in" aria-hidden="true"></i> {{ __('Login') }}</a>
-                            </li>
+                                <li><a href="{{ route('login') }}" class="nav-link">Login</a></li>
                             @if (Route::has('register'))
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}"><i class="fa fa-user-plus" aria-hidden="true"></i> {{ __('Register') }}</a>
-                            </li>
+                                <li><a href="{{ route('register') }}" class="nav-link">Singup</a></li>
                             @endif
-                            @else
-
-                            <?php if(in_array('user', Auth::user()->roles->pluck('slug')->toArray()) || in_array('admin', Auth::user()->roles->pluck('slug')->toArray())): ?>
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('home') }}"><i class="fa fa-tachometer" aria-hidden="true"></i> {{ __('Dashboard') }}</a>
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-    document.getElementById('logout-form').submit();">
-                                        <i class="fa fa-sign-out" aria-hidden="true"></i> {{ __('Logout') }}
-                                    </a>
-
+                            <?php
+                            if (!empty(Auth::user())):
+                                if(in_array('user', Auth::user()->roles->pluck('slug')->toArray()) || in_array('admin', Auth::user()->roles->pluck('slug')->toArray())): ?>
+                                    <li class="has-children">
+                                        <a href="#" class="nav-link">{{ Auth::user()->name }}</a>
+                                        <ul class="dropdown">
+                                            <li><a href="{{ route('home') }}" class="nav-link">Dashboard</a></li>
+                                            <li><a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault();
+        document.getElementById('logout-form').submit();">Logout</a></li>
+                                        </ul>
+                                    </li>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                            <?php endif; ?>
-                            @endguest
+                                            @csrf
+                                        </form>
+                                <?php 
+                                    endif;
+                            endif;
+                            ?>
+                            @endguest    
+                            <!-- <li><a href="{{ url('/') }}" class="nav-link">Pricing</a></li> -->
+<!-- 
+                            <li class="has-children">
+                                <a href="blog.html" class="nav-link">Blog</a>
+                                <ul class="dropdown">
+                                    <li><a href="blog.html" class="nav-link">Blog</a></li>
+                                    <li><a href="blog-single.html" class="nav-link">Blog Sigle</a></li>
+                                </ul>
+                            </li> -->
+                            <li><a href="{{ url('/contact') }}" class="nav-link">Contact</a></li>
                         </ul>
+                    </nav>
+                </div>
+
+                <div class="col-6 d-inline-block d-lg-none ml-md-0 py-3" style="position: relative; top: 3px;">
+
+                    <a href="#" class="burger site-menu-toggle js-menu-toggle" data-toggle="collapse" data-target="#main-navbar">
+                        <span></span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+    </header>
+
+    <!-- ======= Hero Section ======= -->
+    
+    <!-- End Hero -->
+    @yield('content')
+    <!-- End #main -->
+
+    <!-- ======= Footer ======= -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h3>About {{ config('app.name', 'Laravel') }}</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius ea delectus pariatur, numquam aperiam dolore nam optio dolorem facilis itaque voluptatum recusandae deleniti minus animi.</p>
+                    <p class="social">
+                        <a href="#"><span class="icofont-twitter"></span></a>
+                        <a href="#"><span class="icofont-facebook"></span></a>
+                        <a href="#"><span class="icofont-dribbble"></span></a>
+                        <a href="#"><span class="icofont-behance"></span></a>
+                    </p>
+                </div>
+                <div class="col-md-7 ml-auto">
+                    <div class="row site-section pt-0">
+                        <div class="col-md-4 mb-4 mb-md-0">
+                            <h3>Navigation</h3>
+                            <ul class="list-unstyled">
+                                <li><a href="#">About</a></li>
+                                @guest
+                                <li><a href="{{ route('login') }}">Login</a></li>
+                                <li><a href="{{ route('register') }}">Signup</a></li>
+                                @endguest 
+                                <li><a href="{{ url('/contact') }}">Contact</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4 mb-4 mb-md-0">
+                            <h3>Services</h3>
+                            <ul class="list-unstyled">
+                                <li><a href="#">Team</a></li>
+                                <li><a href="#">Collaboration</a></li>
+                                <li><a href="#">Todos</a></li>
+                                <li><a href="#">Events</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4 mb-4 mb-md-0">
+                            <h3>Downloads</h3>
+                            <ul class="list-unstyled">
+                                <li><a href="#">Get from the App Store</a></li>
+                                <li><a href="#">Get from the Play Store</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </nav>
-
-            <main class="py-4 mt-5">
-                @yield('content')
-            </main>
-        </div>
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm fixed-bottom">
-            <div class="container">
-                <span class="text-muted">{{ config('app.name', 'Laravel') }} &copy; <?php echo date("Y"); ?></span>
             </div>
-        </nav>
-    </body>
+
+            <div class="row justify-content-center text-center">
+                <div class="col-md-7">
+                    <p class="copyright">&copy; Copyright {{ config('app.name', 'Laravel') }} <?php echo date("Y"); ?>. All Rights Reserved</p>
+                    <div class="credits">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/jquery/jquery.min.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="assets/vendor/jquery-sticky/jquery.sticky.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
+
+</body>
+
 </html>
