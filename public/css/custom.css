@@ -18,3 +18,12 @@ and open the template in the editor.
 .min_height {
     min-height: 500px;
 }
+
+.btn-outline-white:hover {
+    background: #fff !important;
+    color: #2d71a1 !important;
+}
+
+.site-navbar .site-navigation .site-menu>li>a.btn-outline-white:hover {
+    color: #2d71a1 !important;
+}

@@ -27,7 +27,9 @@
     <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
+    
 
     <!-- =======================================================
   * Template Name: SoftLand - v2.1.0
@@ -99,6 +101,7 @@
                                 </ul>
                             </li> -->
                             <li><a href="{{ url('/contact') }}" class="nav-link">Contact</a></li>
+                            <li><a href="https://www.payumoney.com/paybypayumoney/#/3FF0BB83F2A6D7DD27A53BC12E4AE109" target="_blank" class="nav-link btn btn-outline-white">Donate</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -138,7 +141,7 @@
                 <div class="col-md-7 ml-auto">
                     <div class="row site-section pt-0">
                         <div class="col-md-4 mb-4 mb-md-0">
-                            <h3>Navigation</h3>
+                            <!-- <h3>Navigation</h3>
                             <ul class="list-unstyled">
                                 <li><a href="#">About</a></li>
                                 @guest
@@ -146,22 +149,26 @@
                                 <li><a href="{{ route('register') }}">Signup</a></li>
                                 @endguest 
                                 <li><a href="{{ url('/contact') }}">Contact</a></li>
+                            </ul> -->
+                        </div>
+                        <div class="col-md-4 mb-4 mb-md-0">
+                            <h3>Links</h3>
+                            <ul class="list-unstyled">
+                                <li><a href="#">About</a></li>
+                                @guest
+                                <li><a href="{{ route('login') }}">Login</a></li>
+                                @if (Route::has('register'))
+                                <li><a href="{{ route('register') }}">Signup</a></li>
+                                @endif
+                                @endguest 
+                                <li><a href="{{ url('/contact') }}">Contact</a></li>
                             </ul>
                         </div>
                         <div class="col-md-4 mb-4 mb-md-0">
-                            <h3>Services</h3>
+                            <h3>Contact Us</h3>
                             <ul class="list-unstyled">
-                                <li><a href="#">Team</a></li>
-                                <li><a href="#">Collaboration</a></li>
-                                <li><a href="#">Todos</a></li>
-                                <li><a href="#">Events</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-md-4 mb-4 mb-md-0">
-                            <h3>Downloads</h3>
-                            <ul class="list-unstyled">
-                                <li><a href="#">Get from the App Store</a></li>
-                                <li><a href="#">Get from the Play Store</a></li>
+                                <li><a href="#">Monday - Friday</a></li>
+                                <li><a href="#">10:00 AM TO 5:00 PM</a></li>
                             </ul>
                         </div>
                     </div>
