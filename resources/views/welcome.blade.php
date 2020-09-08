@@ -24,11 +24,10 @@
                         <div class="col-lg-7 text-center text-lg-left">
                             <h1 data-aos="fade-right">Create Your Online Store with MyStore</h1>
                             <p class="mb-5" data-aos="fade-right" data-aos-delay="100">Create your online store in 5 minutes and start selling.</p>
-                            <p data-aos="fade-right" data-aos-delay="200" data-aos-offset="-500"><a href="#" class="btn btn-outline-white">Get started</a></p>
+                            <p data-aos="fade-right" data-aos-delay="200" data-aos-offset="-500"><a href="{{ route('register') }}" class="btn btn-outline-white">Get started</a></p>
                         </div>
                         <div class="col-lg-5 iphone-wrap">
-                            <img src="assets/img/phone_1.png" alt="Image" class="phone-1" data-aos="fade-right">
-                            <img src="assets/img/phone_2.png" alt="Image" class="phone-2" data-aos="fade-right" data-aos-delay="200">
+                            <img src="demo_images/home_logo.svg" alt="Image" class="phone-1" data-aos="fade-right">
                         </div>
                     </div>
                 </div>
@@ -45,85 +44,58 @@
 
                 <div class="row justify-content-center text-center mb-5">
                     <div class="col-md-5" data-aos="fade-up">
-                        <h2 class="section-heading">Save your time to using SoftLand</h2>
+                        <h2 class="section-heading">Creating Store in Three Steps</h2>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-4" data-aos="fade-up" data-aos-delay="">
                         <div class="feature-1 text-center">
-                            <div class="wrap-icon icon-1">
-                                <span class="icon la la-users"></span>
+                            <div class="step">
+                                <div class="wrap-icon icon-1">
+                                    <span class="icon la la-users"></span>
+                                </div>
+                                <span class="number">01</span>
+                                <h3 class="mb-3">Create a Seller Account</h3>
+                            <p>Create a new account using your email address to become a seller for creating your online store.</p>
                             </div>
-                            <h3 class="mb-3">Explore Your Team</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem, optio.</p>
+                            
                         </div>
                     </div>
                     <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
                         <div class="feature-1 text-center">
-                            <div class="wrap-icon icon-1">
-                                <span class="icon la la-toggle-off"></span>
+                            <div class="step">
+                                <div class="wrap-icon icon-1">
+                                    <span class="icon la la-toggle-off"></span>
+                                </div>
+                                <span class="number">02</span>
+                                <h3 class="mb-3">Create Your Store</h3>
+                                <p>Create a new store from admin dashboard and add your products and categories.</p>
                             </div>
-                            <h3 class="mb-3">Digital Whiteboard</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem, optio.</p>
                         </div>
                     </div>
                     <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
                         <div class="feature-1 text-center">
-                            <div class="wrap-icon icon-1">
-                                <span class="icon la la-umbrella"></span>
+                            <div class="step">
+                                <div class="wrap-icon icon-1">
+                                    <span class="icon la la-smile-o"></span>
+                                </div>
+                                <span class="number">03</span>
+                                <h3 class="mb-3">Start Selling</h3>
+                                <p>Share your online store URL with customers and start selling your products.</p>
                             </div>
-                            <h3 class="mb-3">Design To Development</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem, optio.</p>
                         </div>
                     </div>
                 </div>
 
             </div>
         </section>
-
-        <section class="section">
-
-            <div class="container">
-                <div class="row justify-content-center text-center mb-5" data-aos="fade">
-                    <div class="col-md-6 mb-5">
-                        <img src="assets/img/undraw_svg_1.svg" alt="Image" class="img-fluid">
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="step">
-                            <span class="number">01</span>
-                            <h3>Sign Up</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem, optio.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="step">
-                            <span class="number">02</span>
-                            <h3>Create Profile</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem, optio.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="step">
-                            <span class="number">03</span>
-                            <h3>Enjoy the app</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem, optio.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </section>
-
         <section class="section">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-md-4 mr-auto">
-                        <h2 class="mb-4">Seamlessly Communicate</h2>
-                        <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur at reprehenderit optio, laudantium eius quod, eum maxime molestiae porro omnis. Dolores aspernatur delectus impedit incidunt dolore mollitia esse natus beatae.</p>
+                        <h2 class="mb-4">Seller Admin Dashboard</h2>
+                        <p class="mb-4">Managing your shop is very easy, You can add categories, products and shipping price from easy to use admin panel. You can track customers orders with order stauts as well.</p>
                         
                     </div>
                     <div class="col-md-6" data-aos="fade-left">
@@ -137,8 +109,8 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-md-4 ml-auto order-2">
-                        <h2 class="mb-4">Gather Feedback</h2>
-                        <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur at reprehenderit optio, laudantium eius quod, eum maxime molestiae porro omnis. Dolores aspernatur delectus impedit incidunt dolore mollitia esse natus beatae.</p>
+                        <h2 class="mb-4">Sales and Reports</h2>
+                        <p class="mb-4">Sales and reports are available for tracking your profits and sell, You can view sells & profits of particular duration from admin panel.</p>
                         
                     </div>
                     <div class="col-md-6" data-aos="fade-right">
@@ -167,7 +139,7 @@
                                     <span class="icofont-star"></span>
                                     <span class="icofont-star muted"></span>
                                 </p>
-                                <h3>Excellent App!</h3>
+                                <h3>Excellent Software!</h3>
                                 <blockquote>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius ea delectus pariatur, numquam aperiam dolore nam optio dolorem facilis itaque voluptatum recusandae deleniti minus animi, provident voluptates consectetur
                                         maiores quos.</p>
@@ -176,7 +148,7 @@
                                 <p class="review-user">
                                     <img src="assets/img/person_1.jpg" alt="Image" class="img-fluid rounded-circle mb-3">
                                     <span class="d-block">
-                    <span class="text-black">Jean Doe</span>, &mdash; App User
+                    <span class="text-black">Jean Doe</span>, &mdash; Seller
                                     </span>
                                 </p>
 
@@ -190,7 +162,7 @@
                                     <span class="icofont-star"></span>
                                     <span class="icofont-star muted"></span>
                                 </p>
-                                <h3>This App is easy to use!</h3>
+                                <h3>This is easy to use!</h3>
                                 <blockquote>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius ea delectus pariatur, numquam aperiam dolore nam optio dolorem facilis itaque voluptatum recusandae deleniti minus animi, provident voluptates consectetur
                                         maiores quos.</p>
@@ -199,7 +171,7 @@
                                 <p class="review-user">
                                     <img src="assets/img/person_2.jpg" alt="Image" class="img-fluid rounded-circle mb-3">
                                     <span class="d-block">
-                    <span class="text-black">Johan Smith</span>, &mdash; App User
+                    <span class="text-black">Johan Smith</span>, &mdash; Customer
                                     </span>
                                 </p>
 
@@ -222,10 +194,9 @@
                                 <p class="review-user">
                                     <img src="assets/img/person_3.jpg" alt="Image" class="img-fluid rounded-circle mb-3">
                                     <span class="d-block">
-                    <span class="text-black">Jean Thunberg</span>, &mdash; App User
+                    <span class="text-black">Jean Thunberg</span>, &mdash; Seller
                                     </span>
                                 </p>
-
                             </div>
                         </div>
                     </div>
@@ -239,10 +210,10 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-md-6 mr-auto text-center text-md-left mb-5 mb-md-0">
-                        <h2>Starts Publishing Your Apps</h2>
+                        <h2>Starts Creating Your Store To Sell Online</h2>
                     </div>
-                    <div class="col-md-5 text-center text-md-right">
-                        <p><a href="#" class="btn"><span class="icofont-brand-apple mr-3"></span>App store</a> <a href="#" class="btn"><span class="icofont-ui-play mr-3"></span>Google play</a></p>
+                    <div class="col-md-5 text-center text-md-right" data-aos="fade-left" data-aos-delay="200" data-aos-offset="-500">
+                        <a href="{{ route('register') }}" class="btn">Get started</a>
                     </div>
                 </div>
             </div>
