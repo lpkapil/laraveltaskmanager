@@ -22,16 +22,20 @@ It's Store manager web application based on Software as service model. Multiple 
 
 ###### In-Progress
 
-- Customer Notification Management Module
+- Sales Report Management Module
 
 ###### To-do
 
+- Enhancement in User Module and Order Module For Customer Details Mapping
+- Storewise Customers Management Module
+- Customer Notification Management Module
 - Integration token management module for REST API Access
 - REST API(s) for all modules for mobile apps
 - Payment Methods Mangement Module
-- Announcement Page
-- Contact & Support Page
-- Store Closed Landing page with config in admin with subscribe to notify via email on store open
+- Announcement/Blog/News Management Module
+- Support and Contact Module
+- MyStore Contact Page Functionality
+- POC of googlepay payment method for sellers online payment method in store
 
 ###### Summary of completed modules 
 
