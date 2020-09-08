@@ -70,8 +70,9 @@
                             @guest
                                 <li><a href="{{ route('login') }}" class="nav-link">Login</a></li>
                             @if (Route::has('register'))
-                                <li><a href="{{ route('register') }}" class="nav-link">Singup</a></li>
+                                <li><a href="{{ route('register') }}" class="nav-link">Signup</a></li>
                             @endif
+                            @endguest 
                             <?php
                             if (!empty(Auth::user())):
                                 if(in_array('user', Auth::user()->roles->pluck('slug')->toArray()) || in_array('admin', Auth::user()->roles->pluck('slug')->toArray())): ?>
@@ -90,18 +91,6 @@
                                     endif;
                             endif;
                             ?>
-                            @endguest    
-                            <!-- <li><a href="{{ url('/') }}" class="nav-link">Pricing</a></li> -->
-<!-- 
-                            <li class="has-children">
-                                <a href="blog.html" class="nav-link">Blog</a>
-                                <ul class="dropdown">
-                                    <li><a href="blog.html" class="nav-link">Blog</a></li>
-                                    <li><a href="blog-single.html" class="nav-link">Blog Sigle</a></li>
-                                </ul>
-                            </li> -->
-                            <li><a href="{{ url('/contact') }}" class="nav-link">Contact</a></li>
-                            <li><a href="https://www.payumoney.com/paybypayumoney/#/3FF0BB83F2A6D7DD27A53BC12E4AE109" target="_blank" class="nav-link btn btn-outline-white">Donate</a></li>
                         </ul>
                     </nav>
                 </div>
