@@ -24,7 +24,7 @@
                         <div class="col-lg-7 text-center text-lg-left">
                             <h1 data-aos="fade-right">Create Your Online Store with MyStore</h1>
                             <p class="mb-5" data-aos="fade-right" data-aos-delay="100">Create your online store in 5 minutes and start selling.</p>
-                            <p data-aos="fade-right" data-aos-delay="200" data-aos-offset="-500"><a href="{{ route('register') }}" class="btn btn-outline-white">Get started</a></p>
+                            <p data-aos="fade-right" data-aos-delay="200" data-aos-offset="-500"><a href="{{ route('register') }}" class="btn btn-outline-white">Create Account</a></p>
                         </div>
                         <div class="col-lg-5 iphone-wrap">
                             <img src="demo_images/home_logo.svg" alt="Image" class="phone-1" data-aos="fade-right">
@@ -213,7 +213,7 @@
                         <h2>Starts Creating Your Store To Sell Online</h2>
                     </div>
                     <div class="col-md-5 text-center text-md-right" data-aos="fade-left" data-aos-delay="200" data-aos-offset="-500">
-                        <a href="{{ route('register') }}" class="btn">Get started</a>
+                        <a href="{{ route('register') }}" class="btn">Create Account</a>
                     </div>
                 </div>
             </div>
