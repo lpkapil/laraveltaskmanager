@@ -27,8 +27,7 @@
                             <p data-aos="fade-right" data-aos-delay="200" data-aos-offset="-500"><a href="{{ route('register') }}" class="btn btn-outline-white">Get started</a></p>
                         </div>
                         <div class="col-lg-5 iphone-wrap">
-                            <img src="assets/img/phone_1.png" alt="Image" class="phone-1" data-aos="fade-right">
-                            <img src="assets/img/phone_2.png" alt="Image" class="phone-2" data-aos="fade-right" data-aos-delay="200">
+                            <img src="demo_images/home_logo.svg" alt="Image" class="phone-1" data-aos="fade-right">
                         </div>
                     </div>
                 </div>
@@ -45,7 +44,7 @@
 
                 <div class="row justify-content-center text-center mb-5">
                     <div class="col-md-5" data-aos="fade-up">
-                        <h2 class="section-heading">Create Free Store Using MyStore</h2>
+                        <h2 class="section-heading">Creating Store in Three Steps</h2>
                     </div>
                 </div>
 
@@ -57,8 +56,8 @@
                                     <span class="icon la la-users"></span>
                                 </div>
                                 <span class="number">01</span>
-                                <h3 class="mb-3">Create an Account</h3>
-                            <p>Create a new account using your email address to create a online store.</p>
+                                <h3 class="mb-3">Create a Seller Account</h3>
+                            <p>Create a new account using your email address to become a seller for creating your online store.</p>
                             </div>
                             
                         </div>
@@ -71,7 +70,7 @@
                                 </div>
                                 <span class="number">02</span>
                                 <h3 class="mb-3">Create Your Store</h3>
-                                <p>Create a new store from admin dashboard and add your products to it.</p>
+                                <p>Create a new store from admin dashboard and add your products and categories.</p>
                             </div>
                         </div>
                     </div>
@@ -91,49 +90,12 @@
 
             </div>
         </section>
-
-        <!-- <section class="section">
-
-            <div class="container">
-                <div class="row justify-content-center text-center mb-5" data-aos="fade">
-                    <div class="col-md-6 mb-5">
-                        <img src="assets/img/undraw_svg_1.svg" alt="Image" class="img-fluid">
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="step">
-                            <span class="number">01</span>
-                            <h3>Sign Up</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem, optio.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="step">
-                            <span class="number">02</span>
-                            <h3>Create Profile</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem, optio.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="step">
-                            <span class="number">03</span>
-                            <h3>Enjoy the app</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem, optio.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </section> -->
-
         <section class="section">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-md-4 mr-auto">
-                        <h2 class="mb-4">Simple to manage</h2>
-                        <p class="mb-4">Managing your shop is very easy, You can add categories, products and shipping price from easy to use admin panel. You can track orders with stauts as well.</p>
+                        <h2 class="mb-4">Seller Admin Dashboard</h2>
+                        <p class="mb-4">Managing your shop is very easy, You can add categories, products and shipping price from easy to use admin panel. You can track customers orders with order stauts as well.</p>
                         
                     </div>
                     <div class="col-md-6" data-aos="fade-left">
@@ -235,7 +197,6 @@
                     <span class="text-black">Jean Thunberg</span>, &mdash; Seller
                                     </span>
                                 </p>
-
                             </div>
                         </div>
                     </div>
@@ -251,9 +212,6 @@
                     <div class="col-md-6 mr-auto text-center text-md-left mb-5 mb-md-0">
                         <h2>Starts Creating Your Store To Sell Online</h2>
                     </div>
-                    <!-- <div class="col-md-5 text-center text-md-right">
-                        <p><a href="#" class="btn"><span class="icofont-brand-apple mr-3"></span>App store</a> <a href="#" class="btn"><span class="icofont-ui-play mr-3"></span>Google play</a></p>
-                    </div> -->
                     <div class="col-md-5 text-center text-md-right" data-aos="fade-left" data-aos-delay="200" data-aos-offset="-500">
                         <a href="{{ route('register') }}" class="btn">Get started</a>
                     </div>

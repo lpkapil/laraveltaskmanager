@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }} - @yield('title')</title>
+    <title>{{ config('app.name', 'MyStore') }} - @yield('title')</title>
     <meta content="" name="descriptison">
     <meta content="" name="keywords">
 
@@ -129,8 +129,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 mb-4 mb-md-0">
-                    <h3>About {{ config('app.name', 'Laravel') }}</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius ea delectus pariatur, numquam aperiam dolore nam optio dolorem facilis itaque voluptatum recusandae deleniti minus animi.</p>
+                    <h3>About {{ config('app.name', 'MyStore') }}</h3>
+                    <p>We want individual or small to medium business to enable sell their products online using our free store to grow their business and help customers.</p>
                     <p class="social">
                         <a href="#"><span class="icofont-twitter"></span></a>
                         <a href="#"><span class="icofont-facebook"></span></a>
@@ -177,7 +177,7 @@
 
             <div class="row justify-content-center text-center">
                 <div class="col-md-7">
-                    <p class="copyright">&copy; Copyright {{ config('app.name', 'Laravel') }} <?php echo date("Y"); ?>. All Rights Reserved</p>
+                    <p class="copyright">&copy; Copyright {{ config('app.name', 'MyStore') }} <?php echo date("Y"); ?>. All Rights Reserved</p>
                     <div class="credits">
                     </div>
                 </div>
