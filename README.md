@@ -35,6 +35,7 @@ It's Store manager web application based on Software as service model. Multiple 
 - Announcement/Blog/News Management Module
 - Support and Contact Module
 - MyStore Contact Page Functionality
+- POC of googlepay payment method for sellers online payment method in store
 
 ###### Summary of completed modules 
 
