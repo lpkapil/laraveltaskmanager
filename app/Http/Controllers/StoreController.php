@@ -130,6 +130,7 @@ class StoreController extends Controller
                 'features',
                 'pricing',
                 'blog',
+                'blogsingle',
             ])
         ) {
             return redirect('stores/create')->withErrors('Please choose another store name.');
@@ -224,6 +225,7 @@ class StoreController extends Controller
                 'features',
                 'pricing',
                 'blog',
+                'blogsingle',
             ])
         ) {
             return redirect('stores/'.$store->id.'/edit')->withErrors('Please choose another store name.');
