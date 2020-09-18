@@ -140,7 +140,10 @@
                      <strong>Total items:</strong> {{ $order->items_count}} <br>
                      <strong>SubTotal:</strong> &#8377; {{$order->subtotal}} <br>
                      <strong>Delivery Charge:</strong> &#8377; {{$order->delivery_charge}} <br>
-                     <strong>Grand Total:</strong> &#8377; {{$order->grand_total}}
+                     <hr>
+                     <div class="boxed">
+                        <strong>Grand Total:</strong> &#8377; {{$order->grand_total}}
+                     </div>
                   </td>
                   <td>
                      <strong>Name:</strong> {{$order->customer_name}} <br>
