@@ -5,6 +5,98 @@
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
    <h1 class="h3 mb-0 text-gray-800">Orders</h1>
 </div>
+<div class="row">
+   <div class="col-lg-2">
+         <div class="card mb-4 py-3 border-left-primary">
+            <div class="card-body">
+               <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total</div>
+                     <div class="h5 mb-0 font-weight-bold text-gray-800">10</div>
+                  </div>
+                  <div class="col-auto">
+                     <i class="fas fa-fw fa-list-ul fa text-gray-300"></i>
+                  </div>
+               </div>
+            </div>
+         </div>
+   </div>
+   <div class="col-lg-2">
+         <div class="card mb-4 py-3 border-left-primary">
+            <div class="card-body">
+               <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Pending</div>
+                     <div class="h5 mb-0 font-weight-bold text-gray-800">10</div>
+                  </div>
+                  <div class="col-auto">
+                     <i class="fas fa-fw fa-list-ul fa text-gray-300"></i>
+                  </div>
+               </div>
+            </div>
+         </div>
+   </div>
+   <div class="col-lg-2">
+         <div class="card mb-4 py-3 border-left-primary">
+            <div class="card-body">
+               <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Accepted</div>
+                     <div class="h5 mb-0 font-weight-bold text-gray-800">10</div>
+                  </div>
+                  <div class="col-auto">
+                     <i class="fas fa-fw fa-list-ul fa text-gray-300"></i>
+                  </div>
+               </div>
+            </div>
+         </div>
+   </div>
+   <div class="col-lg-2">
+         <div class="card mb-4 py-3 border-left-primary">
+            <div class="card-body">
+               <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Shipped</div>
+                     <div class="h5 mb-0 font-weight-bold text-gray-800">10</div>
+                  </div>
+                  <div class="col-auto">
+                     <i class="fas fa-fw fa-list-ul fa text-gray-300"></i>
+                  </div>
+               </div>
+            </div>
+         </div>
+   </div>
+   <div class="col-lg-2">
+         <div class="card mb-4 py-3 border-left-primary">
+            <div class="card-body">
+               <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Delivered</div>
+                     <div class="h5 mb-0 font-weight-bold text-gray-800">10</div>
+                  </div>
+                  <div class="col-auto">
+                     <i class="fas fa-fw fa-list-ul fa text-gray-300"></i>
+                  </div>
+               </div>
+            </div>
+         </div>
+   </div>
+   <div class="col-lg-2">
+         <div class="card mb-4 py-3 border-left-primary">
+            <div class="card-body">
+               <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Cancelled</div>
+                     <div class="h5 mb-0 font-weight-bold text-gray-800">10</div>
+                  </div>
+                  <div class="col-auto">
+                     <i class="fas fa-fw fa-list-ul fa text-gray-300"></i>
+                  </div>
+               </div>
+            </div>
+         </div>
+   </div>
+</div>
 <div>
    @if(session()->get('success'))
    <div class="alert alert-success">
