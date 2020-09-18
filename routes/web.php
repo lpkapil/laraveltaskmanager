@@ -21,6 +21,22 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
+Route::get('/features', function () {
+    return view('features');
+});
+
+Route::get('/pricing', function () {
+    return view('pricing');
+});
+
+Route::get('/blog', function () {
+    return view('blog');
+});
+
+Route::get('/blogsingle', function () {
+    return view('blogsingle');
+});
+
 Auth::routes(['verify' => true]);
 
 //Admin

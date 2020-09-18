@@ -90,35 +90,6 @@
 
             </div>
         </section>
-        <section class="section">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-md-4 mr-auto">
-                        <h2 class="mb-4">Seller Admin Dashboard</h2>
-                        <p class="mb-4">Managing your shop is very easy, You can add categories, products and shipping price from easy to use admin panel. You can track customers orders with order stauts as well.</p>
-                        
-                    </div>
-                    <div class="col-md-6" data-aos="fade-left">
-                        <img src="assets/img/undraw_svg_2.svg" alt="Image" class="img-fluid">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="section">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-md-4 ml-auto order-2">
-                        <h2 class="mb-4">Sales and Reports</h2>
-                        <p class="mb-4">Sales and reports are available for tracking your profits and sell, You can view sells & profits of particular duration from admin panel.</p>
-                        
-                    </div>
-                    <div class="col-md-6" data-aos="fade-right">
-                        <img src="assets/img/undraw_svg_3.svg" alt="Image" class="img-fluid">
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <!-- ======= Testimonials Section ======= -->
         <section class="section border-top border-bottom">

@@ -65,12 +65,20 @@
                     <nav class="site-navigation position-relative text-right" role="navigation">
 
                         <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                            <li class="active"><a href="{{ url('/') }}" class="nav-link">About</a></li>
-                            <!-- <li><a href="{{ url('/') }}" class="nav-link">Features</a></li> -->
+                            <li class="active"><a href="{{ url('/') }}" class="nav-link">Home</a></li>
+                            <li><a href="{{ url('/features') }}" class="nav-link">Features</a></li>
+                            <li><a href="{{ url('/pricing') }}" class="nav-link">Pricing</a></li>
+                            <li class="has-children">
+                                <a href="#" class="nav-link">Blog</a>
+                                <ul class="dropdown">
+                                    <li><a href="{{ url('/blog') }}" class="nav-link">Blog</a></li>
+                                    <li><a href="{{ url('/blogsingle') }}" class="nav-link">Blog Sigle</a></li>
+                                </ul>
+                            </li>
                             @guest
                                 <li><a href="{{ route('login') }}" class="nav-link">Login</a></li>
                             @if (Route::has('register'))
-                                <li><a href="{{ route('register') }}" class="nav-link">Signup</a></li>
+                                <li><a href="{{ route('register') }}" class="nav-link">Register</a></li>
                             @endif
                             @endguest 
                             <?php
@@ -130,24 +138,22 @@
                 <div class="col-md-7 ml-auto">
                     <div class="row site-section pt-0">
                         <div class="col-md-4 mb-4 mb-md-0">
-                            <!-- <h3>Navigation</h3>
+                            <h3>Navigation</h3>
                             <ul class="list-unstyled">
-                                <li><a href="#">About</a></li>
-                                @guest
-                                <li><a href="{{ route('login') }}">Login</a></li>
-                                <li><a href="{{ route('register') }}">Signup</a></li>
-                                @endguest 
-                                <li><a href="{{ url('/contact') }}">Contact</a></li>
-                            </ul> -->
+                                <li><a href="{{ url('/') }}">Home</a></li>
+                                <li><a href="{{ url('/features') }}">Features</a></li>
+                                <li><a href="{{ url('/pricing') }}">Pricing</a></li>
+                                <li><a href="{{ url('/blog') }}">Blog</a></li>
+                            </ul>
                         </div>
                         <div class="col-md-4 mb-4 mb-md-0">
                             <h3>Links</h3>
                             <ul class="list-unstyled">
-                                <li><a href="#">About</a></li>
+                                <li><a href="{{ url('/') }}">About</a></li>
                                 @guest
                                 <li><a href="{{ route('login') }}">Login</a></li>
                                 @if (Route::has('register'))
-                                <li><a href="{{ route('register') }}">Signup</a></li>
+                                <li><a href="{{ route('register') }}">Register</a></li>
                                 @endif
                                 @endguest 
                                 <li><a href="{{ url('/contact') }}">Contact</a></li>
