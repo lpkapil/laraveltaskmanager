@@ -1,0 +1,12 @@
+td.action,
+td.order_itmes {
+    width: 270px;
+}
+
+td.order_id {
+    width: 100px;
+}
+
+.status-align {
+    margin: 3px;
+}
