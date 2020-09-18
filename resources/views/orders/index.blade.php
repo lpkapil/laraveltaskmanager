@@ -116,7 +116,7 @@
          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
                <tr>
-                  <th>Order ID#</th>
+                  <th>#Order ID</th>
                   <th>Order Items</th>
                   <th>Delivery Address</th>
                   <th>Status</th>
