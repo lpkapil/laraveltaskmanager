@@ -22,7 +22,7 @@
           <div class="col-12">
             <div class="row justify-content-center">
               <div class="col-md-7 text-center hero-text">
-                <h1 data-aos="fade-up" data-aos-delay="">Signup</h1>
+                <h1 data-aos="fade-up" data-aos-delay="">Register</h1>
                 <p class="mb-5" data-aos="fade-up" data-aos-delay="100">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
               </div>
             </div>
@@ -31,7 +31,6 @@
       </div>
 
     </section>
-
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -106,3 +105,5 @@
     </div>
 </div>
 @endsection
+
+
