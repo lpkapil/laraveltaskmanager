@@ -487,6 +487,7 @@ class ComposerStaticInita803a7d74f39e1f297d3f09e0794fac1
 
     public static $classMap = array (
         'App\\Category' => __DIR__ . '/../..' . '/app/Category.php',
+        'App\\Configuration' => __DIR__ . '/../..' . '/app/Configuration.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Contact' => __DIR__ . '/../..' . '/app/Contact.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
@@ -497,6 +498,7 @@ class ComposerStaticInita803a7d74f39e1f297d3f09e0794fac1
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
         'App\\Http\\Controllers\\CategoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/CategoryController.php',
+        'App\\Http\\Controllers\\ConfigurationController' => __DIR__ . '/../..' . '/app/Http/Controllers/ConfigurationController.php',
         'App\\Http\\Controllers\\ContactController' => __DIR__ . '/../..' . '/app/Http/Controllers/ContactController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\FrontSearchController' => __DIR__ . '/../..' . '/app/Http/Controllers/FrontSearchController.php',
