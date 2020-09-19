@@ -39,7 +39,7 @@ It's Store manager web application based on Software as service model. Multiple 
 
 ###### Summary of completed modules 
 
-Two differenet roles "Admin" and "User" will automatically added in system and both have differnet dashboard according to assiged permissions in roles. On new user registration a confirmation email will be sent to the registered email address, Account will activate only when user will click on activation link sent in email address.
+Three differenet roles Admin/User/Customer will automatically added in system and both Admin and User have differnet dashboard according to assiged permissions in roles. On new user registration a confirmation email will be sent to the registered email address, Account will activate only when user will click on activation link sent in email address.
 
 ## Installation Procedure
 
@@ -91,10 +91,15 @@ Pull Latest code:
 Username: admin@example.com
 Password: admin
 
-#### User ####
+#### User/Seller ####
 
 Username: user@example.com
 Password: user
+
+#### Customer ####
+
+Username: customer@example.com
+Password: customer
 
 ## Demo Screens
 
