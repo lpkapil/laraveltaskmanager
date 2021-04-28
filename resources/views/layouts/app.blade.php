@@ -29,7 +29,7 @@
     <!-- Template Main CSS File -->
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
     <link href="{{ url('/') }}/assets/css/style.css" rel="stylesheet">
-    
+
 
     <!-- =======================================================
   * Template Name: SoftLand - v2.1.0
@@ -75,19 +75,22 @@
                                     <li><a href="{{ url('/blogsingle') }}" class="nav-link">Blog Sigle</a></li>
                                 </ul>
                             </li>
+                            <li><a href="{{ url('/storelisting') }}" class="nav-link">Find a store</a></li>
                             @guest
                                 <li><a href="{{ route('login') }}" class="nav-link">Login</a></li>
                             @if (Route::has('register'))
                                 <li><a href="{{ route('register') }}" class="nav-link">Register</a></li>
                             @endif
-                            @endguest 
+                            @endguest
                             <?php
                             if (!empty(Auth::user())):
-                                if(in_array('user', Auth::user()->roles->pluck('slug')->toArray()) || in_array('admin', Auth::user()->roles->pluck('slug')->toArray())): ?>
+                                if(in_array('user', Auth::user()->roles->pluck('slug')->toArray()) || in_array('admin', Auth::user()->roles->pluck('slug')->toArray()) || in_array('customer', Auth::user()->roles->pluck('slug')->toArray())): ?>
                                     <li class="has-children">
                                         <a href="#" class="nav-link">{{ Auth::user()->name }}</a>
                                         <ul class="dropdown">
+                                            <?php if(!in_array('customer', Auth::user()->roles->pluck('slug')->toArray())): ?>
                                             <li><a href="{{ route('home') }}" class="nav-link">Dashboard</a></li>
+                                            <?php endif; ?>
                                             <li><a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault();
         document.getElementById('logout-form').submit();">Logout</a></li>
                                         </ul>
@@ -95,7 +98,7 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             @csrf
                                         </form>
-                                <?php 
+                                <?php
                                     endif;
                             endif;
                             ?>
@@ -116,7 +119,7 @@
     </header>
 
     <!-- ======= Hero Section ======= -->
-    
+
     <!-- End Hero -->
     @yield('content')
     <!-- End #main -->
@@ -155,7 +158,7 @@
                                 @if (Route::has('register'))
                                 <li><a href="{{ route('register') }}">Register</a></li>
                                 @endif
-                                @endguest 
+                                @endguest
                                 <li><a href="{{ url('/contact') }}">Contact</a></li>
                             </ul>
                         </div>

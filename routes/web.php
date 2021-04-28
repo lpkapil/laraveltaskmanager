@@ -37,6 +37,10 @@ Route::get('/blogsingle', function () {
     return view('blogsingle');
 });
 
+Route::get('/storelisting', function () {
+    return view('storelisting');
+});
+
 Auth::routes(['verify' => true]);
 
 //Admin
